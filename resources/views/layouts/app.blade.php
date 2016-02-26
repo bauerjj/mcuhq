@@ -16,6 +16,13 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link href="css/app.css" rel="stylesheet">
 
+    <meta name="_token" content="{{ csrf_token() }}"/>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/solarized-dark.min.css">
+
     <style>
         body {
             font-family: 'Lato';
@@ -26,6 +33,7 @@
     </style>
 </head>
 <body>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -76,7 +84,7 @@
         </div>
     </div>
 </nav>
-<div id="body" class="container">
+<div id="wrap" class="container">
     @if (Session::has('message'))
         <div class="flash alert-info">
             <p class="panel-body">
@@ -118,7 +126,50 @@
 </footer>
 
 <!-- Scripts -->
+{{-- https://github.com/inacho/bootstrap-markdown-editor --}}
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+{{--<script src="bower_components/ace-builds/src-min/ace.js"></script>
+<script src="bower_components/bootstrap-markdown-editor/dist/js/bootstrap-markdown-editor.js"></script>--}}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+<script src="bower_components/bootstrap-markdown-editor/dist/js/bootstrap-markdown-editor.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+
+<script>
+    jQuery(document).ready(function($) {
+        var csrftoken = '{{ csrf_token() }}';
+
+        hljs.initHighlightingOnLoad();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': csrftoken
+            }
+        });
+
+        $('#editor').markdownEditor({
+            preview: true,
+            imageUpload: true, // Activate the option
+            uploadPath: '/upload-image' + '?_token=H0jOJqUa9voBwA5VDDpfzcj0GXfqafwCwpmnvC5T', // Path of the server side script that receive the files
+
+            onPreview: function (content, callback) {
+                callback( marked(content) );
+            }
+        });
+
+        $(function(){
+            $('.btn-form').click(function () { // enter here if publishing or drafting
+                var mysave = $('#editor').markdownEditor('content')
+                $('#body-text').val(mysave);
+            });
+        });
+
+    });
+</script>
+
 </body>
 </html>

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/','PostController@index');
     Route::get('/home',['as' => 'home', 'uses' => 'PostController@index']);
+    Route::post('upload-image','PostController@image_upload');
 });
 
 // check for logged in user

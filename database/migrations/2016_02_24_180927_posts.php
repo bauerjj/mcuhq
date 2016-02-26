@@ -20,7 +20,8 @@ class Posts extends Migration
               ->references('id')->on('users')
               ->onDelete('cascade');
             $table->string('title')->unique();
-            $table->text('body');
+            $table->text('body'); // raw markdown user input
+            $table->text('body_html'); // markdown converted into html so as to not convert everytime
             $table->string('slug')->unique();
             $table->boolean('active');
             $table->timestamps();

@@ -15,7 +15,7 @@
 @section('content')
     @if($post)
         <div>
-            {!! $post->body !!}
+            {!! $post->body_html !!} 
         </div>
         <div>
             <h2>Leave a comment</h2>

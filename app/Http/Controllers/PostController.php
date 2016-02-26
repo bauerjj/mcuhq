@@ -10,6 +10,7 @@ use Redirect;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
 use Illuminate\Http\Request;
+use GrahamCampbell\Markdown\Facades\Markdown; // use this to convert markdown to html
 
 
 
@@ -25,9 +26,24 @@ class PostController extends Controller
         return view('home')->withPosts($posts)->withTitle($title);
     }
 
+    public function image_upload(){
+        $uploadedFiles = array();
+
+        if (! empty($_FILES)) {
+            foreach ($_FILES as $file) {
+                if (1) {
+                    $uploadedFiles[] = '/uploads/' . urlencode($file['name']);
+                }
+            }
+        }
+
+        echo json_encode($uploadedFiles);
+    }
+
     public function create(Request $request){
         // check if user can post
         if($request->user()->can_post()){
+
             return view('posts.create');
         }
         else{
@@ -40,6 +56,7 @@ class PostController extends Controller
         $post = new Posts();
         $post->title = $request->get('title');
         $post->body = $request->get('body');
+        $post->body_html = Markdown::convertToHtml($request->get('body')); // convert ONCE here
         $post->slug = str_slug($post->title);
         $post->author_id = $request->user()->id;
         if($request->has('save'))
@@ -98,6 +115,7 @@ class PostController extends Controller
             }
             $post->title = $title;
             $post->body = $request->input('body');
+            $post->body_html = Markdown::convertToHtml($request->input('body'));
             if($request->has('save'))
             {
                 $post->active = 0;

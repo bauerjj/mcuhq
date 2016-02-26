@@ -8,10 +8,16 @@
         <div class="form-group">
             <input required="required" value="{{ old('title') }}" placeholder="Enter title here" type="text" name = "title"class="form-control" />
         </div>
-        <div class="form-group">
+        {{--<div class="form-group">
             <textarea name='body'class="form-control">{{ old('body') }}</textarea>
-        </div>
-        <input type="submit" name='publish' class="btn btn-success" value = "Publish"/>
-        <input type="submit" name='save' class="btn btn-default" value = "Save Draft" />
+        </div>--}}
+        <input type="hidden" name="body" id="body-text">
+
+        <div id="editor">{{ old('body') }}</div>
+
+        <input type="submit"  name='publish' class="btn btn-success btn-form" value = "Publish"/>
+        <input type="submit"  name='save' class="btn btn-default btn-form" value = "Save Draft" />
     </form>
+
 @endsection
+
