@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Microcontroller Head Quarters - mcuhq</title>
-<link rel="shortcut icon" href="assets/img/favicon.png"/>
+<link rel="shortcut icon" href="/assets/img/favicon.png"/>
 
 
 <!-- Styles -->

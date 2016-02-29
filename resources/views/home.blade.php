@@ -61,7 +61,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
-                        <img src="assets/img/demo/2.jpg" class="img-post img-responsive" alt="Image">
+                        <img src="/assets/img/demo/2.jpg" class="img-post img-responsive" alt="Image">
                     </div>
                     <div class="col-md-9 col-sm-9 post-content">
                         <h3 class="post-title">

@@ -1,9 +1,23 @@
-@extends('layouts.app')
-@section('title')
-    {{ $user->name }}
+@extends('layouts.full')
+
+@section('header')
+    <header class="main-header">
+        <div class="container">
+
+            <ol class="breadcrumb ">
+                <li><a href="/">Home</a></li>
+                <li class="active">{{ $user->name }}</li>
+            </ol>
+        </div>
+    </header>
+
 @endsection
-@section('content')
+
+
+@section('center')
+
     <div>
+        <h3 class="first-letter padding-left-15">{{ $user->name }}</h3>
         <ul class="list-group">
             <li class="list-group-item">
                 Joined on {{$user->created_at->format('M d,Y \a\t h:i a') }}
@@ -44,14 +58,17 @@
         </ul>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading"><h3>Latest Posts</h3></div>
-        <div class="panel-body">
+        <div class="panel-heading"><h3 class="first-letter">Latest Posts</h3></div>
+        <div class="list-group panel-body">
             @if(!empty($latest_posts[0]))
                 @foreach($latest_posts as $latest_post)
+                    <div class="list-group-item">
+
                     <p>
                         <strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong>
                         <span class="well-sm">On {{ $latest_post->created_at->format('M d,Y \a\t h:i a') }}</span>
                     </p>
+                        </div>
                 @endforeach
             @else
                 <p>You have not written any post till now.</p>
@@ -59,7 +76,7 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading"><h3>Latest Comments</h3></div>
+        <div class="panel-heading"><h3 class="first-letter">Latest Comments</h3></div>
         <div class="list-group">
             @if(!empty($latest_comments[0]))
                 @foreach($latest_comments as $latest_comment)

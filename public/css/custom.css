@@ -206,4 +206,14 @@ h1, h2, h3, h4, h5, h6{
 .padding-top-10{
     padding-top: 10px;
 }
+.padding-left-15{
+    padding-left: 15px;
+}
+
+.first-letter{
+    color: black;
+}
+.first-letter:first-letter{
+    color: #0099da
+}
 /**********************************/
