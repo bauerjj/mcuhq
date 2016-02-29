@@ -105,7 +105,7 @@
         @endif
 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2>@yield('title')</h2>
@@ -138,6 +138,8 @@
 <script src="bower_components/bootstrap-markdown-editor/dist/js/bootstrap-markdown-editor.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+
+//http://support.ghost.org/markdown-guide/
 
 <script>
     jQuery(document).ready(function($) {

@@ -25,7 +25,9 @@ class PostController extends Controller
         $posts = Posts::where('active', 1)->orderBy('created_at', 'desc')->paginate(5);
         // page heading
         $title = 'Latest Posts';
+       // return view('home')->withPosts($posts)->withTitle($title);
         return view('home')->withPosts($posts)->withTitle($title);
+
     }
 
     public function image_upload(Request $request)

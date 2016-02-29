@@ -1,0 +1,209 @@
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -50px;
+    /* Pad bottom by footer height */
+    padding: 0 0 50px;
+}
+
+#footer {
+    /* Set the fixed height of the footer here */
+    height: 50px;
+}
+
+.main-header{
+    background-color: #0099da;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 12.6px;
+}
+
+.navbar-default.navbar-dark + .main-header .page-title, .navbar-default.navbar-dark + .main-header a{
+    color: #0099da;
+}
+
+.categories{
+    padding: 10px
+}
+
+.panel, .block{
+    margin-bottom: 5px;
+}
+.post-title {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.my-fa-twitter:before {
+    content: "\f099";
+}
+.my-fa-youtube:before {
+    content: "\f167";
+}
+/**********  Main Page **************/
+.portfolio-topbar-cats li span{
+    padding: 2px 5px;
+    margin-top: 6px;
+}
+.panel-footer{
+    padding: 2px 2px;
+    font-size: 12px
+}
+.post .tags-cloud{
+    display: inline;
+}
+
+.post-content{
+    padding-left: 0px;
+}
+@media (max-width: 767px){
+
+    .post-content{
+        padding-left: 15px; /* add padding back in when smaller screen */
+    }
+
+}
+
+.post img{
+    margin-bottom: 3px;
+}
+
+.portfolio-topbar h4{
+    padding-bottom: 0px;
+}
+
+.portfolio-topbar{
+    margin-bottom: 15px;
+}
+
+/**************************************/
+
+/********** Navbar *******************/
+.badge {
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #777777;
+    border-radius: 10px;
+}
+
+#bs-example-navbar-collapse-1 .badge {
+    margin-left: 10px;
+    border-radius: 2px;
+    color: #fff;
+    background: #54c8eb;
+}
+
+#bs-example-navbar-collapse-1 li{
+    line-height: 1em;
+}
+
+/**************************************/
+
+/************** Show Post ************/
+.post-show
+.panel-title {
+    padding: 0px;
+
+}
+.post-show
+.panel-title h2{
+    border-left: 10px #0099da solid;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    margin-top: 0px;
+
+}
+
+.post-show
+.panel-body{
+    padding: 0px;
+}
+
+.sidebar {
+    font-size: .9em;
+}
+.sidebar li{
+    line-height: 1.5em;
+}
+.panel-item{
+    margin-top: 10px;
+}
+.panel-body{
+    padding: 2px 2px;
+}
+
+.post-show.panel{
+    border:none;
+}
+
+.post-show .panel-heading{
+    padding: 5px 8px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.sidebar hr{
+    margin: 5px;
+}
+
+.sidebar .section-title:first-letter{
+    color: #0099da
+}
+.sidebar h3{
+    margin-top: 20px;
+}
+
+.sidebar .related li{
+    margin-bottom: 7px;
+}
+
+
+/************************************/
+
+
+/********* login/register/reset forms ******/
+.form-horizontal {
+    padding: 10px;
+}
+
+.input-post .checkbox input[type="checkbox"], .input-post  .checkbox-inline input[type="checkbox"]{
+    opacity: 1; /* otherwise the multiple selection dropdown boxes are hidden from view */
+}
+
+/******** General ******************/
+h1, h2, h3, h4, h5, h6{
+    margin: 10px 0 10px 0;
+}
+
+/*So header shown correctly*/
+.main-header .breadcrumb{
+    position: relative;
+    font-size: 14px;
+
+}
+.breadcrumb{
+    padding: 0px 15px;
+}
+
+.padding-bottom-10{
+    padding-bottom: 10px;
+}
+.padding-top-10{
+    padding-top: 10px;
+}
+/**********************************/

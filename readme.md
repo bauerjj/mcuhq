@@ -10,3 +10,5 @@ Includes the following:
     - https://github.com/GrahamCampbell/Laravel-Markdown
  - For markdown editor
     - https://github.com/inacho/bootstrap-markdown-editor
+ - For Article tagging
+    - https://github.com/rtconner/laravel-tagging
