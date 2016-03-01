@@ -21,7 +21,7 @@ body {
 
 .main-header{
     background-color: #0099da;
-    padding: 5px;
+    padding: 1px;
     margin-bottom: 10px;
     font-size: 12.6px;
 }
@@ -193,7 +193,7 @@ h1, h2, h3, h4, h5, h6{
 /*So header shown correctly*/
 .main-header .breadcrumb{
     position: relative;
-    font-size: 14px;
+    font-size: 12px;
 
 }
 .breadcrumb{
@@ -215,5 +215,24 @@ h1, h2, h3, h4, h5, h6{
 }
 .first-letter:first-letter{
     color: #0099da
+}
+
+
+.flash ul{ /* For the validation errors..gets rid of the nasty bullet points */
+    list-style: none;
+}
+.flash li{
+    padding-left: 5px;
+}
+
+.selectize-control.multi .selectize-input>div { /* Used in creating new post tags */
+    border: solid 1px #ddd;
+    padding: 3px 5px;
+    margin: 2px;
+    display: inline-block;
+    font-size: .9em;
+    color: #0099da;
+    text-decoration: none;
+    background: white;
 }
 /**********************************/

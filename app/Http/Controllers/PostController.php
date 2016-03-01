@@ -25,8 +25,8 @@ class PostController extends Controller
         $posts = Posts::where('active', 1)->orderBy('created_at', 'desc')->paginate(5);
         // page heading
         $title = 'Latest Posts';
-       // return view('home')->withPosts($posts)->withTitle($title);
         return view('home')->withPosts($posts)->withTitle($title);
+
 
     }
 
@@ -120,6 +120,7 @@ class PostController extends Controller
         // check if user can post
         if ($request->user()->can_post()) {
 
+
             return view('posts.create');
         } else {
             return redirect('/')->withErrors('You have not sufficent permissions to post!');
@@ -128,6 +129,8 @@ class PostController extends Controller
 
     public function store(PostFormRequest $request)
     {
+       // return Redirect::to('new-post')->withErrors('wooops')->withInput();
+        print_r($request->get('topics')); die;
         $post = new Posts();
         $post->title = $request->get('title');
         $post->body = $request->get('body');
@@ -142,6 +145,11 @@ class PostController extends Controller
             $message = 'Post published successfully';
         }
         $post->save();
+
+        // Must first save the ID before tagging!
+        $post->tag($request->get('tags')); // delete current tags and save new tags
+
+
         return redirect('edit/' . $post->slug)->withMessage($message);
     }
 
@@ -151,8 +159,11 @@ class PostController extends Controller
         if (!$post) {
             return redirect('/')->withErrors('requested page not found');
         }
+        $cat = $post->categories;
+        //print_r($cat[0]->name);die;
+        //print_r($cat); die;
         $comments = $post->comments;
-        return view('posts.show')->withPost($post)->withComments($comments);
+        return view('posts.show')->withPost($post)->withComments($comments)->withCategories($cat);
     }
 
     public function edit(Request $request, $slug)

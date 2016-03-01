@@ -106,6 +106,14 @@
                 <li><strong>Language(s):</strong> C</li>
                 <li><strong>Compiler:</strong> 25</li>
                 <li><strong>Dev Tools:</strong> C</li>
+                <li><strong>Categories:</strong>
+                    @foreach($categories as $cat)
+
+                    <a href="#">{{$cat->name}}</a>
+                    @endforeach
+
+                </li>
+
             </ul>
             <div class="tags-cloud">
                 <a href="#" class="tag">Web</a>

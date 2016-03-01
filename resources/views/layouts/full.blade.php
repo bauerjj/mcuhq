@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    @include('includes.head')
-
     @yield('head')
+
+
+    @include('includes.head') {{-- importantt this comes last so that custom.css is not overriden--}}
+
 </head>
 
 <body>
@@ -74,32 +75,10 @@
 @yield('script')
 <script>
     jQuery(document).ready(function ($) {
-        var csrftoken = '{{ csrf_token() }}';
 
         hljs.initHighlightingOnLoad();
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': csrftoken
-            }
-        });
 
-        $('#editor').markdownEditor({
-            preview: true,
-            imageUpload: true, // Activate the option
-            uploadPath: '/upload-image' + '?_token=H0jOJqUa9voBwA5VDDpfzcj0GXfqafwCwpmnvC5T', // Path of the server side script that receive the files
-
-            onPreview: function (content, callback) {
-                callback(marked(content));
-            }
-        });
-
-        $(function () {
-            $('.btn-form').click(function () { // enter here if publishing or drafting
-                var mysave = $('#editor').markdownEditor('content')
-                $('#body-text').val(mysave);
-            });
-        });
 
 
     });

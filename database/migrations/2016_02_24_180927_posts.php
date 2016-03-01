@@ -20,6 +20,8 @@ class Posts extends Migration
               ->references('id')->on('users')
               ->onDelete('cascade');
             $table->string('title')->unique();
+            $table->string('more_info_link'); // i.e github/bitbucket link, blog url, etc
+            $table->string('source_link'); // i.e github/bitbucket link, blog url, etc
             $table->text('body'); // raw markdown user input
             $table->text('body_html'); // markdown converted into html so as to not convert everytime
             $table->string('slug')->unique();
