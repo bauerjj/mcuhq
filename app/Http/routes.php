@@ -43,10 +43,17 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home',['as' => 'home', 'uses' => 'PostController@index']);
     Route::post('upload-image','PostController@image_upload');
+
+    // display single post
+    Route::get('/{slug}',['as' => 'post', 'uses' => 'PostController@show'])->where('slug', '[A-Za-z0-9-_]+');
+    //users profile
+    Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+');
+// display list of posts
+    Route::get('user/{id}/posts','UserController@user_posts')->where('id', '[0-9]+');
 });
 
 // check for logged in user
-Route::group(['middleware' => ['web']], function()
+Route::group(['middleware' => ['auth']], function()
 {
 
     // show new post form
@@ -68,12 +75,7 @@ Route::group(['middleware' => ['web']], function()
     // delete comment
     Route::post('comment/delete/{id}','CommentController@distroy');
 
-    // display single post
-    Route::get('/{slug}',['as' => 'post', 'uses' => 'PostController@show'])->where('slug', '[A-Za-z0-9-_]+');
-    //users profile
-    Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+');
-// display list of posts
-    Route::get('user/{id}/posts','UserController@user_posts')->where('id', '[0-9]+');
+
 });
 
 
