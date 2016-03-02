@@ -76,8 +76,8 @@
 
                     <div class="col-sm-11 col-md-9">
                         <select id="topic-dropdown" multiple="multiple">
-                            <option value="Audio">Audio</option>
-                            <option value="Networking">Networking</option>
+                            <option value="1">Audio</option>
+                            <option value="2">Networking</option>
                         </select>
                     </div>
                 </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Categories;
+use App\CategoriesPosts;
 use Input;
 use Validator;
 use Session;
@@ -10,7 +12,7 @@ use App\Posts;
 use App\User;
 use Redirect;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostFormRequest;
+//use App\Http\Requests\PostFormRequest; // don't use for validation anymore
 use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown; // use this to convert markdown to html
 
@@ -127,10 +129,19 @@ class PostController extends Controller
         }
     }
 
-    public function store(PostFormRequest $request)
+    public function store(Request $request) //PostFormRequest
     {
        // return Redirect::to('new-post')->withErrors('wooops')->withInput();
-        print_r($request->get('topics')); die;
+
+        $this->validate($request, [
+            'title' => 'required|unique:posts|max:255',
+            'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
+            'body' => 'required',
+            'tags' => 'required',
+            'topics' => 'required',
+        ]);
+
+
         $post = new Posts();
         $post->title = $request->get('title');
         $post->body = $request->get('body');
@@ -144,10 +155,20 @@ class PostController extends Controller
             $post->active = 1;
             $message = 'Post published successfully';
         }
-        $post->save();
 
-        // Must first save the ID before tagging!
-        $post->tag($request->get('tags')); // delete current tags and save new tags
+        if($post->save()) {
+
+            $cat_string = $request->get('topics');
+            $cat_ids = explode(',', $cat_string);
+            $post->categories()->sync($cat_ids); // save categories
+
+
+            // Must first save the ID before tagging!
+            $post->tag($request->get('tags')); // delete current tags and save new tags
+
+        }
+
+
 
 
         return redirect('edit/' . $post->slug)->withMessage($message);
@@ -155,15 +176,20 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        $post = Posts::where('slug', $slug)->first();
+        //https://laravel.com/docs/5.1/eloquent-relationships#eager-loading
+        //https://github.com/rtconner/laravel-tagging
+        $post = Posts::with('tagged')->where('slug',$slug)->first();
+        // This gets posts with where clause on inside
+//        $post = Posts::with(['tagged' => function ($query) use($slug){
+//            $query->where('slug', $slug);
+//        }])->get();
+
         if (!$post) {
             return redirect('/')->withErrors('requested page not found');
         }
-        $cat = $post->categories;
-        //print_r($cat[0]->name);die;
-        //print_r($cat); die;
+        $categories = $post->categories;
         $comments = $post->comments;
-        return view('posts.show')->withPost($post)->withComments($comments)->withCategories($cat);
+        return view('posts.show')->withPost($post)->withComments($comments)->withCategories($categories);
     }
 
     public function edit(Request $request, $slug)

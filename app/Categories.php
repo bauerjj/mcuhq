@@ -9,5 +9,11 @@ class Categories extends Model
     protected $guarded = [];
 
 
+    public function posts()
+    {
+        //https://laracasts.com/discuss/channels/general-discussion/laravel-5-problems-with-relations-pivot
+        //http://stackoverflow.com/questions/24547376/insert-data-to-a-pivot-table-in-laravel
+        return $this->belongsToMany('App\Posts', 'Categories_Posts','category_id','post_id');
+    }
 
 }

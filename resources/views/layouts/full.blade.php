@@ -31,18 +31,21 @@
                         </p>
                     </div>
                 @endif
-                @if ($errors->any())
-                    <div class='flash alert-danger'>
-                        <ul class="panel-body">
-                            @foreach ( $errors->all() as $error )
-                                <li>
-                                    {{ $error }}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
+                {{--Place these here since custom 404 page will always not have errors variable (this is a temp HACK)--}}
+                @if(isset($errors))
+                    @if ($errors->any())
+                        <div class='flash alert-danger'>
+                            <ul class="panel-body">
+                                @foreach ( $errors->all() as $error )
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                @endif
                 @yield('center')
             </div>
         </div>

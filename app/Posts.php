@@ -21,9 +21,9 @@ class Posts extends Model
 
     public function categories()
     {
-        //return $this->hasMany('App\CategoriesPosts','post_id');
-        //https://laravel.com/docs/5.1/eloquent-relationships#one-to-one
-        return $this->hasManyThrough('App\Categories', 'App\CategoriesPosts','post_id','id');
+        //https://laracasts.com/discuss/channels/general-discussion/laravel-5-problems-with-relations-pivot
+        //http://stackoverflow.com/questions/24547376/insert-data-to-a-pivot-table-in-laravel
+        return $this->belongsToMany('App\Categories', 'Categories_Posts','post_id','category_id');
     }
 
     // returns the instance of the user who is author of that post

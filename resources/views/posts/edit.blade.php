@@ -1,8 +1,20 @@
-@extends('layouts.app')
-@section('title')
-    Edit Post
+@extends('layouts.sidebar')
+
+@section('header')
+    <header class="main-header">
+        <div class="container">
+
+            <ol class="breadcrumb ">
+                <li><a href="/">Home</a></li>
+                <li class="active">Edit {{ $post->title }}</li>
+            </ol>
+        </div>
+    </header>
+
 @endsection
-@section('content')
+
+
+@section('center')
     <form method="post" action='{{ url("/update") }}'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="post_id" value="{{ $post->id }}{{ old('post_id') }}">

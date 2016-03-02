@@ -116,16 +116,10 @@
 
             </ul>
             <div class="tags-cloud">
-                <a href="#" class="tag">Web</a>
-                <a href="#" class="tag">Artificial Intelligence</a>
-                <a href="#" class="tag">Programing</a>
-                <a href="#" class="tag">Design</a>
-                <a href="#" class="tag">3D</a>
-                <a href="#" class="tag">Games</a>
-                <a href="#" class="tag">Resources</a>
-                <a href="#" class="tag">2D</a>
-                <a href="#" class="tag">C++</a>
-                <a href="#" class="tag">Jquery</a>
+                @foreach($post->tags as $tag)
+
+                    <a href="/tags/{{$tag->slug}}" class="tag">{{$tag->name}}</a>
+                @endforeach
             </div>
 
             <h3 class="section-title">Related</h3>
