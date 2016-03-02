@@ -13,7 +13,6 @@ class CreateCategoriesPostsTable extends Migration
     public function up()
     {
         Schema::create('categories_posts', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('post_id')->unsigned()->default(0);
             $table->foreign('post_id')
                 ->references('id')->on('posts')
@@ -23,6 +22,7 @@ class CreateCategoriesPostsTable extends Migration
                 ->references('id')->on('categories')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->primary('post_id','category_id');
         });
     }
 
