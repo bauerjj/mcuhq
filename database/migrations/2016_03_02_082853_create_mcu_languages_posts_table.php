@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesPostsTable extends Migration
+class CreateMcuLanguagesPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,17 @@ class CreateCategoriesPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories_posts', function (Blueprint $table) {
+        Schema::create('mcu_languages_posts', function (Blueprint $table) {
+            $table->integer('language_id')->unsigned()->default(0);
+            $table->foreign('language_id')
+                ->references('id')->on('mcu_languages')
+                ->onDelete('cascade');
             $table->integer('post_id')->unsigned()->default(0);
             $table->foreign('post_id')
                 ->references('id')->on('posts')
                 ->onDelete('cascade');
-            $table->integer('category_id')->unsigned()->default(0);
-            $table->foreign('category_id')
-                ->references('id')->on('categories')
-                ->onDelete('cascade');
             $table->timestamps();
-            $table->primary(array('post_id','category_id')); // added this after the fact
+            $table->primary(array('language_id','post_id'));
         });
     }
 
@@ -33,6 +33,6 @@ class CreateCategoriesPostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories_posts');
+        Schema::drop('mcu_languages_posts');
     }
 }

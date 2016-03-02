@@ -26,6 +26,13 @@ class Posts extends Migration
             $table->text('body_html'); // markdown converted into html so as to not convert everytime
             $table->string('slug')->unique();
             $table->boolean('active');
+
+            $table->integer('view_count')->default(0);
+            $table->integer('mcu_id')->default(0);
+            $table->foreign('mcu_id')
+                ->references('id')->on('mcus')
+                ->onDelete('cascade');
+
             $table->timestamps();
     });
     }

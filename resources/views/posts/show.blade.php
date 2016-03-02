@@ -118,7 +118,7 @@
             <div class="tags-cloud">
                 @foreach($post->tags as $tag)
 
-                    <a href="/tags/{{$tag->slug}}" class="tag">{{$tag->name}}</a>
+                    <a href="/tags/{{$tag->slug}}" class="tag">{{strtolower($tag->name)}}</a>
                 @endforeach
             </div>
 
