@@ -13,9 +13,9 @@ class mcuVendorsSeeder extends Seeder
     {
         $now = \Carbon\Carbon::now()->toDateTimeString();
         $data = array(
-            array('name'=>'microchip','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'cypress','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'atmel','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'Microchip','slug'=>'microchip', 'created_at'=> $now,'updated_at' => $now),
+            array('name'=>'Cypress','slug'=>'cypress', 'created_at'=> $now,'updated_at' => $now),
+            array('name'=>'Atmel','slug'=>'atmel', 'created_at'=> $now,'updated_at' => $now),
         );
 
         DB::table('mcu_vendors')->insert($data);

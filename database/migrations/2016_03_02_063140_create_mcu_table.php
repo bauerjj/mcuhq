@@ -15,6 +15,7 @@ class CreateMcuTable extends Migration
         Schema::create('mcus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug', 255)->index();
             $table->integer('vendor_id')->unsigned()->default(0);
             $table->foreign('vendor_id')
                 ->references('id')->on('mcu_vendors')

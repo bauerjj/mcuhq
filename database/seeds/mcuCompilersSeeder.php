@@ -14,15 +14,15 @@ class mcuCompilersSeeder extends Seeder
         $now = \Carbon\Carbon::now()->toDateTimeString();
         $data = array(
             //mchp
-            array('name'=>'xc8','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'xc16','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'xc32','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'ccs','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'XC8','slug'=> 'xc8','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'XC16','slug'=> 'xc16','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'XC32','slug'=> 'xc32','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'CCS','slug'=> 'ccs','created_at'=> $now,'updated_at' => $now),
 
             //atmel
-            array('name'=>'avr studio 5','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'avr studio 4','created_at'=> $now,'updated_at' => $now),
-            array('name'=>'iar embedded workbench','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'AVR Studio 5','slug'=> 'avr-studio-5','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'AVR Studio 4','slug'=> 'avr-studio-4','created_at'=> $now,'updated_at' => $now),
+            array('name'=>'IAR Embedded Workbench','slug'=> 'iar-embedded-workbench','created_at'=> $now,'updated_at' => $now),
 
         );
 

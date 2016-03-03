@@ -15,6 +15,7 @@ class CreateMcuLanguagesTable extends Migration
         Schema::create('mcu_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug', 255)->index();
             $table->integer('count')->unsigned()->default(0);
             $table->timestamps();
         });

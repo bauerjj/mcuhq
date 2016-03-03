@@ -15,6 +15,7 @@ class CreateMcuCompilersTable extends Migration
     Schema::create('mcu_compilers', function (Blueprint $table) {
         $table->increments('id');
         $table->string('name');
+        $table->string('slug', 255)->index();
         $table->integer('count')->unsigned()->default(0);
         $table->timestamps();
     });
