@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -29,12 +29,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     // user has many posts
     public function posts()
     {
-        return $this->hasMany('App\Posts','author_id');
+        return $this->hasMany('App\Models\Posts','author_id');
     }
     // user has many comments
     public function comments()
     {
-        return $this->hasMany('App\Comments','from_user');
+        return $this->hasMany('App\Models\Comments','from_user');
     }
     public function can_post()
     {

@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Categories;
-use App\CategoriesPosts;
+use App\Models\Categories;
 use Input;
 use Validator;
 use Session;
-use App\Posts;
-use App\User;
+use App\Models\Posts;
+use App\Models\User;
 use Redirect;
 use App\Http\Controllers\Controller;
 //use App\Http\Requests\PostFormRequest; // don't use for validation anymore

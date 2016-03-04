@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(mcuLanguagesSeeder::class);
         $this->call(mcuLanguagesPostsSeeder::class);
+        $this->call(mcuCompilersPostsSeeder::class);
 
     }
 }

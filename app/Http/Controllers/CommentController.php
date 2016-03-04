@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Posts;
-use App\Comments;
+use App\Models\Posts;
+use App\Models\Comments;
 use Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
