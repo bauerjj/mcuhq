@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Categories;
+use App\Models\McuCompilers;
+use App\Models\Mcus;
 use Input;
 use Validator;
 use Session;
@@ -56,7 +58,7 @@ class PostController extends Controller
 //                Session::flash('success', 'Upload successfully');
 
                 // source: http://www.w3schools.com/php/php_file_upload.asp
-                $target_dir = "uploads/";
+                $target_dir = "/uploads/";
                 $dest_file_name = substr(str_shuffle(MD5(microtime())), 0, 15);
                 $target_file = $target_dir . $dest_file_name . '.' .pathinfo($file['name'], PATHINFO_EXTENSION);
                 $uploadOk = 1;
@@ -121,8 +123,12 @@ class PostController extends Controller
         // check if user can post
         if ($request->user()->can_post()) {
 
+            // Grab the available categories and such
+            $categories = Categories::all();
+            $mcus = Mcus::orderBy('vendor_id')->get();
+            $compilers = McuCompilers::orderBy('vendor_id')->get();
 
-            return view('posts.create');
+            return view('posts.create')->withCategories($categories)->withMcus($mcus)->withCompilers($compilers);
         } else {
             return redirect('/')->withErrors('You have not sufficent permissions to post!');
         }
@@ -138,7 +144,15 @@ class PostController extends Controller
             'body' => 'required',
             'tags' => 'required',
             'topics' => 'required',
+            'file_source'=> 'required|max:10000|mimes:zip',
         ]);
+
+        $file = $request->file('file_source');
+        // print_r($file); die;
+
+        $target_dir = "/uploads/";
+        $dest_file_name = substr(str_shuffle(MD5(microtime())), 0, 15);
+        $request->file('file_source')->move('/uploads/', $dest_file_name);
 
 
         $post = new Posts();
@@ -147,6 +161,10 @@ class PostController extends Controller
         $post->body_html = Markdown::convertToHtml($request->get('body')); // convert ONCE here
         $post->slug = str_slug($post->title);
         $post->author_id = $request->user()->id;
+        $post->more_info_link = $request->get('more_info_link');
+        $post->mcu_id = $request->get('micro');
+        $post->compiler_id = $request->get('compiler-assembler');
+
         if ($request->has('save')) {
             $post->active = 0;
             $message = 'Post saved successfully';
@@ -158,9 +176,10 @@ class PostController extends Controller
         if($post->save()) {
 
             $cat_string = $request->get('topics');
+            $languages = $request->get('languages');
             $cat_ids = explode(',', $cat_string);
             $post->categories()->sync($cat_ids); // save categories
-
+           // $post->languages()->sync($languages)
 
             // Must first save the ID before tagging!
             $post->tag($request->get('tags')); // delete current tags and save new tags
@@ -186,9 +205,25 @@ class PostController extends Controller
         if (!$post) {
             return redirect('/')->withErrors('requested page not found');
         }
+        // Grab other associated display things
         $categories = $post->categories;
+        $languages = $post->languages;
         $comments = $post->comments;
-        return view('posts.show')->withPost($post)->withComments($comments)->withCategories($categories);
+
+        $compiler = $post->compiler;
+        $mcu = $post->mcu;
+        if($mcu) {
+            $vendor = $mcu->vendor;
+            $arch = $mcu->arch;
+        }
+
+
+        return view('posts.show')->withPost($post)->withComments($comments)->withCategories($categories)
+            ->withLanguages($languages)
+            ->withVendor($vendor)
+            ->withArch($arch)
+            ->withCompiler($compiler)
+            ->withMcu($mcu);
     }
 
     public function edit(Request $request, $slug)

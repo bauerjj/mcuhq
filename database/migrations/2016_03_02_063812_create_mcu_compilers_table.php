@@ -16,6 +16,10 @@ class CreateMcuCompilersTable extends Migration
         $table->increments('id');
         $table->string('name');
         $table->string('slug', 255)->index();
+        $table->integer('vendor_id')->unsigned()->default(0);
+        $table->foreign('vendor_id')
+            ->references('id')->on('mcu_vendors')
+            ->onDelete('cascade');
         $table->integer('count')->unsigned()->default(0);
         $table->timestamps();
     });

@@ -24,8 +24,8 @@
 
 
 @section('center')
-            <form action="/new-post" method="post" class="input-post form-horizontal">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form action="/new-post" method="post" class="input-post form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" >
 
                 <div class="form-group">
                     <label for="title" class="col-sm-1 control-label">Title </label>
@@ -62,11 +62,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="github" class="col-sm-1 col-md-3 control-label">Github </label>
+                    <label for="more_info_link" class="col-sm-1 col-md-3 control-label">Source Link </label>
 
                     <div class="col-sm-11 col-md-9">
-                        <input value="{{ old('github') }}" placeholder="(optional) Github Link" type="text"
-                               name="github" class="form-control" id="github"/>
+                        <input value="{{ old('more_info_link') }}" placeholder="(Optional) More Info Link i.e. github" type="text"
+                               name="more_info_link" class="form-control" id="more_info_link"/>
 
                     </div>
                 </div>
@@ -76,8 +76,9 @@
 
                     <div class="col-sm-11 col-md-9">
                         <select id="topic-dropdown" multiple="multiple">
-                            <option value="1">Audio</option>
-                            <option value="2">Networking</option>
+                            @foreach($categories as $cat)
+                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -106,27 +107,18 @@
 
                 <div class="col-sm-9">
                     <select id="micro" multiple="multiple">
-                        <optgroup label="Microchip">
-                            <option value="1-1">MCHP All</option>
-                            <option value="1-2">PIC10</option>
-                            <option value="1-3">PIC12</option>
-                        </optgroup>
-                        <optgroup label="Atmel">
-                            <option value="2-1">Arduino</option>
-                            <option value="2-2">AVR</option>
-                        </optgroup>
-                        <optgroup label="Atmel">
-                            <option value="2-1">Arduino</option>
-                            <option value="2-2">AVR</option>
-                        </optgroup>
-                        <optgroup label="Atmel">
-                            <option value="2-1">Arduino</option>
-                            <option value="2-2">AVR</option>
-                        </optgroup>
-                        <optgroup label="Atmel">
-                            <option value="2-1">Arduino</option>
-                            <option value="2-2">AVR</option>
-                        </optgroup>
+                        {{ $lastId = -1 }}
+                        @foreach($mcus as $mcu)
+                            @if($mcu->vendor->id != $lastId)
+                                @if($lastId != -1)
+                                    </optgroup>
+                                    @endif
+                                <optgroup label="{{$mcu->vendor->name}}">
+                            @endif
+                                    <option value="{{$mcu->id}}">{{$mcu->name}}</option>
+                                    {{ $lastId = $mcu->vendor->id }}
+                        @endforeach
+                                </optgroup>
                     </select>
                 </div>
                 </div>
@@ -137,11 +129,42 @@
 
                 <div class="col-sm-11 col-md-9">
                     <select id="compiler-assembler" multiple="multiple" id="compiler-assembler">
-                        <option value="Audio">Audio</option>
-                        <option value="Networking">Networking</option>
+                        {{ $lastId = -1 }}
+                        @foreach($compilers as $compiler)
+                        @if($compiler->vendor->id != $lastId)
+                        @if($lastId != -1)
+                        </optgroup>
+                        @endif
+                        <optgroup label="{{$compiler->vendor->name}}">
+                            @endif
+                            <option value="{{$compiler->id}}">{{$compiler->name}}</option>
+                        {{ $lastId = $compiler->vendor->id }}
+                        @endforeach
                     </select>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="compiler-assembler" class="col-sm-1 col-md-3 control-label">Languages </label>
+                <input type="hidden" name="compiler-assembler" id="compiler-assembler-input">
+
+                <div class="col-sm-11 col-md-9">
+                    <select id="compiler-assembler" multiple="multiple" id="compiler-assembler">
+                        {{ $lastId = -1 }}
+                        @foreach($compilers as $compiler)
+                        @if($compiler->vendor->id != $lastId)
+                        @if($lastId != -1)
+                        </optgroup>
+                        @endif
+                        <optgroup label="{{$compiler->vendor->name}}">
+                            @endif
+                            <option value="{{$compiler->id}}">{{$compiler->name}}</option>
+                        {{ $lastId = $compiler->vendor->id }}
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
         </div>
     </div>
     <br/>

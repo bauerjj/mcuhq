@@ -100,12 +100,19 @@
                 </ul>
             <hr>
             <ul class="list-unstyled">
-                <li><strong>Micro:</strong> <a href="#">PIC16</a></li>
-                <li><strong>Vendor:</strong> <a href="#">Microchip</a></li>
-                <li><strong>Arch:</strong> 8-bit</li>
-                <li><strong>Language(s):</strong> C</li>
-                <li><strong>Compiler:</strong> 25</li>
-                <li><strong>Dev Tools:</strong> C</li>
+                <li><strong>Micro:</strong> <a href="#">{{$mcu->name}}</a></li>
+                <li><strong>Vendor:</strong> <a href="#">{{$vendor->name}}</a></li>
+                <li><strong>Arch:</strong> {{$arch->name}}</li>
+                <li><strong>Language(s): </strong>
+                    @foreach($languages as $language)
+
+                        <a href="#">{{$language->name}}</a>
+                    @endforeach
+                </li>
+                <li><strong>Compiler:</strong>
+                        <a href="#">{{$compiler->name}}</a>
+                </li>
+                <li><strong>Dev Tools:</strong> </li>
                 <li><strong>Categories:</strong>
                     @foreach($categories as $cat)
 

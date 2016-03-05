@@ -8,7 +8,7 @@
 
 <!-- Styles -->
 {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-<link href="/css/app.css" rel="stylesheet">
+{{--<link href="/css/app.css" rel="stylesheet">--}}
 
 <meta name="_token" content="{{ csrf_token() }}"/>
 
