@@ -23,7 +23,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 content">
                 @if (Session::has('message'))
                     <div class="flash alert-info">
                         <p class="panel-body">
@@ -55,7 +55,7 @@
 
 
 <!-- footer-widgets -->
-<footer id="footer" class="footer">
+<footer id="footer-v6" class="footer-v6">
     @include('includes.footer')
 </footer>
 

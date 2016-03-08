@@ -14,7 +14,7 @@
     </nav>
 
     @yield('header')
-    <div class="container margin-top-10">
+    <div class="container margin-top-10 content">
         <div class="row">
             <div class="col-md-9">
                 @if (Session::has('message'))
@@ -51,7 +51,7 @@
 
 
 <!-- footer-widgets -->
-<footer id="footer" class="footer">
+<footer id="footer-v6" class="footer">
     @include('includes.footer')
 </footer>
 

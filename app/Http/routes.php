@@ -62,6 +62,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/blog', 'HomeController@blog');
     Route::get('/about','PostController@about');
 
+    Route::get('/vendor/{vendor}','FilterController@vendor')->where('slug','[A-Za-z0-9-_]+');
+
+
 
     Route::get('/home',['as' => 'home', 'uses' => 'PostController@index']);
     Route::post('upload-image','PostController@image_upload');
@@ -70,7 +73,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('{id}/{slug}',['as' => 'post', 'uses' => 'PostController@show'])->where(['id' => '[0-9]+', 'slug' => '[A-Za-z0-9-_]+']);
     //users profile
     Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+');
-// display list of posts
+    // display list of posts
     Route::get('user/{id}/posts','UserController@user_posts')->where('id', '[0-9]+');
 });
 

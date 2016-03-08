@@ -251,12 +251,8 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                   data-hover="dropdown">Blog</a>
-            </li>
-            <li>
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                   data-hover="dropdown">About</a>
+                <a href="/about">About</a>
+
             </li>
             <li class="dropdown">
                     @if (Auth::guest())

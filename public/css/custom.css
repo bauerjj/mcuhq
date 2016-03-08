@@ -1,22 +1,37 @@
-html,
+html{
+    position: relative;
+    min-height: 100%;
+}
 body {
-    height: 100%;
     /* The html and body elements cannot have any padding or margin. */
+}
+body{
+    background: url("noisy_grid.png") repeat scroll left top #EEEEEE;
+
 }
 
 /* Wrapper for page content to push down footer */
 #wrap {
-    min-height: 100%;
+    /*min-height: 100%;*/
     height: auto;
     /* Negative indent footer by its height */
-    margin: 0 auto -50px;
-    /* Pad bottom by footer height */
-    padding: 0 0 50px;
+
 }
 
-#footer {
+
+
+.content{
+    background-color: #FFFFFF;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+}
+
+#footer-v6 {
     /* Set the fixed height of the footer here */
-    height: 50px;
+    background-color: transparent;
+    font-size: 12px;
+    margin-top: 10px;
 }
 
 .main-header{
@@ -29,6 +44,13 @@ body {
 .navbar-default.navbar-dark + .main-header .page-title, .navbar-default.navbar-dark + .main-header a{
     color: #0099da;
 }
+@media  (min-width: 768px) {
+    .navbar-default .navbar-nav > li > a {
+        font-size: 14px;
+    }
+}
+
+
 
 .categories{
     padding: 10px
@@ -53,6 +75,18 @@ body {
     padding: 2px 5px;
     margin-top: 6px;
 }
+.portfolio-topbar .row{
+    background-color: #FFFFFF;
+}
+.portfolio-topbar h4{
+    padding-bottom: 0px;
+}
+
+.portfolio-topbar{
+    margin-bottom: 10px;
+}
+
+
 .panel-footer{
     padding: 2px 2px;
     font-size: 12px
@@ -76,13 +110,7 @@ body {
     margin-bottom: 3px;
 }
 
-.portfolio-topbar h4{
-    padding-bottom: 0px;
-}
 
-.portfolio-topbar{
-    margin-bottom: 15px;
-}
 
 /**************************************/
 
@@ -134,7 +162,7 @@ body {
 }
 
 .sidebar {
-    font-size: .9em;
+    /*font-size: .9em;*/
 }
 .sidebar li{
     line-height: 1.5em;
@@ -170,6 +198,11 @@ body {
 
 .sidebar .related li{
     margin-bottom: 7px;
+}
+
+body,
+.post-content {
+    font-size: 12px;
 }
 
 
@@ -224,6 +257,10 @@ h1, h2, h3, h4, h5, h6{
 }
 .flash li{
     padding-left: 5px;
+}
+
+.tags-cloud a{
+    padding: 2px 4px;
 }
 
 .selectize-control.multi .selectize-input>div { /* Used in creating new post tags */
