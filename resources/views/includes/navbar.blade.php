@@ -6,7 +6,7 @@
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
         </button>
-        <a id="ar-brand" class="navbar-brand" href="index.html">MCU <span>HQ</span></a>
+        <a id="ar-brand" class="navbar-brand" href="/">MCU <span>HQ</span></a>
     </div>
     <!-- navbar-header -->
 

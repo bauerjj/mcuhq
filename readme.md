@@ -20,3 +20,6 @@ Includes the following:
 - Development tools trackable
 - Voting/Liking/Favorite system for posts or users (https://github.com/rtconner/laravel-likeable)
 - A more comprehensive search page
+
+"Less of wishlist"
+- Add repo widget(GitHub jQuery Repo Widget) to posts that contain github links

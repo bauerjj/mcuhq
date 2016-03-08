@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-9 col-sm-9 post-content">
                         <h3 class="post-title">
-                            <a href="{{ url('/'.$post->slug) }}">{{ $post->title }}</a>
+                            <a href="{{ url('/'.$post->id .'/'.$post->slug) }}">{{ $post->title }}</a>
                         </h3>
                         {!! str_limit(strip_tags($post->body_html), $limit = 250, $end = '....... <a href='.url("/".$post->slug).'>Read More</a>') !!}
 

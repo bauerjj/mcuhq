@@ -102,7 +102,7 @@
             <ul class="list-unstyled">
                 <li><strong>Micro:</strong> <a href="#">{{$mcu->name}}</a></li>
                 <li><strong>Vendor:</strong> <a href="#">{{$vendor->name}}</a></li>
-                <li><strong>Arch:</strong> {{$arch->name}}</li>
+                <li><strong>Arch:</strong><a href="#"> {{$arch->name}}</a></li>
                 <li><strong>Language(s): </strong>
                     @foreach($languages as $language)
 
@@ -112,7 +112,6 @@
                 <li><strong>Compiler:</strong>
                         <a href="#">{{$compiler->name}}</a>
                 </li>
-                <li><strong>Dev Tools:</strong> </li>
                 <li><strong>Categories:</strong>
                     @foreach($categories as $cat)
 

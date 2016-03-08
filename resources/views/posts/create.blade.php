@@ -35,9 +35,6 @@
                                name="title" class="form-control" id="title"/>
                     </div>
                 </div>
-                {{--<div class="form-group">
-                    <textarea name='body'class="form-control">{{ old('body') }}</textarea>
-                </div>--}}
                 <input type="hidden" name="body" id="body-text">
 
                 <div id="editor">{{ old('body') }}</div>
@@ -71,7 +68,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="topic-dropdown" class="col-sm-1 col-md-3 control-label">Topic(s) </label>
+                    <label for="topic-dropdown" class="col-sm-1 col-md-3 control-label">Category(s) </label>
                     <input type="hidden" name="topics" id="topics-input">
 
                     <div class="col-sm-11 col-md-9">
@@ -145,21 +142,13 @@
             </div>
 
             <div class="form-group">
-                <label for="compiler-assembler" class="col-sm-1 col-md-3 control-label">Languages </label>
-                <input type="hidden" name="compiler-assembler" id="compiler-assembler-input">
+                <label for="language-dropdown" class="col-sm-1 col-md-3 control-label">Language(s) </label>
+                <input type="hidden" name="languages" id="language-input">
 
                 <div class="col-sm-11 col-md-9">
-                    <select id="compiler-assembler" multiple="multiple" id="compiler-assembler">
-                        {{ $lastId = -1 }}
-                        @foreach($compilers as $compiler)
-                        @if($compiler->vendor->id != $lastId)
-                        @if($lastId != -1)
-                        </optgroup>
-                        @endif
-                        <optgroup label="{{$compiler->vendor->name}}">
-                            @endif
-                            <option value="{{$compiler->id}}">{{$compiler->name}}</option>
-                        {{ $lastId = $compiler->vendor->id }}
+                    <select id="language-dropdown" multiple="multiple">
+                        @foreach($languages as $language)
+                            <option value="{{$language->id}}">{{$language->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -205,6 +194,9 @@
             }
         });
 
+        $('#language-dropdown').multiselect();
+
+
 
         $('#topic-dropdown').multiselect({
             maxHeight: 200,
@@ -225,6 +217,7 @@
                         input.prop('disabled', true);
                         input.parent('li').addClass('disabled');
                     });
+
                 }
                 else {
                     // Enable all checkboxes.
@@ -281,6 +274,7 @@
                 $('#compiler-assembler-input').val($('#compiler-assembler').val())
                 $('#micro-input').val($('#micro').val())
                 $('#topics-input').val($('#topic-dropdown').val())
+                $('#language-input').val($('#language-dropdown').val())
 
 
             });

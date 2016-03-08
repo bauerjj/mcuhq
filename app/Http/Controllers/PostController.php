@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\McuCompilers;
+use App\Models\McuLanguages;
 use App\Models\Mcus;
 use Input;
 use Validator;
@@ -31,6 +32,11 @@ class PostController extends Controller
         return view('home')->withPosts($posts)->withTitle($title);
 
 
+    }
+
+    public function about()
+    {
+        return view('static.about');
     }
 
     public function image_upload(Request $request)
@@ -127,8 +133,10 @@ class PostController extends Controller
             $categories = Categories::all();
             $mcus = Mcus::orderBy('vendor_id')->get();
             $compilers = McuCompilers::orderBy('vendor_id')->get();
+            $languages = McuLanguages::orderBy('id')->get();
 
-            return view('posts.create')->withCategories($categories)->withMcus($mcus)->withCompilers($compilers);
+            return view('posts.create')->withCategories($categories)->withMcus($mcus)->withCompilers($compilers)
+                ->withLanguages($languages);
         } else {
             return redirect('/')->withErrors('You have not sufficent permissions to post!');
         }
@@ -144,15 +152,13 @@ class PostController extends Controller
             'body' => 'required',
             'tags' => 'required',
             'topics' => 'required',
-            'file_source'=> 'required|max:10000|mimes:zip',
+            'file_source'=> 'max:10000|mimes:zip', // don't require this
         ]);
 
         $file = $request->file('file_source');
-        // print_r($file); die;
 
-        $target_dir = "/uploads/";
         $dest_file_name = substr(str_shuffle(MD5(microtime())), 0, 15);
-        $request->file('file_source')->move('/uploads/', $dest_file_name);
+        $request->file('file_source')->move('uploads', $dest_file_name . '.zip');
 
 
         $post = new Posts();
@@ -179,7 +185,8 @@ class PostController extends Controller
             $languages = $request->get('languages');
             $cat_ids = explode(',', $cat_string);
             $post->categories()->sync($cat_ids); // save categories
-           // $post->languages()->sync($languages)
+            $language_ids = explode(',', $languages);
+            $post->languages()->sync($language_ids);
 
             // Must first save the ID before tagging!
             $post->tag($request->get('tags')); // delete current tags and save new tags
@@ -192,11 +199,11 @@ class PostController extends Controller
         return redirect('edit/' . $post->slug)->withMessage($message);
     }
 
-    public function show($slug)
+    public function show($id, $slug)
     {
         //https://laravel.com/docs/5.1/eloquent-relationships#eager-loading
         //https://github.com/rtconner/laravel-tagging
-        $post = Posts::with('tagged')->where('slug',$slug)->first();
+        $post = Posts::with('tagged')->where('id',$id)->first();
         // This gets posts with where clause on inside
 //        $post = Posts::with(['tagged' => function ($query) use($slug){
 //            $query->where('slug', $slug);

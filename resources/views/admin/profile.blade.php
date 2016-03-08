@@ -65,7 +65,7 @@
                     <div class="list-group-item">
 
                     <p>
-                        <strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong>
+                        <strong><a href="{{ url('/'.$latest_post->id .'/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong>
                         <span class="well-sm">On {{ $latest_post->created_at->format('M d,Y \a\t h:i a') }}</span>
                     </p>
                         </div>

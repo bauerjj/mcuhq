@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Languages extends Model
+class McuLanguages extends Model
 {
     //comments table in database
     protected $guarded = [];

@@ -38,7 +38,7 @@ class Posts extends Model
 
     public function languages()
     {
-        return $this->belongsToMany('App\Models\Languages', 'mcu_languages_posts','post_id','language_id');
+        return $this->belongsToMany('App\Models\McuLanguages', 'mcu_languages_posts','post_id','language_id');
     }
 
     // returns the instance of the user who is author of that post
