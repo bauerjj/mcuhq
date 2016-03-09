@@ -14,8 +14,8 @@
     </nav>
 
     @yield('header')
-    <div class="container margin-top-10 content">
-        <div class="row">
+    <div class="container margin-top-10">
+        <div class="row main-content">
             <div class="col-md-9">
                 @if (Session::has('message'))
                     <div class="flash alert-info">

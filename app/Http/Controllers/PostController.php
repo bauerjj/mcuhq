@@ -26,8 +26,8 @@ class PostController extends Controller
     public function index()
     {
         // fetch 5 posts from db which are active and latest
-        $posts = Posts::where('active', 1)->orderBy('created_at', 'desc')->paginate(5);
-        // page heading
+        $posts = Posts::where('active', 1)->with('categories')->with('tagged')->orderBy('created_at', 'desc')->paginate(5);
+       // print_r($posts); die;
         $title = 'Latest Posts';
         return view('home')->withPosts($posts)->withTitle($title);
 

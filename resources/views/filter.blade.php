@@ -17,8 +17,11 @@
 @section('center')
     <div class="panel-default post-show">
         <div class="panel-title">
-            </div>
+           <h2>Vendors: Microchip</h2>
+            <p class="small">Microchip is best known for its 8-bit processors such as the PIC16 and PIC18 series. </p>
         </div>
+
+    </div>
 
 
 @endsection
@@ -26,24 +29,52 @@
 
 @section('right_sidebar')
     <div class="">
-        <button type="button" class="btn btn-block btn-ar btn-primary">Download Source</button>
-        <div class="panel-item">
-            <ul class="list-unstyled">
-                <li><strong>Views:</strong> 3512</li>
-                <li><strong>Comments:</strong> <a href="#comments">12</a></li>
-            </ul>
-            <hr>
+        <div class="panel-item block">
 
-            <h3 class="section-title">Related</h3>
-            <ul class="list-unstyled related">
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Another fake title that is pretty long indeed oh owow </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Test my link yo please </a></li>
+            <div class="tab-pane" id="categories">
+                <h3 class="post-title no-margin-top section-title">Micro Family</h3>
+                <ul class="simple">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Artificial Intelligence</a>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Web Developer</a></li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="categories">
+                <h3 class="post-title no-margin-top section-title">Compilers</h3>
+                <ul class="simple">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Artificial Intelligence</a>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Web Developer</a></li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="categories">
+                <h3 class="post-title no-margin-top section-title">Languages</h3>
+                <ul class="simple">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Artificial Intelligence</a>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Web Developer</a></li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="categories">
+                <h3 class="post-title no-margin-top section-title">Category</h3>
+                <ul class="simple">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Artificial Intelligence</a>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Web Developer</a></li>
+                </ul>
+            </div>
+            <div class="tags-cloud">
+                {{--@foreach($post->tags as $tag)--}}
 
-            </ul>
+                    {{--<a href="/tags/{{$tag->slug}}" class="tag">{{strtolower($tag->name)}}</a>--}}
+                {{--@endforeach--}}
+            </div>
+
+
         </div>
     </div>
 

@@ -22,8 +22,8 @@
     @yield('header')
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 content">
+        <div class="row main-content">
+            <div class="col-md-12 ">
                 @if (Session::has('message'))
                     <div class="flash alert-info">
                         <p class="panel-body">
