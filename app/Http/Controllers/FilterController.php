@@ -19,7 +19,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown; // use this to convert markdown to html
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use Illuminate\Support\Collection;
 
 class FilterController extends Controller
 {
@@ -32,9 +32,11 @@ class FilterController extends Controller
     public function vendor(Request $request)
     {
         $filterCompiler = $request->input('compiler');
-        if(is_numeric($filterCompiler)) {
+        if(($filterCompiler!='all')) {
             $filterCompiler = McuCompilers::where('name', $filterCompiler)->first();
-            $compFilter = array('vendor_id' => 1, 'id' => $filterCompiler->id);
+            $compFilter = array();
+            if(isset($filterCompiler))
+                $compFilter = array('vendor_id' => 1, 'id' => $filterCompiler->id);
         }
         else
             $compFilter = array('vendor_id' => 1);
@@ -84,12 +86,15 @@ class FilterController extends Controller
 
         //->orderBy('created_at', 'desc')->paginate(5)->get()
         // print_r($mcus); die;
-        $paginate = new LengthAwarePaginator($posts->take(5)->skip(5), $posts->count(), 5,$request->input('page'), array('path' => '/vendor/microchip')); // create pagination
+        $page = $request->input('page');
+        if($page == '') $page = 1;
+        $perPage = 3;
+        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendor/microchip')); // create pagination
 
-        //$posts = array_slice($posts->toArray(),0,5);
-        //print_r($posts[0]); die;
-        //$posts = new Paginator($posts,5,0);
-        //$test = new LengthAwarePaginator(range(1,200), 100, 5);
+
+        $t = Collection::make([1,2,3]);
+        $posts = $posts->splice(($perPage * $page) - $perPage, $perPage);
+        $t->splice(0,5);
 
 
         return view('filter')

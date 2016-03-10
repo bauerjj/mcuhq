@@ -7,6 +7,26 @@
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="mcuhq"/>
+    <table name="categories" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="categories_posts_category_id_foreign" table="categories_posts" schema="" catalog="mcuhq" columns="category_id"/>
+    </table>
+    <table name="categories_posts" schema="" catalog="mcuhq" type="TABLE">
+      <column name="post_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="category_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="post_id,category_id"/>
+      <foreign-key name="categories_posts_category_id_foreign" columns="category_id" ref-table="categories" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="categories_posts_post_id_foreign" columns="post_id" ref-table="posts" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="categories_posts_category_id_foreign" unique="false" columns="category_id"/>
+    </table>
     <table name="comments" schema="" catalog="mcuhq" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="on_post" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
@@ -19,6 +39,88 @@
       <foreign-key name="comments_on_post_foreign" columns="on_post" ref-table="posts" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="comments_from_user_foreign" unique="false" columns="from_user"/>
       <index name="comments_on_post_foreign" unique="false" columns="on_post"/>
+    </table>
+    <table name="mcu_archs" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="mcus_arch_id_foreign" table="mcus" schema="" catalog="mcuhq" columns="arch_id"/>
+      <index name="mcu_archs_slug_index" unique="false" columns="slug"/>
+    </table>
+    <table name="mcu_compilers" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="vendor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="mcu_compilers_vendors_compiler_id_foreign" table="mcu_compilers_vendors" schema="" catalog="mcuhq" columns="compiler_id"/>
+      <index name="mcu_compilers_slug_index" unique="false" columns="slug"/>
+    </table>
+    <table name="mcu_compilers_vendors" schema="" catalog="mcuhq" type="TABLE">
+      <column name="compiler_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="vendor_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="compiler_id,vendor_id"/>
+      <foreign-key name="mcu_compilers_vendors_compiler_id_foreign" columns="compiler_id" ref-table="mcu_compilers" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="mcu_compilers_vendors_vendor_id_foreign" columns="vendor_id" ref-table="mcu_vendors" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="mcu_compilers_vendors_vendor_id_foreign" unique="false" columns="vendor_id"/>
+    </table>
+    <table name="mcu_languages" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="mcu_languages_posts_language_id_foreign" table="mcu_languages_posts" schema="" catalog="mcuhq" columns="language_id"/>
+      <index name="mcu_languages_slug_index" unique="false" columns="slug"/>
+    </table>
+    <table name="mcu_languages_posts" schema="" catalog="mcuhq" type="TABLE">
+      <column name="language_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="post_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="language_id,post_id"/>
+      <foreign-key name="mcu_languages_posts_language_id_foreign" columns="language_id" ref-table="mcu_languages" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="mcu_languages_posts_post_id_foreign" columns="post_id" ref-table="posts" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="mcu_languages_posts_post_id_foreign" unique="false" columns="post_id"/>
+    </table>
+    <table name="mcu_vendors" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="mcu_compilers_vendors_vendor_id_foreign" table="mcu_compilers_vendors" schema="" catalog="mcuhq" columns="vendor_id"/>
+      <exported-key name="mcus_vendor_id_foreign" table="mcus" schema="" catalog="mcuhq" columns="vendor_id"/>
+      <index name="mcu_vendors_slug_index" unique="false" columns="slug"/>
+    </table>
+    <table name="mcus" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="vendor_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="arch_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="mcus_arch_id_foreign" columns="arch_id" ref-table="mcu_archs" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="mcus_vendor_id_foreign" columns="vendor_id" ref-table="mcu_vendors" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="mcus_arch_id_foreign" unique="false" columns="arch_id"/>
+      <index name="mcus_slug_index" unique="false" columns="slug"/>
+      <index name="mcus_vendor_id_foreign" unique="false" columns="vendor_id"/>
     </table>
     <table name="migrations" schema="" catalog="mcuhq" type="TABLE">
       <column name="migration" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -41,12 +143,38 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="body_html" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="more_info_link" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="source_link" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mcu_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="compiler_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="posts_author_id_foreign" columns="author_id" ref-table="users" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="categories_posts_post_id_foreign" table="categories_posts" schema="" catalog="mcuhq" columns="post_id"/>
       <exported-key name="comments_on_post_foreign" table="comments" schema="" catalog="mcuhq" columns="on_post"/>
+      <exported-key name="mcu_languages_posts_post_id_foreign" table="mcu_languages_posts" schema="" catalog="mcuhq" columns="post_id"/>
       <index name="posts_slug_unique" unique="true" columns="slug"/>
       <index name="posts_title_unique" unique="true" columns="title"/>
       <index name="posts_author_id_foreign" unique="false" columns="author_id"/>
+    </table>
+    <table name="tagging_tagged" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="taggable_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="taggable_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="tag_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="tag_slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="tagging_tagged_tag_slug_index" unique="false" columns="tag_slug"/>
+      <index name="tagging_tagged_taggable_id_index" unique="false" columns="taggable_id"/>
+      <index name="tagging_tagged_taggable_type_index" unique="false" columns="taggable_type"/>
+    </table>
+    <table name="tagging_tags" schema="" catalog="mcuhq" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="suggest" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="tagging_tags_slug_index" unique="false" columns="slug"/>
     </table>
     <table name="users" schema="" catalog="mcuhq" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
