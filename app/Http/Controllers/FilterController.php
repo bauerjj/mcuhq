@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\McuCompilers;
 use App\Models\McuLanguages;
 use App\Models\Mcus;
+use Illuminate\Pagination\Paginator;
 use Input;
 use Validator;
 use Session;
@@ -17,7 +18,7 @@ use App\Http\Controllers\Controller;
 //use App\Http\Requests\PostFormRequest; // don't use for validation anymore
 use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown; // use this to convert markdown to html
-use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class FilterController extends Controller
@@ -83,12 +84,17 @@ class FilterController extends Controller
 
         //->orderBy('created_at', 'desc')->paginate(5)->get()
         // print_r($mcus); die;
-        $posts = new Paginator($posts, 4, 1,array('path' => '/vendor/microchip')); // create pagination
-        $pagination = new Paginator(range(1,200), 10, 5);
+        $paginate = new LengthAwarePaginator($posts->take(5)->skip(5), $posts->count(), 5,$request->input('page'), array('path' => '/vendor/microchip')); // create pagination
+
+        //$posts = array_slice($posts->toArray(),0,5);
+        //print_r($posts[0]); die;
+        //$posts = new Paginator($posts,5,0);
+        //$test = new LengthAwarePaginator(range(1,200), 100, 5);
+
 
         return view('filter')
             ->withPosts($posts)
-            ->withPagination($pagination)
+            ->withPagination($paginate)
 //            ->withCategories($categories)
 //            ->withMcus($mcus)
             ->withCompilers($vals)

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Categories;
 use App\Models\McuCompilers;
 use App\Models\McuLanguages;
@@ -17,7 +16,7 @@ use App\Http\Controllers\Controller;
 //use App\Http\Requests\PostFormRequest; // don't use for validation anymore
 use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown; // use this to convert markdown to html
-
+use Illuminate\Pagination\LengthAwarePaginator;
 
 // @see http://stackoverflow.com/a/35347256
 class PostController extends Controller
@@ -29,6 +28,7 @@ class PostController extends Controller
         $posts = Posts::where('active', 1)->with('categories')->with('tagged')->orderBy('created_at', 'desc')->paginate(5);
        // print_r($posts); die;
         $title = 'Latest Posts';
+
         return view('home')->withPosts($posts)->withTitle($title);
 
 
