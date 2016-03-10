@@ -70,7 +70,7 @@ class PostController extends Controller
                 $uploadOk = 1;
 
                 $imageFileType = pathinfo($file['name'], PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
+                // Check if image file is a actual image or fake image
                 if (1) {
                     $check = getimagesize($file["tmp_name"]);
                     if ($check !== false) {
@@ -81,33 +81,34 @@ class PostController extends Controller
                         $uploadOk = 0;
                     }
                 }
-// Check if file already exists
+                // Check if file already exists
                 if (file_exists($target_file)) {
                     //echo "Sorry, file already exists.";
                     $uploadOk = 0;
                 }
-// Check file size
+                // Check file size
                 if ($file["size"] > 500000) {
                     //echo "Sorry, your file is too large.";
                     $uploadOk = 0;
                 }
-// Allow certain file formats
+                // Allow certain file formats
                 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                     && $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != 'PNG'
                 ) {
                     //echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                     $uploadOk = 0;
                 }
-// Check if $uploadOk is set to 0 by an error
+                // Check if $uploadOk is set to 0 by an error
                 if ($uploadOk == 0) {
                     //echo "Sorry, your file was not uploaded.";
 
-// if everything is ok, try to upload file
+                // if everything is ok, try to upload file
                 } else {
+                    $uploadedFiles[] = $target_file;
 
-                    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+                    if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$target_file)) {
                         //echo "The file " . basename($file["name"]) . " has been uploaded.";
-                        $uploadedFiles[] = $target_file;
+                       // $uploadedFiles[] = $target_file;
 
                     } else {
                         //echo "Sorry, there was an error uploading your file.";
@@ -233,9 +234,9 @@ class PostController extends Controller
             ->withMcu($mcu);
     }
 
-    public function edit(Request $request, $slug)
+    public function edit(Request $request, $id, $slug)
     {
-        $post = Posts::where('slug', $slug)->first();
+        $post = Posts::where('id', $id)->first();
         if ($post && ($request->user()->id == $post->author_id || $request->user()->is_admin()))
             return view('posts.edit')->with('post', $post);
         return redirect('/')->withErrors('you have not sufficient permissions');
@@ -243,7 +244,6 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
-        //
         $post_id = $request->input('post_id');
         $post = Posts::find($post_id);
         if ($post && ($post->author_id == $request->user()->id || $request->user()->is_admin())) {
@@ -263,11 +263,11 @@ class PostController extends Controller
             if ($request->has('save')) {
                 $post->active = 0;
                 $message = 'Post saved successfully';
-                $landing = 'edit/' . $post->slug;
+                $landing = 'edit/' . $post->id .'/'.$post->slug;
             } else {
                 $post->active = 1;
                 $message = 'Post updated successfully';
-                $landing = $post->slug;
+                $landing = $post->id .'/'.$post->slug;
             }
             $post->save();
             return redirect($landing)->withMessage($message);
