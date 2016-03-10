@@ -210,6 +210,19 @@ body,
 
 /************************************/
 
+/************* Filter Page **********/
+.block ul.simple li a {
+    border-left: solid 2px #eee;
+}
+
+.block ul.simple .active  a {
+    border-left: solid 2px #0099da;
+}
+
+
+
+/*************************************
+
 
 /********* login/register/reset forms ******/
 .form-horizontal {
