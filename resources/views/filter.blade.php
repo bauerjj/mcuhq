@@ -78,50 +78,87 @@
 
 
 @section('right_sidebar')
+    <button type="button" class="btn btn-block btn-ar btn-primary">Reset Filters</button>
+
     <div class="">
         <div class="panel-item block">
-
             <div class="tab-pane" id="categories">
                 <h3 class="post-title no-margin-top section-title">Micro Family</h3>
                 <ul class="simple">
-                    <li class="active"><a href={{"?".$_SERVER['QUERY_STRING']."&compiler=all"}}>All</a></li>
-                    @foreach($compilers as $compiler => $count)
-                        <li><a href="?compiler={{urlencode(strtolower($compiler))}}">{{$compiler}} ({{$count}})</a></li>
+                    <li class="active"><a href={{Helper::modify_url(array('mcu'=>'all'))}}>All</a></li>
+                    @foreach($mcus as $mcu => $count)
+                        <li><a href="{{Helper::modify_url(array('mcu'=> urlencode(strtolower($mcu))))}}">{{$mcu}} ({{$count}})</a></li>
                     @endforeach
                 </ul>
             </div>
+
             <div class="tab-pane" id="categories">
-                <h3 class="post-title no-margin-top section-title">Compilers</h3>
+                <h3 class="post-title no-margin-top section-title">Compiler</h3>
                 <ul class="simple">
-                    <li><a href="#">All</a></li>
-                    <li><a href="#">Artificial Intelligence</a>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Web Developer</a></li>
+                    @if($inputs['compiler'] == 'all' || $inputs['compiler'] == '')
+                        <li class="active">
+                            @else
+                                <li>
+                        @endif
+                    <a href={{Helper::modify_url(array('compiler'=>'all'))}}>All</a></li>
+                    @foreach($compilers as $compiler => $count)
+                        @if($inputs['compiler'] == urlencode(strtolower($compiler)))
+                            <li class="active">
+                                @else
+                                    <li>
+                                        @endif
+                            <a href="{{Helper::modify_url(array('compiler'=> urlencode(strtolower($compiler))))}}">{{$compiler}} ({{$count}})</a></li>
+                    @endforeach
                 </ul>
             </div>
+
             <div class="tab-pane" id="categories">
                 <h3 class="post-title no-margin-top section-title">Languages</h3>
                 <ul class="simple">
-                    <li><a href="#">All</a></li>
-                    <li><a href="#">Artificial Intelligence</a>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Web Developer</a></li>
+                    @if($inputs['language'] == 'all' ||$inputs['language'] == '' )
+                        <li class="active">
+                    @else
+                        <li>
+                            @endif
+                            <a href={{Helper::modify_url(array('lan'=>'all'))}}>All</a></li>
+                        @foreach($languages as $language => $count)
+                            @if($inputs['language'] == urlencode(strtolower($language)))
+                                <li class="active">
+                            @else
+                                <li>
+                                    @endif
+                                    <a href="{{Helper::modify_url(array('lan'=> urlencode(strtolower($language))))}}">{{$language}} ({{$count}})</a></li>
+                                @endforeach
                 </ul>
             </div>
-            <div class="tab-pane" id="categories">
-                <h3 class="post-title no-margin-top section-title">Category</h3>
-                <ul class="simple">
-                    <li><a href="#">All</a></li>
-                    <li><a href="#">Artificial Intelligence</a>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Web Developer</a></li>
-                </ul>
-            </div>
-            <div class="tags-cloud">
-                {{--@foreach($post->tags as $tag)--}}
 
-                    {{--<a href="/tags/{{$tag->slug}}" class="tag">{{strtolower($tag->name)}}</a>--}}
-                {{--@endforeach--}}
+            <div class="tab-pane" id="categories">
+                <h3 class="post-title no-margin-top section-title">Categories</h3>
+                <ul class="simple">
+                    @if($inputs['category'] == 'all' ||$inputs['category'] == '' )
+                        <li class="active">
+                    @else
+                        <li>
+                            @endif
+                            <a href={{Helper::modify_url(array('category'=>'all'))}}>All</a></li>
+                        @foreach($categories as $category => $count)
+                            @if($inputs['category'] == urlencode(strtolower($category)))
+                                <li class="active">
+                            @else
+                                <li>
+                                    @endif
+                                    <a href="{{Helper::modify_url(array('category'=> urlencode(strtolower($category))))}}">{{$category}} ({{$count}})</a></li>
+                                @endforeach
+                </ul>
+            </div>
+
+
+            <div class="tags-cloud">
+                <h3 class="post-title no-margin-top section-title">Tags</h3>
+
+                @foreach($tags as $tag => $count)
+                    <a href="/tags/{{$tag}}" class="tag">{{strtolower($tag)}} {{$count}}</a>
+                @endforeach
             </div>
 
 

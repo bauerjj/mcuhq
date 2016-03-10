@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\McuCompilers;
 use App\Models\McuLanguages;
 use App\Models\Mcus;
+use App\Models\McuVendors;
 use Illuminate\Pagination\Paginator;
 use Input;
 use Validator;
@@ -29,47 +30,111 @@ class FilterController extends Controller
 
     }
 
-    public function vendor(Request $request)
+    public function vendor(Request $request, $vendor)
     {
+        // Get the vendor ID
+        $vendorId = McuVendors::where('slug', $vendor)->first()->id;
+
         $filterCompiler = $request->input('compiler');
-        if(($filterCompiler!='all')) {
+        if(($filterCompiler!='all' && isset($filterCompiler))) {
             $filterCompiler = McuCompilers::where('name', $filterCompiler)->first();
-            $compFilter = array();
-            if(isset($filterCompiler))
-                $compFilter = array('vendor_id' => 1, 'id' => $filterCompiler->id);
+            $compFilter = array('vendor_id' => $vendorId, 'id' => $filterCompiler->id);
         }
         else
-            $compFilter = array('vendor_id' => 1);
+            $compFilter = array(); // don't filter on vendor here since each compiler can belong to multple vendors
+
+        $filterMcu = $request->input('mcu');
+        if(($filterMcu!='all' && isset($filterMcu))) {
+            $filterMcu = Mcus::where('name', $filterMcu)->first();
+            $mcuFilter = array('vendor_id' => $vendorId, 'id' => $filterMcu->id);
+        }
+        else
+            $mcuFilter = array('vendor_id' => $vendorId); // THE MICRO is the only thing that should be filtering on vendor
+
+
+        $inLanguage = $request->input('lan');
+        if(($inLanguage!='all' && isset($inLanguage))) {
+            $lanId = McuLanguages::where('slug', $inLanguage)->first();
+            $lanFilter = array('id' => $lanId->id);
+        }
+        else
+            $lanFilter = array();
+
+        $inCategory = $request->input('category');
+        if(($inCategory!='all' && isset($inCategory))) {
+            $cat = Categories::where('slug', $inCategory)->first();
+            $catFilter = array('id' => $cat->id);
+        }
+        else
+            $catFilter = array();
+
+        $inTag = $request->input('tag');
+//        if(($inTag!='all' && isset($inTag))) {
+//            $tag = Categories::where('slug', $inCategory)->first();
+//            $catFilter = array('id' => $cat->id);
+//        }
+//        else
+//            $catFilter = array();
+
+
+       // ->withAnyTag(['tiger','cat','elephant'])
+
 
         $posts = Posts::where('active', 1)
             ->with('mcu')
             ->with('tagged')
             ->with('categories')
             ->with('compiler')
-            // ->withAnyTag(['elephant'])
-//            ->whereHas('categories', function($q){
-//                $q->where('slug', 'analog');
-//            })
-//            ->whereHas('languages', function($q){
-//                $q->where('slug', 'c');
-//            })
+            ->with('languages')
+
+           // ->withAnyTag(['tiger','cat','elephant'])
+
+
+            ->whereHas('categories', function($q) use($catFilter){
+                $q->where($catFilter);
+            })
+            ->whereHas('languages', function($q) use ($lanFilter){
+                if(empty($lanFilter))
+                    $q->where($lanFilter)->orWhere('id', 99);
+                else
+                $q->where($lanFilter);
+            })
             ->whereHas('compiler', function ($q) use ($compFilter) {
-                //$q->where('id', 2);
                 $q->where($compFilter);
             })
+            ->whereHas('mcu', function ($q) use ($mcuFilter) {
+                $q->where($mcuFilter);
+            })
+
+
             ->orderBy('created_at', 'desc')
         //    ->paginate(5);
         ->get();
         ;
 
         // Cycle through posts to get how many tags and such of each
+        $compilers = array();$mcus = array();$languages = array(); $categories = array();$tags = array();
+
         foreach($posts as $post){
            // $arr ['name'] = $post->compiler->name;
            // $arr ['slug'] = $post->compiler->slug;
             $compilers [] = $post->compiler->name;
+            $mcus[] = $post->mcu->name;
+            foreach($post->languages as $lan)
+                $languages[] = $lan->name;
+            foreach($post->categories as $cat)
+                $categories[] = $cat->name;
+            foreach($post->tagged as $tag)
+                $tags[] = $tag->tag_name;
+
         }
         $vals = array_count_values($compilers);
-        //print_r($vals); die;
+        $mcusVals = array_count_values($mcus);
+        $languageVals = array_count_values($languages);
+        $categoriesVals = array_count_values($categories);
+        $tagsVals = array_count_values($tags);
+
+
 
 //        $categories = Categories::all();
 //        $mcus = Mcus::orderBy('vendor_id')->where('vendor_id',1)->get();
@@ -91,20 +156,31 @@ class FilterController extends Controller
         $perPage = 3;
         $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendor/microchip')); // create pagination
 
+        parse_str($_SERVER['QUERY_STRING'],$url_array);
+        $paginate->appends($url_array);
 
-        $t = Collection::make([1,2,3]);
         $posts = $posts->splice(($perPage * $page) - $perPage, $perPage);
-        $t->splice(0,5);
+
+        $inputs = array(
+            'compiler' => $request->input('compiler'),
+            'language' => $request->input('lan'),
+            'mcu' => $request->input('mcu'),
+            'category' => $request->input('category'),
+        );
 
 
         return view('filter')
+            ->withInputs($inputs)
             ->withPosts($posts)
             ->withPagination($paginate)
-//            ->withCategories($categories)
-//            ->withMcus($mcus)
+
+            ->withCategories($categoriesVals)
+            ->withMcus($mcusVals)
             ->withCompilers($vals)
+            ->withLanguages($languageVals)
+
 //            ->withLanguages($languages)
-//            ->withTags($tags)
+            ->withTags($tagsVals)
             ;
     }
 }
