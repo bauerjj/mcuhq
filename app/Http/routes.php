@@ -37,7 +37,7 @@ Route::group(['middleware' => 'web'], function()
     // save new post
     Route::post('new-post','PostController@store');
     // edit post form
-    Route::get('edit/{slug}','PostController@edit');
+    Route::get('edit/{id}/{slug}','PostController@edit');
     // update post
     Route::post('update','PostController@update');
     // delete post
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/blog', 'HomeController@blog');
     Route::get('/about','PostController@about');
 
-    Route::get('/vendor/{vendor}','FilterController@vendor')->where('slug','[A-Za-z0-9-_]+');
+    Route::get('/vendors/{vendor}','FilterController@vendor')->where('slug','[A-Za-z0-9-_]+');
 
 
 

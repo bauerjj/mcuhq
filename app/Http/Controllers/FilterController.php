@@ -33,7 +33,9 @@ class FilterController extends Controller
     public function vendor(Request $request, $vendor)
     {
         // Get the vendor ID
-        $vendorId = McuVendors::where('slug', $vendor)->first()->id;
+        $vendor = McuVendors::where('slug', $vendor)->first();
+        $vendorId = $vendor->id;
+
 
         $filterCompiler = $request->input('compiler');
         if(($filterCompiler!='all' && isset($filterCompiler))) {
@@ -78,6 +80,12 @@ class FilterController extends Controller
 
 
        // ->withAnyTag(['tiger','cat','elephant'])
+    //print_r(Posts::existingTags()->toArray()); die;
+        $existingTags = Posts::existingTags()->toArray();
+        $tags = array();
+        foreach($existingTags as $tag){
+            $tags[] = $tag['slug'];
+        }
 
 
         $posts = Posts::where('active', 1)
@@ -87,7 +95,7 @@ class FilterController extends Controller
             ->with('compiler')
             ->with('languages')
 
-           // ->withAnyTag(['tiger','cat','elephant'])
+            ->withAnyTag($tags)
 
 
             ->whereHas('categories', function($q) use($catFilter){
@@ -173,6 +181,7 @@ class FilterController extends Controller
             ->withInputs($inputs)
             ->withPosts($posts)
             ->withPagination($paginate)
+            ->withVendor($vendor)
 
             ->withCategories($categoriesVals)
             ->withMcus($mcusVals)

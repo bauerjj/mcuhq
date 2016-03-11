@@ -187,6 +187,7 @@ body{
     border-radius: 5px;
 }
 
+
 .sidebar hr{
     margin: 5px;
 }
@@ -266,6 +267,12 @@ h1, h2, h3, h4, h5, h6{
     color: #0099da
 }
 
+.alert-info{
+    margin-bottom: 10px; /* push this down a bit for warnings */
+}
+.alert-info p{
+    padding-left: 10px;
+}
 
 .flash ul{ /* For the validation errors..gets rid of the nasty bullet points */
     list-style: none;

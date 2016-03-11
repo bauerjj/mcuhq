@@ -18,8 +18,8 @@
 @section('center')
     <div class="panel-default post-show">
         <div class="panel-title">
-           <h2>Vendors: Microchip</h2>
-            <p class="small">Microchip is best known for its 8-bit processors such as the PIC16 and PIC18 series. </p>
+           <h2>Vendors: {{$vendor->name}}</h2>
+            <p class="small">{{$vendor->description}} </p>
         </div>
 
         @foreach( $posts as $post )

@@ -52,7 +52,7 @@
                     <div class="col-md-6">
 
                 <div class="form-group">
-                    <label for="tags" class="col-sm-1 col-md-3 control-label">Tags </label>
+                    <label for="tags" class="col-sm-1 col-md-3 control-label">Tags (1 min, 6 max) </label>
 
                     <div class="col-sm-11 col-md-9">
                         <input value="{{ old('tags') }}" placeholder="Tags" type="text" name="tags" id="tags"/>
@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="topic-dropdown" class="col-sm-1 col-md-3 control-label">Category(s) </label>
-                    <input type="hidden" name="topics" id="topics-input">
+                    <label for="topic-dropdown" class="col-sm-1 col-md-3 control-label">Category (1 min, 4 max) </label>
+                    <input type="hidden" name="topics" id="topics-input" required="true">
 
                     <div class="col-sm-11 col-md-9">
                         <select id="topic-dropdown" multiple="multiple">
@@ -175,24 +175,48 @@
 
     <script>
         var i;
-        var tags = [
-            {tag: 'dog'}, {tag: 'cat'}, {tag: 'girfaf'}, {tag: 'elephant'}, {tag: 'tiger'}, {tag: 'moose'}, {tag: 'duck'}, {tag: 'bird'},
-        ]
-        $('#tags').selectize({
+//        var tags = [
+//            {tag: 'dog'}, {tag: 'cat'}, {tag: 'girfaf'}, {tag: 'elephant'}, {tag: 'tiger'}, {tag: 'moose'}, {tag: 'duck'}, {tag: 'bird'},
+//        ]
+        var tags ={!!$tags!!}
+
+        var $tagSelect = $('#tags').selectize({
             plugins: ['remove_button'],
             delimiter: ',',
             persist: false,
-            valueField: 'tag',
-            labelField: 'tag',
-            searchField: 'tag',
+//            valueField: 'tag',
+//            labelField: 'tag',
+//            searchField: 'tag',
+            valueField: 'slug',
+            labelField: 'slug',
+            searchField: 'slug',
+            maxItems: 6,
             options: tags,
             create: function (input) {
-
                 return {
-                    tag: input
+                    slug: input
                 }
             }
         });
+        // Get the instance via the first element
+        // If you want to add more than one element, pass in an array
+        // with the key of 'slug' that matches 'slug' in the methods of the
+        // above $tagSelect
+        var selectize = $tagSelect[0].selectize;
+        var tagArray = '{{old('tags')}}'.split(',');
+        var defaultArray = [];
+        var valueArray = [];
+        var i;
+        for (i = 0; i < tagArray.length; i++) {
+            defaultArray.push({slug: tagArray[i]})
+            valueArray.push(tagArray[i])
+        }
+        //$tagSelect[0].selectize.addOption([{slug: 'yep'}, {slug: 'weroeurwer'}])
+        $tagSelect[0].selectize.addOption(defaultArray)
+        //$tagSelect[0].selectize.setValue(['yep','weroeurwer'])
+        $tagSelect[0].selectize.setValue(valueArray)
+
+
 
         $('#language-dropdown').multiselect();
 
@@ -265,7 +289,7 @@
             }
         });
 
-        $('#editor').html({{ old('body') }}) // NEED THIS to repopluate form if errors!
+        $('#editor').markdownEditor('setContent','{{ old('body') }}') // NEED THIS to repopluate form if errors!
 
         $(function () {
             $('.btn-form').click(function () { // enter here if publishing or drafting
@@ -285,3 +309,11 @@
 
 @endsection
 
+@section('script')
+    <script>
+        // So to make any large images fit inside viewing area
+        $( ".main-content img" ).addClass( "img-responsive" );
+
+    </script>
+
+@endsection

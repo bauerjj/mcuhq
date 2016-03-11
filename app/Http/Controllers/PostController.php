@@ -135,8 +135,13 @@ class PostController extends Controller
             $mcus = Mcus::orderBy('vendor_id')->get();
             $compilers = McuCompilers::orderBy('vendor_id')->get();
             $languages = McuLanguages::orderBy('id')->get();
+            $tags = Posts::existingTags()->toArray();
 
-            return view('posts.create')->withCategories($categories)->withMcus($mcus)->withCompilers($compilers)
+            return view('posts.create')
+                ->withCategories($categories)
+                ->withMcus($mcus)
+                ->withTags(json_encode($tags))
+                ->withCompilers($compilers)
                 ->withLanguages($languages);
         } else {
             return redirect('/')->withErrors('You have not sufficent permissions to post!');
@@ -237,8 +242,22 @@ class PostController extends Controller
     public function edit(Request $request, $id, $slug)
     {
         $post = Posts::where('id', $id)->first();
-        if ($post && ($request->user()->id == $post->author_id || $request->user()->is_admin()))
-            return view('posts.edit')->with('post', $post);
+        if ($post && ($request->user()->id == $post->author_id || $request->user()->is_admin())) {
+            // Grab the available categories and such
+            $categories = Categories::all();
+            $mcus = Mcus::orderBy('vendor_id')->get();
+            $compilers = McuCompilers::orderBy('vendor_id')->get();
+            $languages = McuLanguages::orderBy('id')->get();
+            $tags = Posts::existingTags()->toArray();
+            //print_r($tags); die;
+            return view('posts.edit')
+                ->withPost($post)
+                ->withTags(json_encode($tags))
+                ->withCategories($categories)
+                ->withMcus($mcus)
+                ->withCompilers($compilers)
+                ->withLanguages($languages);
+        }
         return redirect('/')->withErrors('you have not sufficient permissions');
     }
 

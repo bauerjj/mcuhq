@@ -6,7 +6,7 @@
 
             <ol class="breadcrumb ">
                 <li><a href="/">Home</a></li>
-                <li><a href="#">Microchip</a></li>
+                <li><a href="/vendors/{{$vendor->slug}}">{{$vendor->name}}</a></li>
                 <li class="active">{{ $post->title }}</li>
             </ol>
         </div>
@@ -23,7 +23,7 @@
                 @if($post)
                     {{ $post->title }}
                     @if(!Auth::guest() && ($post->author_id == Auth::user()->id || Auth::user()->is_admin()))
-                        <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->slug)}}">Edit Post</a>
+                        <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->id .'/'.$post->slug)}}">Edit Post</a>
                         </button>
                     @endif
                 @else
@@ -206,4 +206,13 @@
             {{--<p></p>--}}
         {{--</div>--}}
     {{--</div>--}}
+@endsection
+
+@section('script')
+    <script>
+        // So to make any large images fit inside viewing area
+        $( ".main-content img" ).addClass( "img-responsive" );
+
+    </script>
+
 @endsection

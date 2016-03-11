@@ -15,6 +15,7 @@ class CreateMcuVendorsTable extends Migration
         Schema::create('mcu_vendors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('description');
             $table->string('slug', 255)->index();
             $table->integer('count')->unsigned()->default(0);
             $table->timestamps();
