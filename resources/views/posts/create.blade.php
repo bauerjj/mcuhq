@@ -24,16 +24,14 @@
 
 
 @section('center')
-            <form action="/new-post" method="post" class="input-post form-horizontal" enctype="multipart/form-data">
+            <form action="/new-post" method="post" class="input-post form-vertical" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" >
 
                 <div class="form-group">
-                    <label for="title" class="col-sm-1 control-label">Title </label>
+                    <label for="title" class="control-label required">Title </label>
 
-                    <div class="col-sm-11 ">
                         <input required="required" value="{{ old('title') }}" placeholder="Enter title here" type="text"
                                name="title" class="form-control" id="title"/>
-                    </div>
                 </div>
                 <input type="hidden" name="body" id="body-text">
 
@@ -52,45 +50,59 @@
                     <div class="col-md-6">
 
                 <div class="form-group">
-                    <label for="tags" class="col-sm-1 col-md-3 control-label">Tags (1 min, 6 max) </label>
+                    <label for="tags" class="control-label required">Tags (1 min, 6 max) </label>
 
-                    <div class="col-sm-11 col-md-9">
                         <input value="{{ old('tags') }}" placeholder="Tags" type="text" name="tags" id="tags"/>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="more_info_link" class="col-sm-1 col-md-3 control-label">Source Link </label>
+                    <label for="more_info_link" class="control-label">Source Link </label>
 
-                    <div class="col-sm-11 col-md-9">
                         <input value="{{ old('more_info_link') }}" placeholder="(Optional) More Info Link i.e. github" type="text"
                                name="more_info_link" class="form-control" id="more_info_link"/>
 
-                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="topic-dropdown" class="col-sm-1 col-md-3 control-label">Category (1 min, 4 max) </label>
+                    <label for="topic-dropdown" class="control-label required">Category (1 min, 4 max) </label>
                     <input type="hidden" name="topics" id="topics-input" required="true">
-
-                    <div class="col-sm-11 col-md-9">
-                        <select id="topic-dropdown" multiple="multiple">
+                        <select id="topic-dropdown" multiple="multiple" class="form-control">
                             @foreach($categories as $cat)
                             <option value="{{$cat->id}}">{{$cat->name}}</option>
                             @endforeach
                         </select>
+                </div>
+                        <br/>
+                        <br/>
+
+                <div class="form-group">
+                    <label for="title" class="control-label">Main Picture (ideally 200px X 200px)</label>
+
+                    <div class="">
+                        <div style="position:relative;">
+                            <a class='btn btn-primary' href='javascript:;'>
+                                Choose Main Image File...
+                                <input type="file"
+                                       style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
+                                       name="file_image" class="form-control" size="40" onchange='$("#upload-file-image").html($(this).val());'>
+                            </a>
+                            &nbsp;
+                            <span class='label label-info' id="upload-file-image"></span>
+                        </div>
                     </div>
                 </div>
+
         </div>
+                    <div class="clearfix hidden-md hidden-lg"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="title" class="col-sm-1 col-md-3 control-label">Source</label>
+                <label for="title" class="control-label">Source</label>
 
-                <div class="col-sm-11 col-md-9">
+                <div class="">
                     <div style="position:relative;">
                         <a class='btn btn-primary' href='javascript:;'>
                             Choose Zip File...
                             <input type="file"
                                    style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
-                                   name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                                   name="file_source" class="form-control" size="40" onchange='$("#upload-file-info").html($(this).val());'>
                         </a>
                         &nbsp;
                         <span class='label label-info' id="upload-file-info"></span>
@@ -99,11 +111,10 @@
             </div>
 
             <div class="form-group">
-                <label for="micro" class="col-sm-1 col-md-3 control-label">Micro(s) </label>
+                <label for="micro" class="control-label required">Micro </label>
                 <input type="hidden" name="micro" id="micro-input">
 
-                <div class="col-sm-9">
-                    <select id="micro" multiple="multiple">
+                    <select id="micro"  class="form-control">
                         {{ $lastId = -1 }}
                         @foreach($mcus as $mcu)
                             @if($mcu->vendor->id != $lastId)
@@ -118,14 +129,15 @@
                                 </optgroup>
                     </select>
                 </div>
-                </div>
+            <br/>
+            <br/>
+
 
             <div class="form-group">
-                <label for="compiler-assembler" class="col-sm-1 col-md-3 control-label">Compiler Assembler </label>
-                <input type="hidden" name="compiler-assembler" id="compiler-assembler-input">
+                <label for="compiler-assembler" class="control-label required">Compiler Assembler</label>
+                <input type="hidden" name="compiler-assembler required" id="compiler-assembler-input">
 
-                <div class="col-sm-11 col-md-9">
-                    <select id="compiler-assembler" multiple="multiple" id="compiler-assembler">
+                    <select id="compiler-assembler"  class="form-control">
                         {{ $lastId = -1 }}
                         @foreach($compilers as $compiler)
                         @if($compiler->vendor->id != $lastId)
@@ -138,20 +150,20 @@
                         {{ $lastId = $compiler->vendor->id }}
                         @endforeach
                     </select>
-                </div>
             </div>
+            <br/>
+            <br/>
+
 
             <div class="form-group">
-                <label for="language-dropdown" class="col-sm-1 col-md-3 control-label">Language(s) </label>
+                <label for="language-dropdown" class="control-label">Language (optional, 3 max) </label>
                 <input type="hidden" name="languages" id="language-input">
 
-                <div class="col-sm-11 col-md-9">
-                    <select id="language-dropdown" multiple="multiple">
+                    <select id="languages" multiple="multiple form-control">
                         @foreach($languages as $language)
                             <option value="{{$language->id}}">{{$language->name}}</option>
                         @endforeach
                     </select>
-                </div>
             </div>
 
         </div>
@@ -216,9 +228,56 @@
         //$tagSelect[0].selectize.setValue(['yep','weroeurwer'])
         $tagSelect[0].selectize.setValue(valueArray)
 
+        // Any multiple values must be assigned back using this method
+        var mcuArray = '{{old('micro')}}'.split(',');
+        $('#micro').val(mcuArray)
+        var compilerArray = '{{old('compiler-assembler')}}'.split(',');
+        $('#compiler-assembler').val(compilerArray)
+        var languagesArray = '{{old('languages')}}'.split(',');
+        $('#languages').val(languagesArray)
+        var categoriesArray = '{{old('topics')}}'.split(',');
+        $('#topic-dropdown').val(categoriesArray)
 
 
-        $('#language-dropdown').multiselect();
+
+
+
+
+
+        $('#languages').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            maxHeight: 200,
+            dropUp: true,
+            onChange: function (option, checked) {
+                // Get selected options.
+                var selectedOptions = $('#languages option:selected');
+
+                if (selectedOptions.length >= 3) {
+                    // Disable all other checkboxes.
+                    var nonSelectedOptions = $('#languages option').filter(function () {
+                        return !$(this).is(':selected');
+                    });
+
+                    var dropdown = $('#languages').siblings('.multiselect-container');
+                    nonSelectedOptions.each(function () {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.prop('disabled', true);
+                        input.parent('li').addClass('disabled');
+                    });
+
+                }
+                else {
+                    // Enable all checkboxes.
+                    var dropdown = $('#languages').siblings('.multiselect-container');
+                    $('#languages option').each(function () {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.prop('disabled', false);
+                        input.parent('li').addClass('disabled');
+                    });
+                }
+            }
+        });
 
 
 
@@ -255,12 +314,18 @@
             }
         });
 
+
+
+
+
         $('#micro').multiselect({
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
             maxHeight: 200,
+            enableCollapsibleOptGroups: true,
             dropUp: true
         });
+
 
         $('#compiler-assembler').multiselect({
             enableFiltering: false,
@@ -291,6 +356,11 @@
 
         $('#editor').markdownEditor('setContent','{{ old('body') }}') // NEED THIS to repopluate form if errors!
 
+        // Can't repopluate!
+        //$("#upload-file-info").html('{{old('file_source')}}')
+        //$("#upload-file-image").val('{{old('file_image')}}')
+
+
         $(function () {
             $('.btn-form').click(function () { // enter here if publishing or drafting
                 var mysave = $('#editor').markdownEditor('content')
@@ -298,7 +368,7 @@
                 $('#compiler-assembler-input').val($('#compiler-assembler').val())
                 $('#micro-input').val($('#micro').val())
                 $('#topics-input').val($('#topic-dropdown').val())
-                $('#language-input').val($('#language-dropdown').val())
+                $('#language-input').val($('#languages').val())
 
 
             });

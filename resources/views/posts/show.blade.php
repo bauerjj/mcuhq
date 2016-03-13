@@ -21,7 +21,7 @@
         <div class="panel-title">
             <h2>
                 @if($post)
-                    {{ $post->title }}
+                    {{{ $post->title }}}
                     @if(!Auth::guest() && ($post->author_id == Auth::user()->id || Auth::user()->is_admin()))
                         <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->id .'/'.$post->slug)}}">Edit Post</a>
                         </button>
@@ -32,7 +32,7 @@
 
             </h2>
             <p>{{ $post->created_at->format('M d,Y') }} By <a
-                        href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></p>
+                        href="{{ url('/user/'.$post->author_id)}}">{{{ $post->author->name }}}</a></p>
         </div>
         <div class="panel-body">
             @if($post)
@@ -49,7 +49,7 @@
                         <form method="post" action="/comment/add">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="on_post" value="{{ $post->id }}">
-                            <input type="hidden" name="slug" value="{{ $post->slug }}">
+                            <input type="hidden" name="slug" value="{{{ $post->slug }}}">
 
                             <div class="form-group">
                                 <textarea required="required" placeholder="Enter comment here" name="body"
@@ -66,7 +66,7 @@
                                 <li class="panel-body">
                                     <div class="list-group">
                                         <div class="list-group-item">
-                                            <h3>{{ $comment->author->name }}</h3>
+                                            <h3>{{{ $comment->author->name }}}</h3>
 
                                             <p>{{ $comment->created_at->format('M d,Y \a\t h:i a') }}</p>
                                         </div>
@@ -95,27 +95,34 @@
                     <li><strong>Author:</strong> <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></li>
                     <li><strong>Created:</strong> {{ $post->created_at->format('M d,Y') }}</li>
                     <li><strong>Updated:</strong> {{ $post->updated_at->format('M d,Y') }}</li>
+                    @if(isset($post->more_info_link))
+                    <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">{{$post->more_info_link}}</a></li>
+                    @endif
                     <li><strong>Views:</strong> 3512</li>
                     <li><strong>Comments:</strong> <a href="#comments">12</a></li>
                 </ul>
             <hr>
             <ul class="list-unstyled">
-                <li><strong>Micro:</strong> <a href="#">{{$mcu->name}}</a></li>
-                <li><strong>Vendor:</strong> <a href="#">{{$vendor->name}}</a></li>
-                <li><strong>Arch:</strong><a href="#"> {{$arch->name}}</a></li>
+                <li><strong>Micro:</strong> <a href="#">{{{$mcu->name}}}</a></li>
+                <li><strong>Vendor:</strong> <a href="#">{{{$vendor->name}}}</a></li>
+                <li><strong>Arch:</strong><a href="#"> {{{$arch->name}}}</a></li>
+                @if(isset($languages))
                 <li><strong>Language(s): </strong>
                     @foreach($languages as $language)
 
-                        <a href="#">{{$language->name}}</a>
+                        <a href="#">{{{$language->name}}}</a>
                     @endforeach
                 </li>
+                @endif
+                @if(isset($compiler))
                 <li><strong>Compiler:</strong>
-                        <a href="#">{{$compiler->name}}</a>
+                        <a href="#">{{{$compiler->name}}}</a>
                 </li>
+                @endif
                 <li><strong>Categories:</strong>
                     @foreach($categories as $cat)
 
-                    <a href="#">{{$cat->name}}</a>
+                    <a href="#">{{{ $cat->name }}}</a>
                     @endforeach
 
                 </li>
@@ -123,7 +130,7 @@
             </ul>
             <div class="tags-cloud">
                 @foreach($post->tags as $tag)
-                    <a href="/tags/{{$tag->slug}}" class="tag">{{strtolower($tag->name)}}</a>
+                    <a href="/tags/{{$tag->slug}}" class="tag">{{{strtolower($tag->name)}}}</a>
                 @endforeach
             </div>
 

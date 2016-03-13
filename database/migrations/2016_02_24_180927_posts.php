@@ -24,6 +24,8 @@ class Posts extends Migration
             $table->text('body'); // raw markdown user input
             $table->text('body_html'); // markdown converted into html so as to not convert everytime
             $table->string('slug')->unique();
+            $table->string('main_image')->unique();
+            $table->string('source_file')->unique();
             $table->boolean('active');
             $table->integer('view_count')->default(0);
 

@@ -148,6 +148,8 @@ class PostController extends Controller
         }
     }
 
+
+
     public function store(Request $request) //PostFormRequest
     {
        // return Redirect::to('new-post')->withErrors('wooops')->withInput();
@@ -156,15 +158,24 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:255',
             'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
             'body' => 'required',
-            'tags' => 'required',
-            'topics' => 'required',
+            'tags' => 'required|arrayCountMax:2|arrayCountMin:1',
+            'topics' => 'required|max:4|min:1',
+            'micro' => 'required|max:1|min:1',
+            'languages' => 'max:3',
+            'compiler-assembler' => 'required|max:1|min:1',
             'file_source'=> 'max:10000|mimes:zip', // don't require this
+            'file_image'=> 'max:10000|image', // don't require this
         ]);
 
         $file = $request->file('file_source');
+        $main_image = $request->file('file_image');
 
-        $dest_file_name = substr(str_shuffle(MD5(microtime())), 0, 15);
-        $request->file('file_source')->move('uploads', $dest_file_name . '.zip');
+
+        $time = substr(str_shuffle(MD5(microtime())), 0, 15);
+        $file_source_dest = $time . $file->getClientOriginalExtension();
+        $main_image_dest =  $time . $main_image->getClientOriginalExtension();
+        $request->file('file_source')->move('uploads', $file_source_dest);
+        $request->file('file_image')->move('uploads', $main_image_dest);
 
 
         $post = new Posts();
@@ -176,6 +187,8 @@ class PostController extends Controller
         $post->more_info_link = $request->get('more_info_link');
         $post->mcu_id = $request->get('micro');
         $post->compiler_id = $request->get('compiler-assembler');
+        $post->source_file = $file_source_dest;
+        $post->main_image_dest = $main_image_dest;
 
         if ($request->has('save')) {
             $post->active = 0;
@@ -241,6 +254,7 @@ class PostController extends Controller
 
     public function edit(Request $request, $id, $slug)
     {
+
         $post = Posts::where('id', $id)->first();
         if ($post && ($request->user()->id == $post->author_id || $request->user()->is_admin())) {
             // Grab the available categories and such
@@ -250,8 +264,37 @@ class PostController extends Controller
             $languages = McuLanguages::orderBy('id')->get();
             $tags = Posts::existingTags()->toArray();
             //print_r($tags); die;
+
+            // Get the existing tags for the post
+            $existingTags = $post->tagged->toArray();
+            $existingTagsArray = array();
+            foreach($existingTags as $tag){
+                $existingTagsArray[] = $tag['tag']['slug'];
+            }
+            $existingCatArray = array();
+            foreach($post->categories as $cat){
+                $existingCatArray[] = $cat->id;
+            }
+            $existingLanguagesArray = array();
+            foreach($post->languages as $language){
+                $existingLanguagesArray[] = $language->id;
+            }
+            $existingCompiler = '999999';
+            if($post->compiler)
+                $existingCompiler = $post->compiler->id;
+
+            $existingMcu = $post->mcu->id;
+
+
             return view('posts.edit')
                 ->withPost($post)
+                ->with('existingTags',implode(',',$existingTagsArray))
+                ->with('existingCategories',implode(',',$existingCatArray))
+                ->with('existingLanguages',implode(',',$existingLanguagesArray))
+                ->with('existingCompilers',$existingCompiler)
+                ->with('existingMcu',$existingMcu)
+
+
                 ->withTags(json_encode($tags))
                 ->withCategories($categories)
                 ->withMcus($mcus)
@@ -263,6 +306,20 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:posts|max:255',
+            'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
+            'body' => 'required',
+            'tags' => 'required|arrayCountMax:2|arrayCountMin:1',
+            'topics' => 'required|max:4|min:1',
+            'micro' => 'required|max:1|min:1',
+            'languages' => 'max:3',
+            'compiler-assembler' => 'required',
+            'file_source'=> 'max:10000|mimes:zip', // don't require this
+            'file_image'=> 'max:10000|image', // don't require this
+        ]);
+
+
         $post_id = $request->input('post_id');
         $post = Posts::find($post_id);
         if ($post && ($post->author_id == $request->user()->id || $request->user()->is_admin())) {
@@ -291,7 +348,7 @@ class PostController extends Controller
             $post->save();
             return redirect($landing)->withMessage($message);
         } else {
-            return redirect('/')->withErrors('you have not sufficient permissions');
+            return redirect('/')->withErrors('You do not have sufficient permissions or the post does not exist');
         }
     }
 
