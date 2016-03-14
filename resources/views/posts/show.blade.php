@@ -65,7 +65,7 @@
                             @foreach($comments as $comment)
                                 <li class="panel-body">
                                     <div class="list-group">
-                                        <div class="list-group-item">
+                                        <div class="list-group-item author-name">
                                             <h3>{{{ $comment->author->name }}}</h3>
 
                                             <p>{{ $comment->created_at->format('M d,Y \a\t h:i a') }}</p>
@@ -95,11 +95,11 @@
                     <li><strong>Author:</strong> <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></li>
                     <li><strong>Created:</strong> {{ $post->created_at->format('M d,Y') }}</li>
                     <li><strong>Updated:</strong> {{ $post->updated_at->format('M d,Y') }}</li>
-                    @if(isset($post->more_info_link))
+                    @if(($post->more_info_link) != "")
                     <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">{{$post->more_info_link}}</a></li>
                     @endif
                     <li><strong>Views:</strong> 3512</li>
-                    <li><strong>Comments:</strong> <a href="#comments">12</a></li>
+                    <li><strong>Comments:</strong> <a href="#comments">{{$post->comments->count()}}</a></li>
                 </ul>
             <hr>
             <ul class="list-unstyled">

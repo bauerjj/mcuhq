@@ -134,7 +134,7 @@ class PostController extends Controller
             $categories = Categories::all();
             $mcus = Mcus::orderBy('vendor_id')->get();
             $compilers = McuCompilers::orderBy('vendor_id')->get();
-            $languages = McuLanguages::orderBy('id')->get();
+            $languages = McuLanguages::where('slug', '!=', 'none')->orderBy('id')->get();
             $tags = Posts::existingTags()->toArray();
 
             return view('posts.create')
@@ -159,21 +159,19 @@ class PostController extends Controller
             'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
             'body' => 'required',
             'tags' => 'required|arrayCountMax:2|arrayCountMin:1',
-            'topics' => 'required|max:4|min:1',
-            'micro' => 'required|max:1|min:1',
-            'languages' => 'max:3',
-            'compiler-assembler' => 'required|max:1|min:1',
+            'topics' => 'required|arrayCountMax:4|arrayCountMin:1',
+            'micro' => 'required',
+            'languages' => 'arrayCountMax:3',
+            'compiler-assembler' => 'required|arrayCountMax:3',
             'file_source'=> 'max:10000|mimes:zip', // don't require this
             'file_image'=> 'max:10000|image', // don't require this
         ]);
 
         $file = $request->file('file_source');
         $main_image = $request->file('file_image');
-
-
         $time = substr(str_shuffle(MD5(microtime())), 0, 15);
-        $file_source_dest = $time . $file->getClientOriginalExtension();
-        $main_image_dest =  $time . $main_image->getClientOriginalExtension();
+        $file_source_dest = $time . '.'.$file->getClientOriginalExtension();
+        $main_image_dest =  $time . '.'.$main_image->getClientOriginalExtension();
         $request->file('file_source')->move('uploads', $file_source_dest);
         $request->file('file_image')->move('uploads', $main_image_dest);
 
@@ -205,6 +203,9 @@ class PostController extends Controller
             $cat_ids = explode(',', $cat_string);
             $post->categories()->sync($cat_ids); // save categories
             $language_ids = explode(',', $languages);
+            if(empty($languages)){
+                $language_ids = array(99); // If none posted, save the language as 'None'
+            }
             $post->languages()->sync($language_ids);
 
             // Must first save the ID before tagging!
@@ -261,7 +262,7 @@ class PostController extends Controller
             $categories = Categories::all();
             $mcus = Mcus::orderBy('vendor_id')->get();
             $compilers = McuCompilers::orderBy('vendor_id')->get();
-            $languages = McuLanguages::orderBy('id')->get();
+            $languages = McuLanguages::where('slug', '!=', 'none')->orderBy('id')->get();
             $tags = Posts::existingTags()->toArray();
             //print_r($tags); die;
 
@@ -311,10 +312,10 @@ class PostController extends Controller
             'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
             'body' => 'required',
             'tags' => 'required|arrayCountMax:2|arrayCountMin:1',
-            'topics' => 'required|max:4|min:1',
-            'micro' => 'required|max:1|min:1',
-            'languages' => 'max:3',
-            'compiler-assembler' => 'required',
+            'topics' => 'required|arrayCountMax:4|arrayCountMin:1',
+            'micro' => 'required',
+            'languages' => 'arrayCountMax:3',
+            'compiler-assembler' => 'required|arrayCountMax:3',
             'file_source'=> 'max:10000|mimes:zip', // don't require this
             'file_image'=> 'max:10000|image', // don't require this
         ]);
@@ -323,19 +324,34 @@ class PostController extends Controller
         $post_id = $request->input('post_id');
         $post = Posts::find($post_id);
         if ($post && ($post->author_id == $request->user()->id || $request->user()->is_admin())) {
-            $title = $request->input('title');
-            $slug = str_slug($title);
-            $duplicate = Posts::where('slug', $slug)->first();
-            if ($duplicate) {
-                if ($duplicate->id != $post_id) {
-                    return redirect('edit/' . $post->slug)->withErrors('Title already exists.')->withInput();
-                } else {
-                    $post->slug = $slug;
-                }
+
+            $file = $request->file('file_source');
+            $main_image = $request->file('file_image');
+
+            $time = substr(str_shuffle(MD5(microtime())), 0, 15);
+
+            if($file){
+                $file_source_dest = $time . '.'. $file->getClientOriginalExtension();
+                $post->source_file = $file_source_dest;
+                $request->file('file_source')->move('uploads', $file_source_dest);
+
             }
+            if($main_image){
+                $main_image_dest =  $time . '.'.$main_image->getClientOriginalExtension();
+                $post->main_image = $main_image_dest;
+                $request->file('file_image')->move('uploads', $main_image_dest);
+            }
+
+
+            $title = $request->input('title');
+            $post->slug = str_slug($title); // Don't check for duplicates anymore since postId is part of the title URL
             $post->title = $title;
             $post->body = $request->input('body');
             $post->body_html = Markdown::convertToHtml($request->input('body'));
+            $post->more_info_link = $request->get('more_info_link');
+            $post->mcu_id = $request->get('micro');
+            $post->compiler_id = $request->get('compiler-assembler');
+
             if ($request->has('save')) {
                 $post->active = 0;
                 $message = 'Post saved successfully';
@@ -345,7 +361,23 @@ class PostController extends Controller
                 $message = 'Post updated successfully';
                 $landing = $post->id .'/'.$post->slug;
             }
-            $post->save();
+            if($post->save()) {
+                // First remove existing relationships
+
+                $cat_string = $request->get('topics');
+                $languages = $request->get('languages');
+                $cat_ids = explode(',', $cat_string);
+                $post->categories()->sync($cat_ids); // save categories
+                $language_ids = explode(',', $languages);
+                if(empty($languages)){
+                    $language_ids = array(99); // If none posted, save the language as 'None'
+                }
+
+                $post->languages()->sync($language_ids);
+
+                $post->retag($request->get('tags')); // delete current tags and save new tags
+            }
+
             return redirect($landing)->withMessage($message);
         } else {
             return redirect('/')->withErrors('You do not have sufficient permissions or the post does not exist');
@@ -360,7 +392,7 @@ class PostController extends Controller
             $post->delete();
             $data['message'] = 'Post deleted Successfully';
         } else {
-            $data['errors'] = 'Invalid Operation. You have not sufficient permissions';
+            $data['errors'] = 'Invalid Operation. You do not have sufficient permissions';
         }
         return redirect('/')->with($data);
     }

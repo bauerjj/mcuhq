@@ -61,7 +61,13 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
-                            <img src="/assets/img/demo/2.jpg" class="img-post img-responsive" alt="Image">
+                            @if($post->main_image != '')
+                                <img src="{{'/uploads/'.$post->main_image}}" class="img-post img-responsive main-image" alt="Image">
+                                @else
+                                <!-- https://pixabay.com/en/chip-micro-hardware-electronics-35646/ -->
+                                <img src="/uploads/default-chip.png" class="img-post img-responsive main-image" alt="Image">
+
+                            @endif
                         </div>
                         <div class="col-md-9 col-sm-9 post-content">
                             <h3 class="post-title">

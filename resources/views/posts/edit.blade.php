@@ -15,7 +15,8 @@
 
             <ol class="breadcrumb ">
                 <li><a href="/">Home</a></li>
-                <li class="active">Edit {{ $post->title }}</li>
+                <li><a href="{{'/'.$post->id .'/'.$post->slug }}">{{$post->title}}</a></li>
+                <li class="active">Edit</li>
             </ol>
         </div>
     </header>
@@ -53,7 +54,7 @@
             <div class="col-md-6">
 
                 <div class="form-group">
-                    <label for="tags" class="control-label required">Tags </label>
+                    <label for="tags" class="control-label required">Tags (1 min, 6 max) </label>
 
                         <input value="{{ old('tags') }}" placeholder="Tags" type="text" name="tags" id="tags"/>
                 </div>
@@ -70,7 +71,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="topic-dropdown" class="control-label required">Category(s) </label>
+                    <label for="topic-dropdown" class="control-label required">Category (1 min, 4 max) </label>
                     <input type="hidden" name="topics" id="topics-input">
 
                         <select id="topic-dropdown" multiple="multiple">
@@ -98,7 +99,7 @@
                         </div>
                     </div>
                     @if($post->main_image)
-                        <img src="{{url('/uploads/'.$post->main_image)}}">
+                        <img src="{{url('/uploads/'.$post->main_image)}}" class="img img-responsive" style="max-height: 200px; max-width: 200px;">
                         @endif
                 </div>
 
