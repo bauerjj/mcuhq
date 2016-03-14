@@ -85,9 +85,19 @@
             <div class="tab-pane" id="categories">
                 <h3 class="post-title no-margin-top section-title">Micro Family</h3>
                 <ul class="simple">
-                    <li class="active"><a href={{Helper::modify_url(array('mcu'=>'all'))}}>All</a></li>
+                    @if($inputs['mcu'] == 'all' || $inputs['mcu'] == '')
+                        <li class="active">
+                    @else
+                        <li>
+                    @endif
+                    <a href={{Helper::modify_url(array('mcu'=>'all'))}}>All</a></li>
                     @foreach($mcus as $mcu => $count)
-                        <li><a href="{{Helper::modify_url(array('mcu'=> urlencode(strtolower($mcu))))}}">{{$mcu}} ({{$count}})</a></li>
+                            @if($inputs['mcu'] == urlencode(strtolower($mcu)))
+                                <li class="active">
+                                @else
+                                    <li>
+                                @endif
+                        <a href="{{Helper::modify_url(array('mcu'=> urlencode(strtolower($mcu))))}}">{{$mcu}} ({{$count}})</a></li>
                     @endforeach
                 </ul>
             </div>

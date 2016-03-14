@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\McuCompilers;
 use App\Models\McuLanguages;
 use App\Models\Mcus;
+use App\Models\McuVendors;
 use Input;
 use Validator;
 use Session;
@@ -22,15 +23,37 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class PostController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
+        $vendor = $request->input('vendor');
+        $vendor = McuVendors::where('slug', $vendor)->first();
+        if(isset($vendor))
+            $vendorFilter = array('vendor_id' => $vendor->id);
+        else
+            $vendorFilter = array();
+
         // fetch 5 posts from db which are active and latest
-        $posts = Posts::where('active', 1)->with('categories')->with('tagged')->orderBy('created_at', 'desc')->paginate(5);
+        $posts = Posts::where('active', 1)
+            ->with('categories')
+            ->with('mcu')
+            ->with('tagged')
+            ->whereHas('mcu', function ($q) use ($vendorFilter) {
+                $q->where($vendorFilter);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        $inputs = array(
+            'vendor' => $request->input('vendor'),
+            'sort' => $request->input('sort'),
+            'filter' => $request->input('filter'),
+        );
        // print_r($posts); die;
-        $title = 'Latest Posts';
 
-        return view('home')->withPosts($posts)->withTitle($title);
-
+        return view('home')
+            ->withPosts($posts)
+            ->withInputs($inputs)
+        ;
 
     }
 

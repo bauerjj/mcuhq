@@ -13,26 +13,25 @@
         <div class="portfolio-topbar hidden-sm hidden-xs">
             <div class="row">
                 <div class="col-md-8">
-                    <h4>Vendors</h4>
+                    <h4 class="first-letter">Vendors</h4>
                     <ul class="portfolio-topbar-cats">
-                        <li><span class="filter active" data-filter="all">All</span></li>
-                        <li><span class="filter" data-filter=".category-1">Microchip</span></li>
-                        <li><span class="filter" data-filter=".category-2">Atmel</span></li>
-                        <li><span class="filter" data-filter=".category-3">Cypress</span></li>
-                        <li><span class="filter" data-filter=".category-4">TI</span></li>
-                        <li><span class="filter" data-filter=".category-5">Renesas</span></li>
-                        <li><span class="filter" data-filter=".category-6">STMicro</span></li>
-                        <li><span class="filter" data-filter=".category-6">Infineon</span></li>
-                        <li><span class="filter" data-filter=".category-6">NXP</span></li>
-                        <li><span class="filter" data-filter=".category-6">Fujitsu</span></li>
-                        <li><span class="filter" data-filter=".category-6">Others</span></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'all'))}}"><span class="filter @if($inputs['vendor'] == 'all' || $inputs['vendor'] == '') active @else '' @endif" data-filter="all">All</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'microchip'))}}"><span class="filter @if($inputs['vendor'] == 'microchip') active @else '' @endif" data-filter=".category-1">Microchip</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'atmel'))}}"><span class="filter @if($inputs['vendor'] == 'atmel') active @else '' @endif" data-filter=".category-2">Atmel</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'cypress') active @else '' @endif" data-filter=".category-3">Cypress</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'ti') active @else '' @endif" data-filter=".category-4">TI</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'renesas') active @else '' @endif" data-filter=".category-5">Renesas</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'stmicro') active @else '' @endif" data-filter=".category-6">STMicro</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'infineon') active @else '' @endif" data-filter=".category-6">Infineon</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'nxp') active @else '' @endif" data-filter=".category-6">NXP</span></a></li>
+                        <li><span class="filter @if($inputs['vendor'] == 'fujitsu') active @else '' @endif" data-filter=".category-6">Fujitsu</span></a></li>
 
 
                     </ul>
                     <span class="topbar-border">&nbsp;</span>
                 </div>
                 <div class="col-md-2 port-fix">
-                    <h4>Sort</h4>
+                    <h4 class="first-letter">Sort</h4>
                     <ul class="portfolio-topbar-cats">
                         <li><span class="filter active" data-filter=".category-1">New</span></li>
                         <li><span class="filter" data-filter=".category-1">Popular</span></li>
@@ -40,10 +39,10 @@
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <h4>Filter</h4>
+                    <h4 class="first-letter">Filter</h4>
                     <ul class="portfolio-topbar-desc">
                         <li><a href="javascript:void(0);" id="port-show" class="active">Vendor</a></li>
-                        <li><a href="javascript:void(0);" id="port-hide">Topic</a></li>
+                        <li><a href="javascript:void(0);" id="port-hide">Category</a></li>
                     </ul>
                 </div>
             </div>
@@ -91,6 +90,9 @@
                                 <a href="#">{{$cat->name}}</a>
                                 <?php $i++; ?>
                             @endforeach
+                            <i class="fa fa-bolt"></i>
+                            <a href="{{url('vendors/'.$post->mcu->vendor->slug)}}">{{$post->mcu->vendor->name}}</a> //
+                            <a href="{{url('vendors/'.$post->mcu->vendor->slug.'/?mcu='.$post->mcu->slug)}}">{{$post->mcu->name}}</a>
                             <div class="tags-cloud">
                                 @foreach($post->tagged as $tag)
                                     <a href="/tags/{{$tag->tag_slug}}" class="tag">{{strtolower($tag->tag_name)}}</a>

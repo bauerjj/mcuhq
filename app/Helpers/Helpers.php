@@ -37,6 +37,6 @@ class Helper
         }
         //print_r($query_array); die;
 
-        return $url_array['scheme'].'://'.$url_array['host'].'/'.$url_array['path'].'?'.http_build_query($query_array);
+        return url($url_array['path'].'?'.http_build_query($query_array));
     }
 }

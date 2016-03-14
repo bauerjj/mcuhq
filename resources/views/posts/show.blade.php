@@ -103,26 +103,26 @@
                 </ul>
             <hr>
             <ul class="list-unstyled">
-                <li><strong>Micro:</strong> <a href="#">{{{$mcu->name}}}</a></li>
-                <li><strong>Vendor:</strong> <a href="#">{{{$vendor->name}}}</a></li>
-                <li><strong>Arch:</strong><a href="#"> {{{$arch->name}}}</a></li>
+                <li><strong>Micro:</strong> <a href="{{url('vendors/'.$vendor->slug.'/?mcu='.$mcu->slug)}}">{{$mcu->name}}</a></li>
+                <li><strong>Vendor:</strong> <a href="{{url('vendors/'.$vendor->slug)}}">{{$vendor->name}}</a></li>
+                <li><strong>Arch:</strong> {{{$arch->name}}}</li>
                 @if(isset($languages))
                 <li><strong>Language(s): </strong>
                     @foreach($languages as $language)
 
-                        <a href="#">{{{$language->name}}}</a>
+                        <a href="{{url('vendors/'.$vendor->slug.'/?lan='.$language->slug)}}">{{{$language->name}}}</a>
                     @endforeach
                 </li>
                 @endif
                 @if(isset($compiler))
                 <li><strong>Compiler:</strong>
-                        <a href="#">{{{$compiler->name}}}</a>
+                        <a href="{{url('vendors/'.$vendor->slug.'/?compiler='.$compiler->slug)}}">{{{$compiler->name}}}</a>
                 </li>
                 @endif
                 <li><strong>Categories:</strong>
                     @foreach($categories as $cat)
 
-                    <a href="#">{{{ $cat->name }}}</a>
+                    <a href="{{url('category/'.$cat->slug)}}">{{{ $cat->name }}}</a>
                     @endforeach
 
                 </li>
@@ -130,7 +130,7 @@
             </ul>
             <div class="tags-cloud">
                 @foreach($post->tags as $tag)
-                    <a href="/tags/{{$tag->slug}}" class="tag">{{{strtolower($tag->name)}}}</a>
+                    <a href="{{url('tags/'.$tag->slug)}}" class="tag">{{{strtolower($tag->name)}}}</a>
                 @endforeach
             </div>
 
