@@ -33,9 +33,9 @@
                 <div class="col-md-2 port-fix">
                     <h4 class="first-letter">Sort</h4>
                     <ul class="portfolio-topbar-cats">
-                        <li><span class="filter active" data-filter=".category-1">New</span></li>
-                        <li><span class="filter" data-filter=".category-1">Popular</span></li>
-                        <li><span class="filter" data-filter=".category-1">Active</span></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'new'))}}"><span class="filter  @if($inputs['sort'] == '' || $inputs['sort'] == 'new') active @else '' @endif" data-filter=".category-1">New</span></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'view'))}}"><span class="filter  @if($inputs['sort'] == 'view') active @else '' @endif" data-filter=".category-1">Popular</span></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'comments'))}}"><span class="filter  @if($inputs['sort'] == 'comments') active @else '' @endif" data-filter=".category-1">Active</span></li>
                     </ul>
                 </div>
                 <div class="col-md-2">

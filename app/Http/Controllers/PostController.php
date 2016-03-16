@@ -25,6 +25,9 @@ class PostController extends Controller
     //
     public function index(Request $request)
     {
+        $query = Posts::query();
+        $query->with('comments')->count();
+
         $vendorSlug = $request->input('vendor');
         $vendor = McuVendors::where('slug', $vendorSlug)->first();
         if(isset($vendor))
@@ -34,16 +37,36 @@ class PostController extends Controller
         else
             $vendorFilter = array('vendor_id' => 9999999); // get here when no user input matches any slug
 
+        $sort = $request->input('sort');
+        if($sort == 'new'){
+            $query->orderBy('created_at', 'desc');
+        }
+        else if($sort == 'comments'){
+            //http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
+            $query->orderBy('comments.count', 'desc');
+        }
+
+
         // fetch 5 posts from db which are active and latest
-        $posts = Posts::where('active', 1)
+        $posts = $query->where('active', 1)
             ->with('categories')
             ->with('mcu')
             ->with('tagged')
             ->whereHas('mcu', function ($q) use ($vendorFilter) {
                 $q->where($vendorFilter);
             })
-            ->orderBy('created_at', 'desc')
             ->paginate(5);
+
+
+//        $posts = Posts::where('active', 1)
+//            ->with('categories')
+//            ->with('mcu')
+//            ->with('tagged')
+//            ->whereHas('mcu', function ($q) use ($vendorFilter) {
+//                $q->where($vendorFilter);
+//            })
+//            ->orderBy('created_at', 'desc')
+//            ->paginate(5);
 
         $inputs = array(
             'vendor' => $request->input('vendor'),

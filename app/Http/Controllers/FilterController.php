@@ -30,6 +30,10 @@ class FilterController extends Controller
 
     }
 
+    public function category(Request $request, $category){
+
+    }
+
     public function vendor(Request $request, $vendor)
     {
         // Get the vendor ID
