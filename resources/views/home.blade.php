@@ -33,9 +33,9 @@
                 <div class="col-md-2 port-fix">
                     <h4 class="first-letter">Sort</h4>
                     <ul class="portfolio-topbar-cats">
-                        <li><a href="{{Helper::modify_url(array('sort'=> 'new'))}}"><span class="filter  @if($inputs['sort'] == '' || $inputs['sort'] == 'new') active @else '' @endif" data-filter=".category-1">New</span></li>
-                        <li><a href="{{Helper::modify_url(array('sort'=> 'view'))}}"><span class="filter  @if($inputs['sort'] == 'view') active @else '' @endif" data-filter=".category-1">Popular</span></li>
-                        <li><a href="{{Helper::modify_url(array('sort'=> 'comments'))}}"><span class="filter  @if($inputs['sort'] == 'comments') active @else '' @endif" data-filter=".category-1">Active</span></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'new'))}}"><span class="filter  @if($inputs['sort'] == '' || $inputs['sort'] == 'new') active @else '' @endif" data-filter=".category-1">New</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'view'))}}"><span class="filter  @if($inputs['sort'] == 'view') active @else '' @endif" data-filter=".category-1">Popular</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'comments'))}}"><span class="filter  @if($inputs['sort'] == 'comments') active @else '' @endif" data-filter=".category-1">Active</span></a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
@@ -83,6 +83,7 @@
                             <i class="fa fa-clock-o"></i> {{ $post->created_at->format('M d, Y') }}
                             <i class="fa fa-user"> </i> <a
                                     href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a>
+                            <i class="fa fa-comments"></i><a href="{{url('/'.$post->id.'/'.$post->slug.'#comments')}}">{{$post->comments_count}}</a>
                             <i class="fa fa-folder-open"></i>
                             <?php $i = 0; ?>
                             @foreach($post->categories as $cat)

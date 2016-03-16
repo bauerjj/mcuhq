@@ -11,6 +11,7 @@ use Input;
 use Validator;
 use Session;
 use App\Models\Posts;
+use DB;
 use App\Models\User;
 use Redirect;
 use App\Http\Controllers\Controller;
@@ -38,19 +39,25 @@ class PostController extends Controller
             $vendorFilter = array('vendor_id' => 9999999); // get here when no user input matches any slug
 
         $sort = $request->input('sort');
+
         if($sort == 'new'){
             $query->orderBy('created_at', 'desc');
         }
         else if($sort == 'comments'){
-            //http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
-            $query->orderBy('comments.count', 'desc');
+           $query->orderBy('comments_count','desc');
         }
 
+        $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
+            array(
+                '*',
+                DB::raw('(SELECT count(*) FROM comments WHERE on_post = posts.id) as comments_count')
+            ));
 
         // fetch 5 posts from db which are active and latest
         $posts = $query->where('active', 1)
             ->with('categories')
             ->with('mcu')
+            ->with('comments')
             ->with('tagged')
             ->whereHas('mcu', function ($q) use ($vendorFilter) {
                 $q->where($vendorFilter);
