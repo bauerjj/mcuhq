@@ -18,13 +18,13 @@
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'all'))}}"><span class="filter @if($inputs['vendor'] == 'all' || $inputs['vendor'] == '') active @else '' @endif" data-filter="all">All</span></a></li>
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'microchip'))}}"><span class="filter @if($inputs['vendor'] == 'microchip') active @else '' @endif" data-filter=".category-1">Microchip</span></a></li>
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'atmel'))}}"><span class="filter @if($inputs['vendor'] == 'atmel') active @else '' @endif" data-filter=".category-2">Atmel</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'cypress') active @else '' @endif" data-filter=".category-3">Cypress</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'ti') active @else '' @endif" data-filter=".category-4">TI</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'renesas') active @else '' @endif" data-filter=".category-5">Renesas</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'stmicro') active @else '' @endif" data-filter=".category-6">STMicro</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'infineon') active @else '' @endif" data-filter=".category-6">Infineon</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'nxp') active @else '' @endif" data-filter=".category-6">NXP</span></a></li>
-                        <li><span class="filter @if($inputs['vendor'] == 'fujitsu') active @else '' @endif" data-filter=".category-6">Fujitsu</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'cypress'))}}"><span class="filter @if($inputs['vendor'] == 'cypress') active @else '' @endif" data-filter=".category-3">Cypress</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'ti'))}}"><span class="filter @if($inputs['vendor'] == 'ti') active @else '' @endif" data-filter=".category-4">TI</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'renesas'))}}"><span class="filter @if($inputs['vendor'] == 'renesas') active @else '' @endif" data-filter=".category-5">Renesas</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'stmicro'))}}"><span class="filter @if($inputs['vendor'] == 'stmicro') active @else '' @endif" data-filter=".category-6">STMicro</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'infineon'))}}"><span class="filter @if($inputs['vendor'] == 'infineon') active @else '' @endif" data-filter=".category-6">Infineon</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'nxp'))}}"><span class="filter @if($inputs['vendor'] == 'nxp') active @else '' @endif" data-filter=".category-6">NXP</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('vendor'=> 'fujitsu'))}}"><span class="filter @if($inputs['vendor'] == 'fujitsu') active @else '' @endif" data-filter=".category-6">Fujitsu</span></a></li>
 
 
                     </ul>
@@ -108,10 +108,21 @@
         </article>
     @endforeach
 
+    @if(sizeof($posts) <1)
+        <section class="text-center">
+            <h1>No Posts found matching your criteria</h1>
 
+            <a href="{{url('/new-post')}}" role="button" class="btn btn-ar btn-lg btn-primary">Contribute one now!</a>
+
+        </section>
+
+
+    @else
     <section class="text-center">
         {!! $posts->render() !!}
     </section>
+
+    @endif
 @endsection
 
 

@@ -1,6 +1,7 @@
-html{
-    position: relative;
-    min-height: 100%;
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 body {
     /* The html and body elements cannot have any padding or margin. */
@@ -12,14 +13,23 @@ body{
 
 /* Wrapper for page content to push down footer */
 #wrap {
-    /*min-height: 100%;*/
+    min-height: 100%;
     height: auto;
     /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
 
 }
 
-.row{
+#footer{
+    //height: 230px;
+    margin-top: 10px;
+}
 
+.container{
+    min-height: 100%;
+    height: 100%;
 }
 
 .main-content{
@@ -30,10 +40,12 @@ body{
 }
 
 #footer-v6 {
-    /* Set the fixed height of the footer here */
     background-color: transparent;
     font-size: 12px;
-    margin-top: 10px;
+}
+
+#footer-v6 h2 {
+    color: white;
 }
 
 .main-header{
@@ -90,6 +102,10 @@ body{
 
 .main-image{
     max-height: 200px;
+}
+
+.portfolio-topbar-cats li a{
+    color: #333; /* override link color */
 }
 
 

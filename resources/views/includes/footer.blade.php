@@ -27,7 +27,7 @@
 {{--</div>--}}
 
 
-<div class="footer">
+<div class="footer" id="footer">
     <div class="container">
         <div class="row">
             <!-- About Us -->
@@ -65,7 +65,6 @@
                 <ul class="list-unstyled footer-link-list">
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Terms of Use</a></li>
                     <li><a href="#">Privacy and Policy</a></li>
                     <li><a href="#">Support</a></li>
                 </ul>
@@ -77,7 +76,6 @@
                 <div class="heading-footer"><h2 class="first-letter">Obligatory Social</h2></div>
                 <ul class="list-unstyled contacts">
                     <li><a href="#"><i class="fa fa-github"> github</i></a></li>
-                    <li><a href="#"><i class="fa my-fa-youtube"> youtube</i></a></li>
                     <li><a href="#"><i class="fa my-fa-twitter"> twitter</i></a></li>
                 </ul>
             </div>

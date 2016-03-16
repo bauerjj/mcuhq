@@ -25,12 +25,14 @@ class PostController extends Controller
     //
     public function index(Request $request)
     {
-        $vendor = $request->input('vendor');
-        $vendor = McuVendors::where('slug', $vendor)->first();
+        $vendorSlug = $request->input('vendor');
+        $vendor = McuVendors::where('slug', $vendorSlug)->first();
         if(isset($vendor))
             $vendorFilter = array('vendor_id' => $vendor->id);
-        else
+        else if($vendorSlug == '' || $vendorSlug == 'all')
             $vendorFilter = array();
+        else
+            $vendorFilter = array('vendor_id' => 9999999); // get here when no user input matches any slug
 
         // fetch 5 posts from db which are active and latest
         $posts = Posts::where('active', 1)
