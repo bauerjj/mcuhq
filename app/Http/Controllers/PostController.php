@@ -59,6 +59,7 @@ class PostController extends Controller
             ->with('mcu')
             ->with('comments')
             ->with('tagged')
+            ->where('title', 'LIKE', '%bla%')
             ->whereHas('mcu', function ($q) use ($vendorFilter) {
                 $q->where($vendorFilter);
             })
