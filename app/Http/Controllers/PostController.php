@@ -12,6 +12,8 @@ use Validator;
 use Session;
 use App\Models\Posts;
 use DB;
+use App\Events\ViewPostHandler;
+use Event;
 use App\Models\User;
 use Redirect;
 use App\Http\Controllers\Controller;
@@ -275,7 +277,7 @@ class PostController extends Controller
         return redirect('edit/' . $post->slug)->withMessage($message);
     }
 
-    public function show($id, $slug)
+    public function show(Request $request, $id, $slug)
     {
         //https://laravel.com/docs/5.1/eloquent-relationships#eager-loading
         //https://github.com/rtconner/laravel-tagging
@@ -288,6 +290,11 @@ class PostController extends Controller
         if (!$post) {
             return redirect('/')->withErrors('requested page not found');
         }
+
+        // Fire view counter event
+        event(new ViewPostHandler($post, $request->session()));
+
+
         // Grab other associated display things
         $categories = $post->categories;
         $languages = $post->languages;

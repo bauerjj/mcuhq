@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Event;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\ViewPostHandler' => [
+            'App\Listeners\ViewPostListener',
         ],
     ];
 
@@ -28,6 +29,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        //Event::subscribe('posts.view', 'Mcuhq\Events\ViewPostHandler');
+
+       // $events->listen('ViewPostHandler');
     }
 }

@@ -98,7 +98,7 @@
                     @if(($post->more_info_link) != "")
                     <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">{{$post->more_info_link}}</a></li>
                     @endif
-                    <li><strong>Views:</strong> 3512</li>
+                    <li><strong>Views:</strong> {{$post->view_counter}}</li>
                     <li><strong>Comments:</strong> <a href="#comments">{{$post->comments->count()}}</a></li>
                 </ul>
             <hr>

@@ -29,7 +29,7 @@
 
 
 // check for logged in user
-Route::group(['middleware' => 'web'], function()
+Route::group(['middleware' => ['web','ViewThrottle']], function()
 {
 
     // show new post form
@@ -54,7 +54,7 @@ Route::group(['middleware' => 'web'], function()
 
 });
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
     Route::auth();
 
 
