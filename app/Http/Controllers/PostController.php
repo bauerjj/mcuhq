@@ -48,6 +48,9 @@ class PostController extends Controller
         else if($sort == 'comments'){
            $query->orderBy('comments_count','desc');
         }
+        else if($sort == 'views'){
+            $query->orderBy('view_counter','desc');
+        }
 
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
@@ -61,7 +64,6 @@ class PostController extends Controller
             ->with('mcu')
             ->with('comments')
             ->with('tagged')
-            ->where('title', 'LIKE', '%bla%')
             ->whereHas('mcu', function ($q) use ($vendorFilter) {
                 $q->where($vendorFilter);
             })
@@ -307,12 +309,23 @@ class PostController extends Controller
             $arch = $mcu->arch;
         }
 
+        // Get the related posts for each word in the title
+        $query = Posts::query();
+        $words = explode(" ",$post->title);
+        foreach ($words as $word){
+            $query->orWhere('title', 'LIKE', "%$word%");
+        }
+        $related = $query->get();
+        $related->shift(); // get rid of the first match since this will be the existing post
+
+
 
         return view('posts.show')->withPost($post)->withComments($comments)->withCategories($categories)
             ->withLanguages($languages)
             ->withVendor($vendor)
             ->withArch($arch)
             ->withCompiler($compiler)
+            ->withRelated($related)
             ->withMcu($mcu);
     }
 

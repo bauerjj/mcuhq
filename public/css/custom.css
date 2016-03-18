@@ -86,6 +86,10 @@ body{
     content: "\f167";
 }
 /**********  Main Page **************/
+.search-main{
+    margin-top: 15px;
+}
+
 .portfolio-topbar-cats li span{
     padding: 2px 5px;
     margin-top: 6px;

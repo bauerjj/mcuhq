@@ -136,13 +136,9 @@
 
             <h3 class="section-title">Related</h3>
             <ul class="list-unstyled related">
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Another fake title that is pretty long indeed oh owow </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-                <li><a href="#">Test my link yo please </a></li>
-
+                @foreach($related as $post)
+                    <li><a href="{{url($post->id.'/'.$post->slug)}}">{{{$post->title}}}</a></li>
+                @endforeach
             </ul>
 
         </div>

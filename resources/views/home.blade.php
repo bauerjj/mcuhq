@@ -12,7 +12,7 @@
     <div class="container">
         <div class="portfolio-topbar hidden-sm hidden-xs">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <h4 class="first-letter">Vendors</h4>
                     <ul class="portfolio-topbar-cats">
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'all'))}}"><span class="filter @if($inputs['vendor'] == 'all' || $inputs['vendor'] == '') active @else '' @endif" data-filter="all">All</span></a></li>
@@ -26,7 +26,6 @@
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'nxp'))}}"><span class="filter @if($inputs['vendor'] == 'nxp') active @else '' @endif" data-filter=".category-6">NXP</span></a></li>
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'fujitsu'))}}"><span class="filter @if($inputs['vendor'] == 'fujitsu') active @else '' @endif" data-filter=".category-6">Fujitsu</span></a></li>
 
-
                     </ul>
                     <span class="topbar-border">&nbsp;</span>
                 </div>
@@ -34,17 +33,27 @@
                     <h4 class="first-letter">Sort</h4>
                     <ul class="portfolio-topbar-cats">
                         <li><a href="{{Helper::modify_url(array('sort'=> 'new'))}}"><span class="filter  @if($inputs['sort'] == '' || $inputs['sort'] == 'new') active @else '' @endif" data-filter=".category-1">New</span></a></li>
-                        <li><a href="{{Helper::modify_url(array('sort'=> 'view'))}}"><span class="filter  @if($inputs['sort'] == 'view') active @else '' @endif" data-filter=".category-1">Popular</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'views'))}}"><span class="filter  @if($inputs['sort'] == 'view') active @else '' @endif" data-filter=".category-1">Popular</span></a></li>
                         <li><a href="{{Helper::modify_url(array('sort'=> 'comments'))}}"><span class="filter  @if($inputs['sort'] == 'comments') active @else '' @endif" data-filter=".category-1">Active</span></a></li>
                     </ul>
+                    <span class="topbar-border">&nbsp;</span>
+
                 </div>
-                <div class="col-md-2">
-                    <h4 class="first-letter">Filter</h4>
-                    <ul class="portfolio-topbar-desc">
-                        <li><a href="javascript:void(0);" id="port-show" class="active">Vendor</a></li>
-                        <li><a href="javascript:void(0);" id="port-hide">Category</a></li>
-                    </ul>
+
+                <div class="col-md-4 port-fix">
+
+                    <form role="form">
+                        <div class="input-group search-main">
+                            <input type="text" class="form-control " placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-ar btn-primary" type="button">Go!</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+
+
                 </div>
+
             </div>
         </div>
     </div>
@@ -84,6 +93,7 @@
                             <i class="fa fa-user"> </i> <a
                                     href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a>
                             <i class="fa fa-comments"></i><a href="{{url('/'.$post->id.'/'.$post->slug.'#comments')}}">{{$post->comments_count}}</a>
+                            <i class="fa fa-eye"></i> {{$post->view_counter}}
                             <i class="fa fa-folder-open"></i>
                             <?php $i = 0; ?>
                             @foreach($post->categories as $cat)

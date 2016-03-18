@@ -45,6 +45,8 @@
                                 <i class="fa fa-clock-o"></i> {{ $post->created_at->format('M d, Y') }}
                                 <i class="fa fa-user"> </i> <a
                                         href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a>
+                                <i class="fa fa-comments"></i><a href="{{url('/'.$post->id.'/'.$post->slug.'#comments')}}">{{$post->comments_count}}</a>
+                                <i class="fa fa-eye"></i> {{$post->view_counter}}
                                 <i class="fa fa-folder-open"></i>
                                 <?php $i = 0; ?>
                                 @foreach($post->categories as $cat)
@@ -52,6 +54,9 @@
                                     <a href="#">{{$cat->name}}</a>
                                     <?php $i++; ?>
                                 @endforeach
+                                <i class="fa fa-bolt"></i>
+                                <a href="{{url('vendors/'.$post->mcu->vendor->slug)}}">{{$post->mcu->vendor->name}}</a> //
+                                <a href="{{url('vendors/'.$post->mcu->vendor->slug.'/?mcu='.$post->mcu->slug)}}">{{$post->mcu->name}}</a>
                                 <div class="tags-cloud">
                                     @foreach($post->tagged as $tag)
                                         <a href="/tags/{{$tag->tag_slug}}" class="tag">{{strtolower($tag->tag_name)}}</a>

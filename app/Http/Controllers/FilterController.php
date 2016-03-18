@@ -13,6 +13,7 @@ use Input;
 use Validator;
 use Session;
 use App\Models\Posts;
+use DB;
 use App\Models\User;
 use Redirect;
 use App\Http\Controllers\Controller;
@@ -91,8 +92,15 @@ class FilterController extends Controller
             $tags[] = $tag['slug'];
         }
 
+        $query = Posts::query();
 
-        $posts = Posts::where('active', 1)
+        $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
+            array(
+                '*',
+                DB::raw('(SELECT count(*) FROM comments WHERE on_post = posts.id) as comments_count')
+            ));
+
+        $posts = $query->where('active', 1)
             ->with('mcu')
             ->with('tagged')
             ->with('categories')
