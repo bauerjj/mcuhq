@@ -312,11 +312,18 @@ class PostController extends Controller
         // Get the related posts for each word in the title
         $query = Posts::query();
         $words = explode(" ",$post->title);
-        foreach ($words as $word){
-            $query->orWhere('title', 'LIKE', "%$word%");
+        $queryString = '';
+        $i = 0;
+        foreach ($words as $word){ // Build this query so to get related posts on each word in title WITHOUT own post ID
+            if($i == 0)
+                $queryString.= "title LIKE '%$word%' AND id != $post->id";
+            else
+                $queryString.= " OR title LIKE '%$word%' AND id != $post->id";
+            $i++;
         }
+
+        $query->whereRaw($queryString);
         $related = $query->get();
-        $related->shift(); // get rid of the first match since this will be the existing post
 
 
 
