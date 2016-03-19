@@ -98,7 +98,7 @@
                             <?php $i = 0; ?>
                             @foreach($post->categories as $cat)
                                 <?php if ($i != 0) echo ' ,' ?>
-                                <a href="#">{{$cat->name}}</a>
+                                <a href="{{url('category/'.$cat->slug)}}">{{$cat->name}}</a>
                                 <?php $i++; ?>
                             @endforeach
                             <i class="fa fa-bolt"></i>

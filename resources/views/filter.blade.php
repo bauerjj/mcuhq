@@ -18,8 +18,8 @@
 @section('center')
     <div class="panel-default post-show">
         <div class="panel-title">
-           <h2>Vendors: {{$vendor->name}}</h2>
-            <p class="small">{{$vendor->description}} </p>
+           {{--<h2>Vendors: {{$vendor->name}}</h2>--}}
+            {{--<p class="small">{{$vendor->description}} </p>--}}
         </div>
 
         @foreach( $posts as $post )

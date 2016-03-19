@@ -32,6 +32,142 @@ class FilterController extends Controller
     }
 
     public function category(Request $request, $category){
+        // Get the categoryID
+        $category = Categories::where('slug', $category)->first();
+        $categoryID = $category->id;
+
+
+        $query = Posts::query();
+
+        $filterCompiler = $request->input('compiler');
+        if(($filterCompiler!='all' && isset($filterCompiler))) {
+            $filterCompiler = McuCompilers::where('name', $filterCompiler)->first();
+            $compFilter = array('id' => $filterCompiler->id);
+        }
+        else
+            $compFilter = array(); // don't filter on vendor here since each compiler can belong to multple vendors
+
+        $filterMcu = $request->input('vendor');
+        if(($filterMcu!='all' && isset($filterMcu))) {
+            $vendor = McuVendors::where('slug', $request->input('vendor'))->first();
+            $mcuFilter = array('vendor_id' => $vendor->id);
+        }
+        else
+            $mcuFilter = array(); // THE MICRO is the only thing that should be filtering on vendor
+
+        $inLanguage = $request->input('lan');
+        if(($inLanguage!='all' && isset($inLanguage))) {
+            $lanId = McuLanguages::where('slug', $inLanguage)->first();
+            $lanFilter = array('id' => $lanId->id);
+        }
+        else
+            $lanFilter = array();
+
+        $existingTags = Posts::existingTags()->toArray();
+        $tags = array();
+        foreach($existingTags as $tag){
+            $tags[] = $tag['slug'];
+        }
+
+
+        $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
+            array(
+                '*',
+                DB::raw('(SELECT count(*) FROM comments WHERE on_post = posts.id) as comments_count')
+            ));
+
+        $posts = $query->where('active', 1)
+            ->with('mcu')
+            ->with('tagged')
+            ->with('categories')
+            ->with('compiler')
+            ->with('languages')
+
+            ->withAnyTag($tags)
+
+
+            ->whereHas('categories', function($q) use($categoryID){
+                $q->where('category_id', $categoryID);
+            })
+            ->whereHas('languages', function($q) use ($lanFilter){
+                if(empty($lanFilter))
+                    $q->where($lanFilter)->orWhere('id', 99);
+                else
+                    $q->where($lanFilter);
+            })
+            ->whereHas('compiler', function ($q) use ($compFilter) {
+                $q->where($compFilter);
+            })
+            ->whereHas('mcu', function ($q) use ($mcuFilter) {
+                $q->where($mcuFilter);
+            })
+
+
+            ->orderBy('created_at', 'desc')
+            //    ->paginate(5);
+            ->get();
+        ;
+
+        // Cycle through posts to get how many tags and such of each
+        $compilers = array();$mcus = array();$languages = array(); $categories = array();$tags = array();
+
+        foreach($posts as $post){
+            // $arr ['name'] = $post->compiler->name;
+            // $arr ['slug'] = $post->compiler->slug;
+            $compilers [] = $post->compiler->name;
+            $mcus[] = $post->mcu->name;
+            foreach($post->languages as $lan)
+                $languages[] = $lan->name;
+            foreach($post->categories as $cat)
+                $categories[] = $cat->name;
+            foreach($post->tagged as $tag)
+                $tags[] = $tag->tag_name;
+
+        }
+        $vals = array_count_values($compilers);
+        $mcusVals = array_count_values($mcus);
+        $languageVals = array_count_values($languages);
+        $categoriesVals = array_count_values($categories);
+        $tagsVals = array_count_values($tags);
+
+
+
+        $page = $request->input('page');
+        if($page == '') $page = 1;
+        $perPage =10;
+        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendor/microchip')); // create pagination
+
+        parse_str($_SERVER['QUERY_STRING'],$url_array);
+        $paginate->appends($url_array);
+
+        $posts = $posts->splice(($perPage * $page) - $perPage, $perPage);
+
+        $inputs = array(
+            'compiler' => $request->input('compiler'),
+            'language' => $request->input('lan'),
+            'mcu' => $request->input('mcu'),
+            'category' => $request->input('category'),
+        );
+
+
+        return view('filter')
+            ->withInputs($inputs)
+            ->withPosts($posts)
+            ->withPagination($paginate)
+            //->withVendor($vendor)
+
+            ->withCategories($categoriesVals)
+            ->withMcus($mcusVals)
+            ->withCompilers($vals)
+            ->withLanguages($languageVals)
+
+//            ->withLanguages($languages)
+            ->withTags($tagsVals)
+            ;
+
+        print_r($posts); die;
+
+
 
     }
 
@@ -156,21 +292,6 @@ class FilterController extends Controller
 
 
 
-//        $categories = Categories::all();
-//        $mcus = Mcus::orderBy('vendor_id')->where('vendor_id',1)->get();
-//        $compilers = McuCompilers::orderBy('vendor_id')->where('vendor_id', 1)->get();
-//        $languages = McuLanguages::orderBy('id')->get();
-//        $tags = Posts::with('tagged')->first();
-
-        //Can use either get() or paginate() NOT BOTH
-
-        // ->where('compiler.id', 3)
-        // ->where('mcu.vendor_id', 2);
-
-        // $posts = Posts::with('categories')->get()->where('categories.slug', 'audio');
-
-        //->orderBy('created_at', 'desc')->paginate(5)->get()
-        // print_r($mcus); die;
         $page = $request->input('page');
         if($page == '') $page = 1;
         $perPage = 3;
