@@ -400,9 +400,9 @@
         });
 
         @if(old('body'))
-        $('#editor').markdownEditor('setContent','{{ old('body') }}') // NEED THIS to repopluate form if errors!
+        $('#editor').markdownEditor('setContent',$('#editor').markdownEditor('content')) // NEED THIS to repopluate form if errors!
         @else
-        $('#editor').markdownEditor('setContent','{{ $post->body }}') // NEED THIS to repopluate form if errors!
+        $('#editor').markdownEditor('setContent',$('#editor').markdownEditor('content')) // NEED THIS to repopluate form if errors!
         @endif
         // Can't repopluate!
         //$("#upload-file-info").html('{{old('file_source')}}')
