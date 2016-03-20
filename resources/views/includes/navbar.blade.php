@@ -16,9 +16,22 @@
     <!--        </div>-->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/">Home</a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="/">Home</a>--}}
+            {{--</li>--}}
+            <li class="dropdown search">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></a>
+                <div class="dropdown-menu  dropdown-search-box animated fadeInDown">
+                    <form role="form" method="get" action='{{ url("/search") }}'>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="q" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-ar btn-primary" type="submit">Go!</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+                </div>
+            </li> <!-- dropdown -->
             <li class="dropdown yamm-fw">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
                    data-hover="dropdown">Topics and Tags</a>
@@ -31,23 +44,23 @@
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Topics</h4>
                                         <ul>
                                             <li><a href="css_typography.html">
-                                                    Audio <span class="badge">22</span></a></li>
+                                                    Audio <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">22</span></a></li>
+                                                    RTOS <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Power Supplies <span class="badge">22</span></a></li>
+                                                    Power Supplies <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Speech <span class="badge">22</span></a></li>
+                                                    Speech <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Communication <span class="badge">22</span></a></li>
+                                                    Communication <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Low Energy <span class="badge">22</span></a></li>
+                                                    Low Energy <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Internet of Things <span class="badge">22</span></a></li>
+                                                    Internet of Things <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">22</span></a></li>
+                                                    RTOS <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">22</span></a></li>
+                                                    RTOS <span class="badge">0</span></a></li>
 
 
                                         </ul>
@@ -57,27 +70,27 @@
                                     <div class="megamenu-block">
                                         <ul>
                                             <li><a href="css_headers.html">
-                                                    Power Supplies <span class="badge">22</span></a></li>
+                                                    Power Supplies <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    I/O <span class="badge">22</span></a></li>
+                                                    I/O <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Sensors <span class="badge">22</span></a></li>
+                                                    Sensors <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Wireless <span class="badge">22</span></a></li>
+                                                    Wireless <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Display <span class="badge">22</span></a></li>
+                                                    Display <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Analog <span class="badge">22</span></a></li>
+                                                    Analog <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Internet of Things <span class="badge">22</span></a></li>
+                                                    Internet of Things <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">22</span></a></li>
+                                                    RTOS <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">22</span></a></li>
+                                                    RTOS <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    Power Supplies <span class="badge">22</span></a></li>
+                                                    Power Supplies <span class="badge">0</span></a></li>
                                             <li><a href="css_headers.html">
-                                                    I/O <span class="badge">22</span></a></li>
+                                                    I/O <span class="badge">0</span></a></li>
 
                                         </ul>
                                     </div>

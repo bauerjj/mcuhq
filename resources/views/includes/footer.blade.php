@@ -61,12 +61,11 @@
 
             <!-- Useful Links -->
             <div class="col-md-3 col-sm-6 sm-margin-bottom-40">
-                <div class="heading-footer"><h2 class="first-letter">Static Links</h2></div>
+                <div class="heading-footer"><h2 class="first-letter">Static</h2></div>
                 <ul class="list-unstyled footer-link-list">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy and Policy</a></li>
-                    <li><a href="#">Support</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="mailto:contact@mcuhq.com?Subject=Web%20Contact" target="_top">contact@mcuhq.com</a></li>
+                    <li><a href="https://github.com/mcuhq/mcuhq/issues">Report a site issue</a></li>
                 </ul>
             </div>
             <!-- End Useful Links -->
@@ -75,7 +74,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="heading-footer"><h2 class="first-letter">Obligatory Social</h2></div>
                 <ul class="list-unstyled contacts">
-                    <li><a href="#"><i class="fa fa-github"> github</i></a></li>
+                    <li><a href="https://github.com/mcuhq"><i class="fa fa-github"> github</i></a></li>
                     <li><a href="#"><i class="fa my-fa-twitter"> twitter</i></a></li>
                 </ul>
             </div>

@@ -70,22 +70,11 @@ class PostController extends Controller
             ->paginate(5);
 
 
-//        $posts = Posts::where('active', 1)
-//            ->with('categories')
-//            ->with('mcu')
-//            ->with('tagged')
-//            ->whereHas('mcu', function ($q) use ($vendorFilter) {
-//                $q->where($vendorFilter);
-//            })
-//            ->orderBy('created_at', 'desc')
-//            ->paginate(5);
-
         $inputs = array(
             'vendor' => $request->input('vendor'),
             'sort' => $request->input('sort'),
             'filter' => $request->input('filter'),
         );
-       // print_r($posts); die;
 
         return view('home')
             ->withPosts($posts)

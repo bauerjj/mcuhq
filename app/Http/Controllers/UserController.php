@@ -1,24 +1,39 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Posts;
 use Illuminate\Http\Request;
-class UserController extends Controller {
+
+class UserController extends Controller
+{
     /*
      * Display active posts of a particular user
      *
      * @param int $id
      * @return view
      */
+    private $inputs = array();
+
+    // So the home page doesn't break
+    public function __construct()
+    {
+        $this->inputs = array('vendor' => '',
+            'sort' => '',
+            'filter' => '',
+        );
+    }
+
     public function user_posts($id)
     {
         //
-        $posts = Posts::where('author_id',$id)->where('active',1)->orderBy('created_at','desc')->paginate(5);
+        $posts = Posts::where('author_id', $id)->where('active', 1)->orderBy('created_at', 'desc')->paginate(5);
         $title = User::find($id)->name;
-        return view('home')->withPosts($posts)->withTitle($title);
+        return view('home')->withPosts($posts)->withTitle($title)->withInputs($this->inputs);
     }
+
     /*
      * Display all of the posts of a particular user
      *
@@ -29,10 +44,11 @@ class UserController extends Controller {
     {
         //
         $user = $request->user();
-        $posts = Posts::where('author_id',$user->id)->orderBy('created_at','desc')->paginate(5);
+        $posts = Posts::where('author_id', $user->id)->orderBy('created_at', 'desc')->paginate(5);
         $title = $user->name;
-        return view('home')->withPosts($posts)->withTitle($title);
+        return view('home')->withPosts($posts)->withTitle($title)->withInputs($this->inputs);
     }
+
     /*
      * Display draft posts of a currently active user
      *
@@ -43,10 +59,11 @@ class UserController extends Controller {
     {
         //
         $user = $request->user();
-        $posts = Posts::where('author_id',$user->id)->where('active',0)->orderBy('created_at','desc')->paginate(5);
+        $posts = Posts::where('author_id', $user->id)->where('active', 0)->orderBy('created_at', 'desc')->paginate(5);
         $title = $user->name;
-        return view('home')->withPosts($posts)->withTitle($title);
+        return view('home')->withPosts($posts)->withTitle($title)->withInputs($this->inputs);
     }
+
     /**
      * profile for user
      */
@@ -55,7 +72,7 @@ class UserController extends Controller {
         $data['user'] = User::find($id);
         if (!$data['user'])
             return redirect('/');
-        if ($request -> user() && $data['user'] -> id == $request -> user() -> id) {
+        if ($request->user() && $data['user']->id == $request->user()->id) {
             $data['author'] = true;
         } else {
             $data['author'] = null;

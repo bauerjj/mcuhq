@@ -83,7 +83,7 @@
                     <div class="list-group-item">
                         <p>{{ $latest_comment->body }}</p>
                         <p>On {{ $latest_comment->created_at->format('M d,Y \a\t h:i a') }}</p>
-                        <p>On post <a href="{{ url('/'.$latest_comment->post->slug) }}">{{ $latest_comment->post->title }}</a></p>
+                        <p>On post <a href="{{ url('/'.$latest_comment->post->id.'/'.$latest_comment->post->slug) }}">{{ $latest_comment->post->title }}</a></p>
                     </div>
                 @endforeach
             @else
