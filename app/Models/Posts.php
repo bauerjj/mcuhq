@@ -23,7 +23,7 @@ class Posts extends Model
     {
         //https://laracasts.com/discuss/channels/general-discussion/laravel-5-problems-with-relations-pivot
         //http://stackoverflow.com/questions/24547376/insert-data-to-a-pivot-table-in-laravel
-        return $this->belongsToMany('App\Models\Categories', 'Categories_Posts','post_id','category_id');
+        return $this->belongsToMany('App\Models\Categories', 'categories_posts','post_id','category_id');
     }
 
     public function mcu()
