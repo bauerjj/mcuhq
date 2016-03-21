@@ -206,6 +206,12 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js"></script>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+    {!! Minify::javascript("/bower_components/bootstrap-markdown-editor/dist/js/bootstrap-markdown-editor.js") !!}
+
+
+
     <script>
         var i;
         //        var tags = [
@@ -424,14 +430,11 @@
 
     </script>
 
-
-@endsection
-
-@section('script')
     <script>
         // So to make any large images fit inside viewing area
         $( ".main-content img" ).addClass( "img-responsive" );
 
     </script>
+
 
 @endsection

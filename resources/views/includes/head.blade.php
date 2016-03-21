@@ -13,11 +13,8 @@
 <meta name="_token" content="{{ csrf_token() }}"/>
 
 <link href="/assets/css/vendors.css" rel="stylesheet">
-<!--    <link href="assets/css/syntaxhighlighter/shCore.css" rel="stylesheet" >-->
-
-
-<link href="/assets/css/style-blue.css" rel="stylesheet" title="default">
-<link href="/assets/css/width-full.css" rel="stylesheet" title="default">
+{!! Minify::stylesheet("/assets/css/style-blue.css") !!}
+{!! Minify::stylesheet("/assets/css/width-full.css") !!}
 
 <link href="/css/custom.css" rel="stylesheet" title="default">
 
@@ -28,6 +25,6 @@
 <![endif]-->
 
 
-<link href="/bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css" rel="stylesheet">
+{!! Minify::stylesheet("/bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css") !!}
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/solarized-dark.min.css">

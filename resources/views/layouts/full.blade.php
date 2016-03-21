@@ -65,14 +65,15 @@
 
 
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-<script src="/assets/js/vendors.js"></script>
-<script src="/assets/js/DropdownHover.js"></script>
-<script src="/assets/js/app.js"></script>
-<script src="/assets/js/holder.js"></script>
-<script src="/bower_components/bootstrap-markdown-editor/dist/js/bootstrap-markdown-editor.js"></script>
+
+{!! Minify::javascript("/assets/js/vendors.js") !!}
+{!! Minify::javascript("/assets/js/DropdownHover.js") !!}
+{!! Minify::javascript("/assets/js/app.js") !!}
+{!! Minify::javascript("/assets/js/holder.js") !!}
+
 
 
 @yield('script')

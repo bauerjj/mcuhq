@@ -150,6 +150,7 @@ return [
 
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Devfactory\Minify\MinifyServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,6 +209,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'Minify'   => Devfactory\Minify\Facades\MinifyFacade::class
 
     ],
 
