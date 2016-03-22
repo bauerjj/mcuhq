@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css"
           type="text/css"/>
 
+    {!! Minify::stylesheet("/bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css") !!}
+
+
 @endsection
 
 @section('header')

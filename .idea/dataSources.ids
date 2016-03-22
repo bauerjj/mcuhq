@@ -14,6 +14,7 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="slug" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="categories_posts_category_id_foreign" table="categories_posts" schema="" catalog="mcuhq" columns="category_id"/>
     </table>
@@ -101,6 +102,7 @@
       <column name="count" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="mcu_compilers_vendors_vendor_id_foreign" table="mcu_compilers_vendors" schema="" catalog="mcuhq" columns="vendor_id"/>
       <exported-key name="mcus_vendor_id_foreign" table="mcus" schema="" catalog="mcuhq" columns="vendor_id"/>
@@ -147,6 +149,9 @@
       <column name="source_link" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="mcu_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="compiler_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="main_image" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="source_file" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="view_counter" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="posts_author_id_foreign" columns="author_id" ref-table="users" ref-schema="" ref-catalog="mcuhq" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <exported-key name="categories_posts_post_id_foreign" table="categories_posts" schema="" catalog="mcuhq" columns="post_id"/>

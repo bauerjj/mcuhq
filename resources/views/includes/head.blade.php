@@ -12,19 +12,25 @@
 
 <meta name="_token" content="{{ csrf_token() }}"/>
 
-<link href="/assets/css/vendors.css" rel="stylesheet">
-{!! Minify::stylesheet("/assets/css/style-blue.css") !!}
-{!! Minify::stylesheet("/assets/css/width-full.css") !!}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<link href="/css/custom.css" rel="stylesheet" title="default">
+<!-- <link href="/assets/css/vendors.css" rel="stylesheet"> -->
+
+{!! Minify::stylesheet(array("/assets/css/style-blue.css","/assets/css/width-full.css",
+ "/assets/css/animate.min.css","/assets/css/jquery.bxslider.min.css", "/css/custom.css")) !!}
+
+
+
+
+
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-<script src="/assets/js/html5shiv.min.js"></script>
-<script src="/assets/js/respond.min.js"></script>
+{!! Minify::javascript("/assets/js/html5shiv.min.js") !!}
+{!! Minify::javascript("/assets/js/respond.min.js") !!}
 <![endif]-->
 
 
-{!! Minify::stylesheet("/bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css") !!}
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/solarized-dark.min.css">

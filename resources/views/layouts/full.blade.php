@@ -66,13 +66,13 @@
 
 
 
+<!-- Minify::javascript("/assets/js/vendors.js") -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-
-{!! Minify::javascript("/assets/js/vendors.js") !!}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 {!! Minify::javascript("/assets/js/DropdownHover.js") !!}
-{!! Minify::javascript("/assets/js/app.js") !!}
-{!! Minify::javascript("/assets/js/holder.js") !!}
+
 
 
 

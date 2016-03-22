@@ -61,14 +61,11 @@
     <a href="#header"><i class="fa fa-chevron-up"></i></a>
 </div>
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-<script src="/assets/js/vendors.js"></script>
-<script src="/assets/js/DropdownHover.js"></script>
-<script src="/assets/js/app.js"></script>
-<script src="/assets/js/holder.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{!! Minify::javascript("/assets/js/DropdownHover.js") !!}
+
 
 @yield('script')
 <script>
