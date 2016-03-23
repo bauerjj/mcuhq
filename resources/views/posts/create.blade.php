@@ -138,7 +138,7 @@
 
             <div class="form-group">
                 <label for="compiler-assembler" class="control-label required">Compiler Assembler</label>
-                <input type="hidden" name="compiler-assembler required" id="compiler-assembler-input">
+                <input type="hidden" name="compiler-assembler" id="compiler-assembler-input">
 
                     <select id="compiler-assembler"  class="form-control">
                         {{ $lastId = -1 }}

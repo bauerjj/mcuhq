@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "graham-campbell/markdown": "^6.0",
         "rtconner/laravel-tagging": "~2.0",
-        "devfactory/minify": "1.0.*"
+        "devfactory/minify": "1.0.*",
+        "mews/purifier": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

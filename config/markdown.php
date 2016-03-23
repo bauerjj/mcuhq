@@ -126,6 +126,6 @@ return [
     |
     */
 
-    'safe' => false,
+    'safe' => true,
 
 ];

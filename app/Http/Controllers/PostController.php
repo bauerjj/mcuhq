@@ -12,6 +12,7 @@ use Validator;
 use Session;
 use App\Models\Posts;
 use DB;
+use Mews\Purifier\Facades\Purifier;
 use App\Events\ViewPostHandler;
 use Event;
 use App\Models\User;
@@ -205,37 +206,44 @@ class PostController extends Controller
 
         $this->validate($request, [
             'title' => 'required|unique:posts|max:255',
-            'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
+            'title' => array('Regex:/^[A-Za-z0-9 .\- ]+$/'),
             'body' => 'required',
-            'tags' => 'required|arrayCountMax:2|arrayCountMin:1',
+            'tags' => 'required|arrayCountMax:6|arrayCountMin:1',
             'topics' => 'required|arrayCountMax:4|arrayCountMin:1',
             'micro' => 'required',
             'languages' => 'arrayCountMax:3',
-            'compiler-assembler' => 'required|arrayCountMax:3',
+            'compiler-assembler' => 'required|arrayCountMax:3|arrayCountMin:1',
             'file_source'=> 'max:10000|mimes:zip', // don't require this
             'file_image'=> 'max:10000|image', // don't require this
         ]);
 
+
         $file = $request->file('file_source');
         $main_image = $request->file('file_image');
         $time = substr(str_shuffle(MD5(microtime())), 0, 15);
-        $file_source_dest = $time . '.'.$file->getClientOriginalExtension();
-        $main_image_dest =  $time . '.'.$main_image->getClientOriginalExtension();
-        $request->file('file_source')->move('uploads', $file_source_dest);
-        $request->file('file_image')->move('uploads', $main_image_dest);
+        $file_source_dest = $main_image_dest = '';
+        if($file){
+            $file_source_dest = $time . '.'.$file->getClientOriginalExtension();
+            $request->file('file_source')->move('uploads', $file_source_dest);
+        }
+        if($main_image){
+            $main_image_dest =  $time . '.'.$main_image->getClientOriginalExtension();
+            $request->file('file_image')->move('uploads', $main_image_dest);
+        }
+
 
 
         $post = new Posts();
         $post->title = $request->get('title');
         $post->body = $request->get('body');
-        $post->body_html = Markdown::convertToHtml($request->get('body')); // convert ONCE here
+        $post->body_html = Purifier::clean(Markdown::convertToHtml($request->get('body'))); // convert ONCE here
         $post->slug = str_slug($post->title);
         $post->author_id = $request->user()->id;
         $post->more_info_link = $request->get('more_info_link');
         $post->mcu_id = $request->get('micro');
         $post->compiler_id = $request->get('compiler-assembler');
         $post->source_file = $file_source_dest;
-        $post->main_image_dest = $main_image_dest;
+        $post->main_image = $main_image_dest;
 
         if ($request->has('save')) {
             $post->active = 0;
@@ -265,7 +273,7 @@ class PostController extends Controller
 
 
 
-        return redirect('edit/' . $post->slug)->withMessage($message);
+        return redirect('/'.$post->id.'/' . $post->slug)->withMessage($message);
     }
 
     public function show(Request $request, $id, $slug)
@@ -381,9 +389,9 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|unique:posts|max:255',
-            'title' => array('Regex:/^[A-Za-z0-9 ]+$/'),
+            'title' => array('Regex:/^[A-Za-z0-9 .\- ]+$/'),
             'body' => 'required',
-            'tags' => 'required|arrayCountMax:2|arrayCountMin:1',
+            'tags' => 'required|arrayCountMax:6|arrayCountMin:1',
             'topics' => 'required|arrayCountMax:4|arrayCountMin:1',
             'micro' => 'required',
             'languages' => 'arrayCountMax:3',
@@ -419,7 +427,7 @@ class PostController extends Controller
             $post->slug = str_slug($title); // Don't check for duplicates anymore since postId is part of the title URL
             $post->title = $title;
             $post->body = $request->input('body');
-            $post->body_html = Markdown::convertToHtml($request->input('body'));
+            $post->body_html = Purifier::clean(Markdown::convertToHtml($request->input('body')));
             $post->more_info_link = $request->get('more_info_link');
             $post->mcu_id = $request->get('micro');
             $post->compiler_id = $request->get('compiler-assembler');
