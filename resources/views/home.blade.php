@@ -10,8 +10,8 @@
 
     <div class="container">
         <div class="portfolio-topbar hidden-sm hidden-xs">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row filter-row">
+                <div class="col-md-6 vendors">
                     <h4 class="first-letter">Vendors</h4>
                     <ul class="portfolio-topbar-cats">
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'all'))}}"><span class="filter @if($inputs['vendor'] == 'all' || $inputs['vendor'] == '') active @else '' @endif" data-filter="all">All</span></a></li>
@@ -23,12 +23,12 @@
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'stmicro'))}}"><span class="filter @if($inputs['vendor'] == 'stmicro') active @else '' @endif" data-filter=".category-6">STMicro</span></a></li>
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'infineon'))}}"><span class="filter @if($inputs['vendor'] == 'infineon') active @else '' @endif" data-filter=".category-6">Infineon</span></a></li>
                         <li><a href="{{Helper::modify_url(array('vendor'=> 'nxp'))}}"><span class="filter @if($inputs['vendor'] == 'nxp') active @else '' @endif" data-filter=".category-6">NXP</span></a></li>
-                        <li><a href="{{Helper::modify_url(array('vendor'=> 'fujitsu'))}}"><span class="filter @if($inputs['vendor'] == 'fujitsu') active @else '' @endif" data-filter=".category-6">Fujitsu</span></a></li>
+                        {{--<li><a href="{{Helper::modify_url(array('vendor'=> 'fujitsu'))}}"><span class="filter @if($inputs['vendor'] == 'fujitsu') active @else '' @endif" data-filter=".category-6">Fujitsu</span></a></li>--}}
 
                     </ul>
                     <span class="topbar-border">&nbsp;</span>
                 </div>
-                <div class="col-md-2 port-fix">
+                <div class="col-md-2 port-fix sort">
                     <h4 class="first-letter">Sort</h4>
                     <ul class="portfolio-topbar-cats">
                         <li><a href="{{Helper::modify_url(array('sort'=> 'new'))}}"><span class="filter  @if($inputs['sort'] == '' || $inputs['sort'] == 'new') active @else '' @endif" data-filter=".category-1">New</span></a></li>
@@ -39,17 +39,18 @@
 
                 </div>
 
-                <div class="col-md-4 port-fix">
+                <div class="col-md-4 search ">
+                    {{--<h4 class="first-letter">Sort</h4>--}}
 
-                    <form role="form">
+                    <form role="form" method="get" action='{{ url("/search") }}'>
                         <div class="input-group search-main">
-                            <input type="text" class="form-control " placeholder="Search...">
+                            <input type="text" name="q" class="form-control " placeholder="Search...">
                             <span class="input-group-btn">
                                 <button class="btn btn-ar btn-primary" type="button">Go!</button>
                             </span>
                         </div><!-- /input-group -->
                     </form>
-
+                    <span class="topbar-border">&nbsp;</span>
 
                 </div>
 

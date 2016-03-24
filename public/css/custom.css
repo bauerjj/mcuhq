@@ -92,6 +92,30 @@ body{
 /**********  Main Page **************/
 .search-main{
     margin-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.topbar-border{
+    padding: 5px 5px; /* need this to avoid overhang when page is smaller */
+}
+.portfolio-topbar .vendors
+{
+    padding-right: 0;
+}
+.portfolio-topbar .search
+{
+    padding-left: 0;
+    padding-right: 0px;
+}
+
+
+.portfolio-topbar .search span{
+    margin-top: -23px; /* must move the invisible bottom border to match others next to it */
+}
+
+.portfolio-topbar .sort {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .portfolio-topbar-cats li span{
@@ -259,7 +283,7 @@ body{
 
 body,
 .post-content {
-    font-size: 12px;
+    /*font-size: 12px;*/
 }
 
 

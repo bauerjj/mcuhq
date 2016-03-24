@@ -356,7 +356,7 @@
         $('#editor').markdownEditor({
             preview: true,
             imageUpload: true, // Activate the option
-            uploadPath: '/upload-image' + '?_token=H0jOJqUa9voBwA5VDDpfzcj0GXfqafwCwpmnvC5T', // Path of the server side script that receive the files
+            uploadPath: '/upload-image', // Path of the server side script that receive the files
 
             onPreview: function (content, callback) {
                 callback(marked(content));

@@ -16,7 +16,7 @@
 @section('center')
     <form role="form" method="get" action='{{ url("/search") }}'>
         <div class="input-group">
-            <input type="text" class="form-control" name="q" placeholder="Search...">
+            <input type="text" class="form-control" name="q" value='{{$search}}' placeholder="Search...">
                             <span class="input-group-btn">
                                 <button class="btn btn-ar btn-primary" type="submit">Go!</button>
                             </span>

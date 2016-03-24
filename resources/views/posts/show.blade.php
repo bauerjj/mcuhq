@@ -214,7 +214,7 @@
 @section('script')
     <script>
         // So to make any large images fit inside viewing area
-        $( ".main-content img" ).addClass( "img-responsive" );
+        $( ".main-content img" ).addClass( "img-responsive img-thumbnail center-block" );
 
     </script>
 

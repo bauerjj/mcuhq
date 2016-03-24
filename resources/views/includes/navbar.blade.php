@@ -43,55 +43,35 @@
                                     <div class="megamenu-block">
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Topics</h4>
                                         <ul>
-                                            <li><a href="css_typography.html">
+                                            <li><a href="/categories/general-purpose">
+                                                    General Purpose <span class="badge">1</span></a></li>
+                                            <li><a href="/categories/audio">
                                                     Audio <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/rtos">
                                                     RTOS <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/power-supplies">
                                                     Power Supplies <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    Speech <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/communication">
                                                     Communication <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/low-energy">
                                                     Low Energy <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/iot">
                                                     Internet of Things <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">0</span></a></li>
-
-
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
+                                        <h4>&nbsp;</h4>
                                         <ul>
-                                            <li><a href="css_headers.html">
-                                                    Power Supplies <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    I/O <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    Sensors <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/wireless">
                                                     Wireless <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    Display <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
+                                            <li><a href="/categories/display">
+                                                    Display <span class="badge">1</span></a></li>
+                                            <li><a href="/categories/analog">
                                                     Analog <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    Internet of Things <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    RTOS <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    Power Supplies <span class="badge">0</span></a></li>
-                                            <li><a href="css_headers.html">
-                                                    I/O <span class="badge">0</span></a></li>
-
+                                            <li><a href="/categories/i-o">
+                                                    I/O <span class="badge">1</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -104,23 +84,9 @@
                                         <h4 class="megamenu-block-title"><i class="fa fa-tag"></i>
                                             Top Tags</h4>
                                         <div class="tags-cloud">
-                                            <a href="#" class="tag">Web</a>
-                                            <a href="#" class="tag">Artificial Intelligence</a>
-                                            <a href="#" class="tag">Programing</a>
-                                            <a href="#" class="tag">Design</a>
-                                            <a href="#" class="tag">3D</a>
-                                            <a href="#" class="tag">Games</a>
-                                            <a href="#" class="tag">Resources</a>
-                                            <a href="#" class="tag">2D</a>
-                                            <a href="#" class="tag">C++</a>
-                                            <a href="#" class="tag">Jquery</a>
-                                            <a href="#" class="tag">Programing</a>
-                                            <a href="#" class="tag">Design</a>
-                                            <a href="#" class="tag">3D</a>
-                                            <a href="#" class="tag">Games</a>
-                                            <a href="#" class="tag">Programing</a>
-                                            <a href="#" class="tag">Design</a>
-                                            <a href="#" class="tag">Games</a>
+                                            <a href="/tags/led" class="tag">led</a>
+                                            <a href="/tags/io" class="tag">io</a>
+                                            <a href="/tags/launchpad" class="tag">launchpad</a>
                                         </div>
                                     </div>
                                 </div>
@@ -128,23 +94,6 @@
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
                                         <div class="tags-cloud">
-                                            <a href="#" class="tag">Web</a>
-                                            <a href="#" class="tag">Artificial Intelligence</a>
-                                            <a href="#" class="tag">Programing</a>
-                                            <a href="#" class="tag">Design</a>
-                                            <a href="#" class="tag">3D</a>
-                                            <a href="#" class="tag">Games</a>
-                                            <a href="#" class="tag">Resources</a>
-                                            <a href="#" class="tag">2D</a>
-                                            <a href="#" class="tag">C++</a>
-                                            <a href="#" class="tag">Jquery</a>
-                                            <a href="#" class="tag">Programing</a>
-                                            <a href="#" class="tag">Design</a>
-                                            <a href="#" class="tag">3D</a>
-                                            <a href="#" class="tag">Games</a>
-                                            <a href="#" class="tag">Programing</a>
-                                            <a href="#" class="tag">Design</a>
-                                            <a href="#" class="tag">Games</a>
                                         </div>
                                     </div>
                                 </div>

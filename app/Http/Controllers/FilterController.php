@@ -59,6 +59,7 @@ class FilterController extends Controller
         return view('search')
             ->withPosts($posts)
             ->withInputs($inputs)
+            ->withSearch($search)
             ;
 
     }
