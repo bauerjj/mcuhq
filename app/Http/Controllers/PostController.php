@@ -92,37 +92,24 @@ class PostController extends Controller
     public function image_upload(Request $request)
     {
         $uploadedFiles = array();
-        //$allFiles = Input::file();
-//        if(Input::hasFile('files')){
-//            echo 'hi';
-//        }
-//        $files = $request->allFiles();
-//        $name = Input::file('file')->getFilename();
-//        echo json_encode($name); die;
-//        Request::file('photo')->move('uploads');
-
-
         if (!empty($_FILES)) {
             foreach ($_FILES as $file) {
-//                $file = array('image' => Input::file('image'));
-//                $rules = array('image' => 'required',); //mimes:jpeg,bmp,png and for max size max:10000
-//                $validator = Validator::make($file, $rules);
-//                $destinationPath = 'uploads'; // upload path
-//                $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-//                $fileName = rand(11111,99999).'.'.$extension; // renameing image
-//                Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-//                Session::flash('success', 'Upload successfully');
-
                 // source: http://www.w3schools.com/php/php_file_upload.asp
                 $target_dir = "/uploads/";
+
                 $dest_file_name = substr(str_shuffle(MD5(microtime())), 0, 15);
                 $target_file = $target_dir . $dest_file_name . '.' .pathinfo($file['name'], PATHINFO_EXTENSION);
                 $uploadOk = 1;
 
-                $imageFileType = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+                $imageFileType = pathinfo($file['name']);// DO NOT pass in 'PATHINFO_EXTENSION' as second param...
+                                                            // it doesn't seem to work with media temple php server
+                $imageFileType = $imageFileType['extension'];
                 // Check if image file is a actual image or fake image
                 if (1) {
                     $check = getimagesize($file["tmp_name"]);
+                    //echo json_encode($imageFileType); die;
+
                     if ($check !== false) {
                        // echo "File is an image - " . $check["mime"] . ".";
                         $uploadOk = 1;
@@ -141,6 +128,8 @@ class PostController extends Controller
                     //echo "Sorry, your file is too large.";
                     $uploadOk = 0;
                 }
+                //echo json_encode("neato"); die;
+
                 // Allow certain file formats
                 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                     && $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != 'PNG'
@@ -148,6 +137,7 @@ class PostController extends Controller
                     //echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                     $uploadOk = 0;
                 }
+
                 // Check if $uploadOk is set to 0 by an error
                 if ($uploadOk == 0) {
                     //echo "Sorry, your file was not uploaded.";
@@ -156,19 +146,24 @@ class PostController extends Controller
                 } else {
                     $uploadedFiles[] = $target_file;
 
-                    if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$target_file)) {
+                    // For some reason, the media temple configuration has a hard time
+                    // moving files. I had to manually set the upload path in php.ini
+                    // in: cd ~/../../etc after logging into SSH
+                    // more info: https://mediatemple.net/community/products/grid/204403894/how-can-i-edit-the-php.ini-file
+                    if(strpos($_SERVER['DOCUMENT_ROOT'], 'c04/h05'))
+                        $rootPath = '/nfs/c04/h05/mnt/67560/domains/mcuhq.com/html/public/'.$target_file;
+                    else
+                        $rootPath = $_SERVER['DOCUMENT_ROOT'].$target_file;
+
+
+                    if (move_uploaded_file($file["tmp_name"],$rootPath )) {
                         //echo "The file " . basename($file["name"]) . " has been uploaded.";
                        // $uploadedFiles[] = $target_file;
-
                     } else {
+                        echo json_encode($_FILES['file']['error']); die;
                         //echo "Sorry, there was an error uploading your file.";
                     }
                 }
-
-
-//                if (move_uploaded_file($file['tmp_name'], 'uploads/' . urlencode($file['name']))) {
-//                    $uploadedFiles[] = 'uploads/' . urlencode($file['name']);
-//                }
             }
         }
 
