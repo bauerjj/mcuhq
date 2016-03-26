@@ -15,6 +15,7 @@
     return view('welcome');
 });*/
 
+use App\Models\Posts;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,4 +77,46 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
     Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+');
     // display list of posts
     Route::get('user/{id}/posts','UserController@user_posts')->where('id', '[0-9]+');
+
+    Route::get('sitemap', function(){
+
+        // create new sitemap object
+        $sitemap = App::make("sitemap");
+
+        // add items to the sitemap (url, date, priority, freq)
+        $sitemap->add(URL::to('about'), '2016-03-26T12:30:00+02:00', '0.1', 'yearly');
+
+        // get all posts from db
+        $posts = DB::table('posts')->orderBy('created_at', 'desc')->get();
+        $categories = DB::table('categories')->get();
+        $tags = Posts::existingTags();
+        $vendors = DB::table('mcu_vendors')->get();
+
+        // add every post to the sitemap
+        foreach ($posts as $post)
+        {
+            $sitemap->add(url($post->id .'/'.$post->slug), $post->updated_at, 0.9, 'daily');
+        }
+
+
+        foreach ($tags as $tag)
+        {
+            $sitemap->add(url('tags/'.$tag->slug), '2016-03-26T12:30:00+02:00', 0.4, 'weekly');
+        }
+
+        foreach ($categories as $category)
+        {
+            $sitemap->add(url('categories/'.$category->slug), $category->updated_at, 0.4, 'weekly');
+        }
+
+        foreach ($vendors as $vendor)
+        {
+            $sitemap->add(url('vendors/'.$vendor->slug), $vendor->updated_at, 0.4, 'weekly');
+        }
+
+        // generate your sitemap (format, filename)
+        $sitemap->store('xml', 'sitemap');
+        // this will generate file sitemap.xml to your public folder
+
+    });
 });

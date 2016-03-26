@@ -152,6 +152,7 @@ return [
         Conner\Tagging\Providers\TaggingServiceProvider::class,
         Devfactory\Minify\MinifyServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
+        Roumen\Sitemap\SitemapServiceProvider::class,
 
         /*
          * Application Service Providers...
