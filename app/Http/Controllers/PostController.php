@@ -124,7 +124,7 @@ class PostController extends Controller
                     $uploadOk = 0;
                 }
                 // Check file size
-                if ($file["size"] > 500000) {
+                if ($file["size"] > 5000000) { // cap at 5M
                     //echo "Sorry, your file is too large.";
                     $uploadOk = 0;
                 }
@@ -150,7 +150,7 @@ class PostController extends Controller
                     // moving files. I had to manually set the upload path in php.ini
                     // in: cd ~/../../etc after logging into SSH
                     // more info: https://mediatemple.net/community/products/grid/204403894/how-can-i-edit-the-php.ini-file
-                    if(strpos($_SERVER['DOCUMENT_ROOT'], 'c04/h05'))
+                    if(strpos($_SERVER['DOCUMENT_ROOT'], 'home'))
                         $rootPath = '/nfs/c04/h05/mnt/67560/domains/mcuhq.com/html/public/'.$target_file;
                     else
                         $rootPath = $_SERVER['DOCUMENT_ROOT'].$target_file;
