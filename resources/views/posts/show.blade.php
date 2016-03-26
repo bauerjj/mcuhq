@@ -12,6 +12,8 @@
         </div>
     </header>
 
+
+
 @endsection
 
 
@@ -143,79 +145,51 @@
 
         </div>
     </div>
-
-
-    {{--<div class="block">--}}
-        {{--<div class="tab-content ">--}}
-            {{--<div class="panel panel-primary categories ">--}}
-                {{--<h3 class="post-title no-margin-top"><i class="fa fa-folder-open"></i> Categories--}}
-                {{--</h3>--}}
-                {{--<ul class="simple">--}}
-                    {{--<li><a href="#">Microchip PIC</a></li>--}}
-                    {{--<li><a href="#">Atmel AVR</a></li>--}}
-                    {{--<li><a href="#">TI MSP430</a></li>--}}
-                    {{--<li><a href="#">Cypress PSoC</a></li>--}}
-                {{--</ul>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="tab-content ">--}}
-
-        {{--<div class="panel panel-primary categories ">--}}
-            {{--<h3 class="post-title no-margin-top"><i class="fa fa-tags"></i> Tags</h3>--}}
-
-            {{--<div class="tags-cloud">--}}
-                {{--<a href="#" class="tag">Web</a>--}}
-                {{--<a href="#" class="tag">Artificial Intelligence</a>--}}
-                {{--<a href="#" class="tag">Programing</a>--}}
-                {{--<a href="#" class="tag">Design</a>--}}
-                {{--<a href="#" class="tag">3D</a>--}}
-                {{--<a href="#" class="tag">Games</a>--}}
-                {{--<a href="#" class="tag">Resources</a>--}}
-                {{--<a href="#" class="tag">2D</a>--}}
-                {{--<a href="#" class="tag">C++</a>--}}
-                {{--<a href="#" class="tag">Jquery</a>--}}
-                {{--<a href="#" class="tag">Javascript</a>--}}
-                {{--<a href="#" class="tag">Library</a>--}}
-                {{--<a href="#" class="tag">Windows</a>--}}
-                {{--<a href="#" class="tag">Linux</a>--}}
-                {{--<a href="#" class="tag">Cloud</a>--}}
-                {{--<a href="#" class="tag">Game developer</a>--}}
-                {{--<a href="#" class="tag">Server</a>--}}
-                {{--<a href="#" class="tag">Google</a>--}}
-                {{--<a href="#" class="tag">Bootstrap</a>--}}
-                {{--<a href="#" class="tag">Less</a>--}}
-                {{--<a href="#" class="tag">Sass</a>--}}
-                {{--<a href="#" class="tag">Engine</a>--}}
-                {{--<a href="#" class="tag">Node.js</a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-
-    {{--<div class="panel panel-primary">--}}
-        {{--<div class="panel-heading"><i class="fa fa-comments"></i> Recent Comments</div>--}}
-        {{--<div class="panel-body">--}}
-            {{--<ul class="comments-sidebar">--}}
-
-            {{--</ul>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="panel panel-primary">--}}
-        {{--<div class="panel-heading"><i class="fa fa-align-left"></i> Widget Text</div>--}}
-        {{--<div class="panel-body">--}}
-            {{--<p></p>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 @endsection
 
 @section('script')
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.7.0/bootstrap-lightbox.min.js"></script>--}}
+
     <script>
         // So to make any large images fit inside viewing area
         $( ".main-content img" ).addClass( "img-responsive img-thumbnail center-block" );
+        //$( "img" ).wrap("<a href='" + $("img").closest("img").attr("src") + "'>");
+
+        $('.main-content').find('img').each(function() {
+            //for each img add the width plus a specific value, in this case 20
+            $( this ).wrap("<a href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'>");
+
+        });
+
 
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+
+    <script>
+
+        // delegate calls to data-toggle="lightbox"
+        $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+            event.preventDefault();
+            return $(this).ekkoLightbox({
+                onShown: function() {
+                    if (window.console) {
+                        return console.log('onShown event fired');
+                    }
+                },
+                onContentLoaded: function() {
+                    if (window.console) {
+                        return console.log('onContentLoaded event fired');
+                    }
+                },
+                onNavigate: function(direction, itemIndex) {
+                    if (window.console) {
+                        return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                    }
+                }
+            });
+        });
+    </script>
+
 
 @endsection

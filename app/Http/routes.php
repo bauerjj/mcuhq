@@ -118,5 +118,7 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
         $sitemap->store('xml', 'sitemap');
         // this will generate file sitemap.xml to your public folder
 
+        echo 'Created Sitemap Successfully!';
+
     });
 });
