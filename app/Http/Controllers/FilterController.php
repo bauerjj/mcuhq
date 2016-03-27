@@ -67,11 +67,8 @@ class FilterController extends Controller
     public function tag(Request $request, $tagInput){
         $query = Posts::query();
 
-
-        $tagRoot = Posts::withAnyTag($tagInput)->first(); // assume there is at least one article with existing tag
-
-        foreach($tagRoot->tagged as $tag)
-            $tagRoot = $tag;
+        // Get tag that matches filter
+        $tagRoot = DB::table('tagging_tags')->where('slug', $tagInput)->first();
 
         $filterCompiler = $request->input('compiler');
         if(($filterCompiler!='all' && isset($filterCompiler))) {
@@ -200,10 +197,10 @@ class FilterController extends Controller
             ->withPagination($paginate)
             //->withVendor($vendor)
 
-            ->withUrl(url('/tags/'.$tagRoot->tag_slug))
+            ->withUrl(url('/tags/'.$tagRoot->slug))
             ->withTopic('Tag')
-            ->withBreadcrumb('Tag - ' .$tagRoot->tag_name)
-            ->withTitle($tagRoot->tag_name)
+            ->withBreadcrumb('Tag - ' .$tagRoot->name)
+            ->withTitle($tagRoot->name)
             ->withDescription('')
 
             ->withCategories($categoriesVals)
