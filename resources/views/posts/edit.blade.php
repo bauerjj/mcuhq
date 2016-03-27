@@ -120,11 +120,15 @@
                             <a class='btn btn-primary' href='javascript:;'>
                                 Choose Zip File...
                                 <input type="file"
+                                       value="{{$post->source_file}}"
                                        style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
                                        name="file_source" class="form-control" size="40" onchange='$("#upload-file-info").html($(this).val());'>
                             </a>
                             &nbsp;
                             <span class='label label-info' id="upload-file-info"></span>
+                            @if($post->source_file)
+                                <span class="">"{{url('/uploads/'.$post->source_file)}}"</span>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@
                     <h3 class="post-title">
                         <a href="{{ url('/'.$post->id .'/'.$post->slug) }}">{{ $post->title }}</a>
                     </h3>
-                    {!! str_limit(strip_tags($post->body_html), $limit = 250, $end = '....... <a href='.url("/".$post->slug).'>Read More</a>') !!}
+                    {!! str_limit(strip_tags($post->body_html), $limit = 250, $end = '....... <a href='.url("/".$post->id.'/'.$post->slug).'>Read More</a>') !!}
 
                 </div>
             </div>

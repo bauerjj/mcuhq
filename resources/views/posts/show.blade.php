@@ -91,8 +91,12 @@
 
 @section('right_sidebar')
     <div class="">
-        <button type="button" class="btn btn-block btn-ar btn-primary">Download Source</button>
-        <div class="panel-item">
+        @if($post->source_file == '')
+            <a href="#" type="button" class="btn btn-block btn-ar btn-primary disabled">No Source Download</a>
+        @else
+            <a href="{{url('/uploads/'.$post->source_file)}}" type="button" class="btn btn-block btn-ar btn-primary">Download Source</a>
+        @endif
+            <div class="panel-item">
                 <ul class="list-unstyled">
                     <li><strong>Author:</strong> <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></li>
                     <li><strong>Created:</strong> {{ $post->created_at->format('M d,Y') }}</li>
