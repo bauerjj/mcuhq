@@ -65,7 +65,7 @@ body{
     }
 }
 
-
+/********** logo stuff **************/
 /* So that smaller screen sizes don't cut off the logo image */
 @media (max-width: 991px) and (min-width: 768px) {
     .navbar-default .navbar-brand {
@@ -85,6 +85,7 @@ body{
     }
 }
 .navbar-default .navbar-brand{  min-width: 150px;  } /* Enforce width for logo */
+.title-logo{background-image: none;} /* just allow text */
 
 /********************************/
 
