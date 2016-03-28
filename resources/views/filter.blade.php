@@ -1,5 +1,7 @@
 @extends('layouts.sidebar')
 
+@section('title'){{$topic .': '. $title}} @endsection
+
 @section('header')
     <header class="main-header">
         <div class="container">

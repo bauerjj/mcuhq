@@ -1,5 +1,7 @@
 @extends('layouts.full')
 
+@section('title')Search - {{$search}} @endsection
+
 @section('header')
     <header class="main-header">
         <div class="container">

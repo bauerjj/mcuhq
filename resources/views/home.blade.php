@@ -1,5 +1,7 @@
 @extends('layouts.full')
 
+@section('title')Microcontroller Headquarters - Ideas and Analysis @endsection
+
 @section('header')
     <header class="main-header animated fadeInDown animation-delay-1">
         <div class="container">

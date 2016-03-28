@@ -1,5 +1,7 @@
 @extends('layouts.sidebar')
 
+@section('title'){{$post->title}}@endsection
+
 @section('header')
     <header class="main-header">
         <div class="container">
@@ -11,9 +13,6 @@
             </ol>
         </div>
     </header>
-
-
-
 @endsection
 
 
@@ -156,12 +155,12 @@
 
     <script>
         // So to make any large images fit inside viewing area
-        $( ".main-content img" ).addClass( "img-responsive img-thumbnail center-block" );
+        $( ".main-content img" ).addClass( "img-responsive img-thumbnail" );
         //$( "img" ).wrap("<a href='" + $("img").closest("img").attr("src") + "'>");
 
         $('.main-content').find('img').each(function() {
             //for each img add the width plus a specific value, in this case 20
-            $( this ).wrap("<a href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'>");
+            $( this ).wrap("<div class='row'><div class='col-md-offset-4 col-sm-offset-4 col-md-5 col-sm-5 '>" +  " <a href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'></div></div<");
 
         });
 
