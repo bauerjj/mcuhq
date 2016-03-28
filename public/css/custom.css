@@ -65,8 +65,29 @@ body{
     }
 }
 
-.navbar-default .navbar-brand{
+
+/* So that smaller screen sizes don't cut off the logo image */
+@media (max-width: 991px) and (min-width: 768px) {
+    .navbar-default .navbar-brand {
+        font-size: 1.9em;
+        word-spacing: -5px;
+        -webkit-text-stroke: 0;
+        background-image: url("../assets/img/colors/blue/logo.png");
+        padding-left: 5px;
+    }
 }
+@media (max-width: 400px) {
+    .navbar-default .navbar-brand {
+        background-image: url("../assets/img/colors/blue/logo.png") !important;
+        padding-left: 0;
+        background-repeat: no-repeat;
+        background-position: left center;
+    }
+}
+.navbar-default .navbar-brand{  min-width: 150px;  } /* Enforce width for logo */
+
+/********************************/
+
 
 .dropdown.search > a:after{
     content: ""; /* get rid of dropdown indicator next to search */
