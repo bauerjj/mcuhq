@@ -65,6 +65,8 @@ body{
     }
 }
 
+.navbar-default .navbar-brand{
+}
 
 .dropdown.search > a:after{
     content: ""; /* get rid of dropdown indicator next to search */
