@@ -308,9 +308,9 @@ class PostController extends Controller
         $i = 0;
         foreach ($words as $word){ // Build this query so to get related posts on each word in title WITHOUT own post ID
             if($i == 0)
-                $queryString.= "title LIKE '%$word%' AND id != $post->id";
+                $queryString.= "title LIKE '%$word%' AND id != $post->id AND active = 1";
             else
-                $queryString.= " OR title LIKE '%$word%' AND id != $post->id";
+                $queryString.= " OR title LIKE '%$word%' AND id != $post->id AND active = 1";
             $i++;
         }
 
