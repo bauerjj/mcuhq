@@ -87,10 +87,11 @@ body{
 
 /********************************/
 
+.home-phrase{text-align: center;} /* so "A community-driven.." is left-aligned with logo
 
 .dropdown.search > a:after{
     content: ""; /* get rid of dropdown indicator next to search */
-}
+
 
 
 .categories{

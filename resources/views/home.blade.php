@@ -4,7 +4,7 @@
 
 @section('header')
     <header class="main-header animated fadeInDown animation-delay-1">
-        <div class="container">
+        <div class="container home-phrase">
             A community-driven knowledge base of microcontroller projects and ideas. <a href="/register">Signup</a> now to start
             contributing!
         </div>
