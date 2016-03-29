@@ -101,7 +101,11 @@
                     <li><strong>Created:</strong> {{ $post->created_at->format('M d,Y') }}</li>
                     <li><strong>Updated:</strong> {{ $post->updated_at->format('M d,Y') }}</li>
                     @if(($post->more_info_link) != "")
-                    <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">{{$post->more_info_link}}</a></li>
+                        @if(strpos($post->more_info_link, 'github'))
+                            <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">github</a></li>
+                        @else
+                            <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">source</a></li>
+                        @endif
                     @endif
                     <li><strong>Views:</strong> {{$post->view_counter}}</li>
                     <li><strong>Comments:</strong> <a href="#comments">{{$post->comments->count()}}</a></li>
