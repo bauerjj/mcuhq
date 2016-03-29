@@ -52,6 +52,9 @@ class PostController extends Controller
         else if($sort == 'views'){
             $query->orderBy('view_counter','desc');
         }
+        else{
+            $query->orderBy('created_at', 'desc'); // on default, show the new posts first
+        }
 
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
