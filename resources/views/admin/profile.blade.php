@@ -71,7 +71,13 @@
                         </div>
                 @endforeach
             @else
-                <p>You have not written any post till now.</p>
+                <div class="list-group-item">
+                    @if($author)
+                        <p>You have not written any posts</p>
+                    @else
+                        <p>No posts found</p>
+                    @endif
+                </div>
             @endif
         </div>
     </div>
@@ -88,7 +94,11 @@
                 @endforeach
             @else
                 <div class="list-group-item">
-                    <p>You have not commented till now. Your latest 5 comments will be displayed here</p>
+                    @if($author)
+                        <p>You have not commented yet. Your latest 5 comments will be displayed here</p>
+                    @else
+                        <p>No comments found</p>
+                    @endif
                 </div>
             @endif
         </div>
