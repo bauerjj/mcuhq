@@ -44,12 +44,13 @@ class ViewThrottleFilter
         return $this->session->get('viewed_posts', null);
     }
 
+    // src: http://blog.stidges.com/post/implementing-a-page-view-counter-in-laravel
     private function cleanExpiredViews($posts)
     {
         $time = time();
 
-        // Let the views expire after one hour.
-        $throttleTime = 3600;
+        // Let the views expire after 1 day
+        $throttleTime = 3600 * 24 * 1;
 
         // Filter through the post array. The argument passed to the
         // function will be the value from the array, which is the
