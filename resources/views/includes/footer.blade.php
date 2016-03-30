@@ -66,7 +66,7 @@
                 <div class="heading-footer"><h2 class="first-letter">Obligatory Social</h2></div>
                 <ul class="list-unstyled contacts">
                     <li><a href="https://github.com/mcuhq"><i class="fa fa-github"> github</i></a></li>
-                    <li><a href="#"><i class="fa my-fa-twitter"> twitter</i></a></li>
+                    <li><a href="https://twitter.com/mcuhq"><i class="fa my-fa-twitter"> twitter</i></a></li>
                 </ul>
             </div>
             <!-- End Contacts -->
