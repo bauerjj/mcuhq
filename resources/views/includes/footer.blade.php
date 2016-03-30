@@ -44,8 +44,15 @@
                 <div class="heading-footer"><h2 class="first-letter">Recent Posts</h2></div>
                 <ul class="list-unstyled link-news">
                     <li>
+                        <a href="http://mcuhq.com/11/msp430-launchpad-gui-composer-example">MSP430 Launchpad - GUI Composer Example</a>
+                    </li>
+                    <li>
+                        <a href="http://mcuhq.com/9/msp4340-launchpad-simple-uart-config-and-echo">MSP4340 LaunchPad - Simple UART Config and Echo</a>
+                    </li>
+                    <li>
                         <a href="http://mcuhq.com/8/msp430-launchpad-blinking-your-first-led">MSP430 Launchpad - Blinking your First LED</a>
                     </li>
+
                 </ul>
             </div>
             <!-- End Recent News -->

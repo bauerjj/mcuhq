@@ -52,11 +52,11 @@
                                             <li><a href="/categories/power-supplies">
                                                     Power Supplies <span class="badge">0</span></a></li>
                                             <li><a href="/categories/communication">
-                                                    Communication <span class="badge">0</span></a></li>
+                                                    Communication <span class="badge">1</span></a></li>
                                             <li><a href="/categories/low-energy">
                                                     Low Energy <span class="badge">0</span></a></li>
                                             <li><a href="/categories/iot">
-                                                    Internet of Things <span class="badge">0</span></a></li>
+                                                    Internet of Things <span class="badge">1</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -84,9 +84,12 @@
                                         <h4 class="megamenu-block-title"><i class="fa fa-tag"></i>
                                             Top Tags</h4>
                                         <div class="tags-cloud">
-                                            <a href="/tags/led" class="tag">led</a>
-                                            <a href="/tags/io" class="tag">io</a>
                                             <a href="/tags/launchpad" class="tag">launchpad</a>
+                                            <a href="/tags/led" class="tag">led</a>
+                                            <a href="/tags/led" class="tag">gui-composer</a>
+                                            <a href="/tags/led" class="tag">user-interface</a>
+                                            <a href="/tags/io" class="tag">io</a>
+                                            <a href="/tags/led" class="tag">debug</a>
                                         </div>
                                     </div>
                                 </div>
