@@ -1,6 +1,6 @@
 @extends('layouts.full')
 
-@section('title')Edit - {{$post->title}}@endsection
+@section('title') Edit - {{$post->title}} @endsection
 
 @section('head')
     <link rel="stylesheet"

@@ -1,6 +1,6 @@
 @extends('layouts.full')
 
-@section('title')Create New Post@endsection
+@section('title') Create New Post @endsection
 
 
 @section('head')

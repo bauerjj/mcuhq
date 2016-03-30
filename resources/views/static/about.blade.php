@@ -1,5 +1,8 @@
 @extends('layouts.full')
 
+@section('title') About mcuhq @endsection
+
+
 @section('header')
     <header class="main-header">
         <div class="container">
