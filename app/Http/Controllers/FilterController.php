@@ -87,7 +87,7 @@ class FilterController extends Controller
             $mcuFilter = array(); // THE MICRO is the only thing that should be filtering on vendor
 
 
-        $inLanguage = $request->input('lan');
+        $inLanguage = $request->input('language');
         if(($inLanguage!='all' && isset($inLanguage))) {
             $lanId = McuLanguages::where('slug', $inLanguage)->first();
             $lanFilter = array('id' => $lanId->id);
@@ -170,6 +170,33 @@ class FilterController extends Controller
         $categoriesVals = array_count_values($categories);
         $tagsVals = array_count_values($tags);
 
+        // Get the slug of each. This is EXTREMELY inefficient, but it works for now
+        $categoryZ = array(); $languageZ = array(); $mcuZ = array(); $compilersZ = array();
+        foreach($categoriesVals as $name=>$count){
+            $temp = Categories::get()->where('name', $name)->first();
+            $categoryZ[$name]['count'] = $count;
+            $categoryZ[$name]['name'] = $name;
+            $categoryZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($languageVals as $name=>$count){
+            $temp = McuLanguages::get()->where('name', $name)->first();
+            $languageZ[$name]['count'] = $count;
+            $languageZ[$name]['name'] = $name;
+            $languageZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($mcusVals as $name=>$count){
+            $temp = Mcus::get()->where('name', $name)->first();
+            $mcuZ[$name]['count'] = $count;
+            $mcuZ[$name]['name'] = $name;
+            $mcuZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($vals as $name=>$count){
+            $temp = McuCompilers::get()->where('name', $name)->first();
+            $compilersZ[$name]['count'] = $count;
+            $compilersZ[$name]['name'] = $name;
+            $compilersZ[$name]['slug'] = $temp->slug;
+        }
+
 
 
         $page = $request->input('page');
@@ -184,7 +211,7 @@ class FilterController extends Controller
 
         $inputs = array(
             'compiler' => $request->input('compiler'),
-            'language' => $request->input('lan'),
+            'language' => $request->input('language'),
             'mcu' => $request->input('mcu'),
             'category' => $request->input('category'),
             'tag' => $request->input('tag'),
@@ -203,10 +230,10 @@ class FilterController extends Controller
             ->withTitle($tagRoot->name)
             ->withDescription('')
 
-            ->withCategories($categoriesVals)
-            ->withMcus($mcusVals)
-            ->withCompilers($vals)
-            ->withLanguages($languageVals)
+            ->withCategories($categoryZ)
+            ->withMcus($mcuZ)
+            ->withCompilers($compilersZ)
+            ->withLanguages($languageZ)
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
@@ -240,7 +267,7 @@ class FilterController extends Controller
             $mcuFilter = array(); // THE MICRO is the only thing that should be filtering on vendor
 
 
-        $inLanguage = $request->input('lan');
+        $inLanguage = $request->input('language');
         if(($inLanguage!='all' && isset($inLanguage))) {
             $lanId = McuLanguages::where('slug', $inLanguage)->first();
             $lanFilter = array('id' => $lanId->id);
@@ -321,6 +348,33 @@ class FilterController extends Controller
         $categoriesVals = array_count_values($categories);
         $tagsVals = array_count_values($tags);
 
+        // Get the slug of each. This is EXTREMELY inefficient, but it works for now
+        $categoryZ = array(); $languageZ = array(); $mcuZ = array(); $compilersZ = array();
+        foreach($categoriesVals as $name=>$count){
+            $temp = Categories::get()->where('name', $name)->first();
+            $categoryZ[$name]['count'] = $count;
+            $categoryZ[$name]['name'] = $name;
+            $categoryZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($languageVals as $name=>$count){
+            $temp = McuLanguages::get()->where('name', $name)->first();
+            $languageZ[$name]['count'] = $count;
+            $languageZ[$name]['name'] = $name;
+            $languageZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($mcusVals as $name=>$count){
+            $temp = Mcus::get()->where('name', $name)->first();
+            $mcuZ[$name]['count'] = $count;
+            $mcuZ[$name]['name'] = $name;
+            $mcuZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($vals as $name=>$count){
+            $temp = McuCompilers::get()->where('name', $name)->first();
+            $compilersZ[$name]['count'] = $count;
+            $compilersZ[$name]['name'] = $name;
+            $compilersZ[$name]['slug'] = $temp->slug;
+        }
+
 
 
         $page = $request->input('page');
@@ -335,7 +389,7 @@ class FilterController extends Controller
 
         $inputs = array(
             'compiler' => $request->input('compiler'),
-            'language' => $request->input('lan'),
+            'language' => $request->input('language'),
             'mcu' => $request->input('mcu'),
             'category' => $request->input('category'),
             'tag' => $request->input('tag'),
@@ -354,10 +408,10 @@ class FilterController extends Controller
             ->withTitle($category->name)
             ->withDescription($category->description)
 
-            ->withCategories($categoriesVals)
-            ->withMcus($mcusVals)
-            ->withCompilers($vals)
-            ->withLanguages($languageVals)
+            ->withCategories($categoryZ)
+            ->withMcus($mcuZ)
+            ->withCompilers($compilersZ)
+            ->withLanguages($languageZ)
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
@@ -390,7 +444,7 @@ class FilterController extends Controller
             $mcuFilter = array('vendor_id' => $vendorId); // THE MICRO is the only thing that should be filtering on vendor
 
 
-        $inLanguage = $request->input('lan');
+        $inLanguage = $request->input('language');
         if(($inLanguage!='all' && isset($inLanguage))) {
             $lanId = McuLanguages::where('slug', $inLanguage)->first();
             $lanFilter = array('id' => $lanId->id);
@@ -401,7 +455,7 @@ class FilterController extends Controller
         $inCategory = $request->input('category');
         if(($inCategory!='all' && isset($inCategory))) {
             $cat = Categories::where('slug', $inCategory)->first();
-            $catFilter = array('id' => $cat->id);
+            $catFilter = array('category_id' => $cat->id);
         }
         else
             $catFilter = array();
@@ -453,9 +507,10 @@ class FilterController extends Controller
             })
             ->whereHas('languages', function($q) use ($lanFilter){
                 if(empty($lanFilter))
-                    $q->where($lanFilter)->orWhere('id', 99);
+                    $q->where($lanFilter)->orWhere('language_id', 99); //Allow languages of 'none'
                 else
-                $q->where($lanFilter);
+                    $q->where($lanFilter);
+
             })
             ->whereHas('compiler', function ($q) use ($compFilter) {
                 $q->where($compFilter);
@@ -480,18 +535,46 @@ class FilterController extends Controller
             $mcus[] = $post->mcu->name;
             foreach($post->languages as $lan)
                 $languages[] = $lan->name;
-            foreach($post->categories as $cat)
+            foreach($post->categories as $cat) {
                 $categories[] = $cat->name;
+            }
             foreach($post->tagged as $tag)
                 $tags[] = $tag->tag_name;
 
         }
+        // Count up the amount of entries
         $vals = array_count_values($compilers);
         $mcusVals = array_count_values($mcus);
         $languageVals = array_count_values($languages);
         $categoriesVals = array_count_values($categories);
         $tagsVals = array_count_values($tags);
 
+        // Get the slug of each. This is EXTREMELY inefficient, but it works for now
+        $categoryZ = array(); $languageZ = array(); $mcuZ = array(); $compilersZ = array();
+        foreach($categoriesVals as $name=>$count){
+            $temp = Categories::get()->where('name', $name)->first();
+            $categoryZ[$name]['count'] = $count;
+            $categoryZ[$name]['name'] = $name;
+            $categoryZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($languageVals as $name=>$count){
+            $temp = McuLanguages::get()->where('name', $name)->first();
+            $languageZ[$name]['count'] = $count;
+            $languageZ[$name]['name'] = $name;
+            $languageZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($mcusVals as $name=>$count){
+            $temp = Mcus::get()->where('name', $name)->first();
+            $mcuZ[$name]['count'] = $count;
+            $mcuZ[$name]['name'] = $name;
+            $mcuZ[$name]['slug'] = $temp->slug;
+        }
+        foreach($vals as $name=>$count){
+            $temp = McuCompilers::get()->where('name', $name)->first();
+            $compilersZ[$name]['count'] = $count;
+            $compilersZ[$name]['name'] = $name;
+            $compilersZ[$name]['slug'] = $temp->slug;
+        }
 
 
         $page = $request->input('page');
@@ -506,7 +589,7 @@ class FilterController extends Controller
 
         $inputs = array(
             'compiler' => $request->input('compiler'),
-            'language' => $request->input('lan'),
+            'language' => $request->input('language'),
             'mcu' => $request->input('mcu'),
             'category' => $request->input('category'),
             'tag' => $request->input('tag'),
@@ -525,10 +608,10 @@ class FilterController extends Controller
             ->withTitle($vendor->name)
             ->withDescription($vendor->description)
 
-            ->withCategories($categoriesVals)
-            ->withMcus($mcusVals)
-            ->withCompilers($vals)
-            ->withLanguages($languageVals)
+            ->withCategories($categoryZ)
+            ->withMcus($mcuZ)
+            ->withCompilers($compilersZ)
+            ->withLanguages($languageZ)
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
