@@ -119,7 +119,7 @@
                 <li><strong>Language(s): </strong>
                     @foreach($languages as $language)
 
-                        <a href="{{url('vendors/'.$vendor->slug.'/?lan='.$language->slug)}}">{{{$language->name}}}</a>
+                        <a href="{{url('vendors/'.$vendor->slug.'/?language='.$language->slug)}}">{{{$language->name}}}</a>
                     @endforeach
                 </li>
                 @endif

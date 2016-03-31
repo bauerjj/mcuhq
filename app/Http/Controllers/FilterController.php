@@ -202,7 +202,7 @@ class FilterController extends Controller
         $page = $request->input('page');
         if($page == '') $page = 1;
         $perPage =10;
-        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendor/microchip')); // create pagination
+        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/tags/'.$tagRoot->slug)); // create pagination
 
         parse_str($_SERVER['QUERY_STRING'],$url_array);
         $paginate->appends($url_array);
@@ -380,7 +380,7 @@ class FilterController extends Controller
         $page = $request->input('page');
         if($page == '') $page = 1;
         $perPage =10;
-        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendor/microchip')); // create pagination
+        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/categories/'.$category->slug)); // create pagination
 
         parse_str($_SERVER['QUERY_STRING'],$url_array);
         $paginate->appends($url_array);
@@ -579,8 +579,8 @@ class FilterController extends Controller
 
         $page = $request->input('page');
         if($page == '') $page = 1;
-        $perPage = 3;
-        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendor/microchip')); // create pagination
+        $perPage = 10;
+        $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendors/'.$vendor->slug)); // create pagination
 
         parse_str($_SERVER['QUERY_STRING'],$url_array);
         $paginate->appends($url_array);
