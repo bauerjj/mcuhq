@@ -40,11 +40,12 @@
         <div class="form-group">
             <input type="hidden" name="body" id="body-text">
 
+
         @if(!old('body'))
-            <div id="editor">{!! $post->body !!}</div>
+            <div id="editor">{{ $post->body }}</div>
 
         @endif
-          <div id="editor">{!! old('body') !!}</div>
+          <div id="editor">{{ old('body') }}</div>
         </div>
 
         <div class="alert alert-info">
