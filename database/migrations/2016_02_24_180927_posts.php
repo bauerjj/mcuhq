@@ -19,7 +19,8 @@ class Posts extends Migration
             $table->foreign('author_id')
               ->references('id')->on('users')
               ->onDelete('cascade');
-            $table->string('title')->unique();
+            $table->string('title'); // doesn't have to be unique anymore
+            $table->string('description');
             $table->string('more_info_link'); // i.e github/bitbucket link, blog url, etc
             $table->text('body'); // raw markdown user input
             $table->text('body_html'); // markdown converted into html so as to not convert everytime

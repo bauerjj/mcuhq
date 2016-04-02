@@ -3,6 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>@yield('title')</title>
+<meta name="Description" content="@yield('meta')">
+
 <link rel="shortcut icon" href="/assets/img/favicon.png"/>
 
 

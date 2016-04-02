@@ -1,6 +1,9 @@
 @extends('layouts.full')
 
-@section('title') About mcuhq @endsection
+
+@section('title')Ideas and Analysis of microcontrollers - About mcuhq @endsection
+
+@section('meta')A "Microcontroller Headquarters" dedicated to heavily detailed discussion on microcontroller hardware and sofware @endsection
 
 
 @section('header')

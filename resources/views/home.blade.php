@@ -1,6 +1,8 @@
 @extends('layouts.full')
 
-@section('title') Microcontroller Headquarters - Ideas and Analysis @endsection
+@section('title')Ideas and Analysis of microcontrollers - mcuhq @endsection
+
+@section('meta')A community-driven analysis and discussion of microcontroller projects and ideas @endsection
 
 @section('header')
     <header class="main-header animated fadeInDown animation-delay-1">
