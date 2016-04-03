@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 
-@section('title'){{$topic .': '. $title}} @endsection
+@section('title'){{$title . ' | mcuhq'}} @endsection
 @section('meta'){{$meta}} @endsection
 
 @section('header')

@@ -226,12 +226,11 @@ class FilterController extends Controller
             //->withVendor($vendor)
 
             ->withUrl(url('/tags/'.$tagRoot->slug))
-            ->withTopic('Tag')
             ->withBreadcrumb('Tag - ' .$tagRoot->name)
-            ->withTitle($tagRoot->name)
+            ->withTitle("Project and tutorials tagged as $tagRoot->name")
             ->withDescription('')
-            ->withMeta('Most recent articles tagged with ' . $tagRoot->name)
-
+            ->withMeta('Most recent projects and tutorials tagged with ' . $tagRoot->name)
+            ->withTopic('Tags')
 
             ->withCategories($categoryZ)
             ->withMcus($mcuZ)
@@ -408,9 +407,9 @@ class FilterController extends Controller
             ->withUrl(url('/categories/'.$category->slug))
             ->withTopic('Category')
             ->withBreadcrumb('Category - ' .$category->name)
-            ->withTitle($category->name)
+            ->withTitle("$category->name projects and tutorials")
             ->withDescription($category->description)
-            ->withMeta('All articles in ' . $category->name . ' category')
+            ->withMeta('All projects and tutorials in ' . $category->name . ' category')
 
 
             ->withCategories($categoryZ)
@@ -611,9 +610,9 @@ class FilterController extends Controller
             ->withUrl(url('/vendors/'.$vendor->slug))
             ->withBreadcrumb('Vendor - ' .$vendor->name)
             ->withTopic('Vendors')
-            ->withTitle($vendor->name)
+            ->withTitle("$vendor->name projects and tutorials")
             ->withDescription($vendor->description)
-            ->withMeta('All articles related to ' . $vendor->name)
+            ->withMeta('All projects and tutorials related to ' . $vendor->name)
 
 
             ->withCategories($categoryZ)

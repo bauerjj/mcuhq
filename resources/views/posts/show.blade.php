@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 
-@section('title'){{$post->title}} @endsection
+@section('title'){{$post->title}} | mcuhq @endsection
 @section('meta'){{$post->description}} @endsection
 
 @section('header')
