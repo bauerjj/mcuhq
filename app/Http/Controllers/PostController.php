@@ -34,8 +34,11 @@ class PostController extends Controller
 
         $vendorSlug = $request->input('vendor');
         $vendor = McuVendors::where('slug', $vendorSlug)->first();
-        if(isset($vendor))
+        $vendorMeta = "";
+        if(isset($vendor)) {
             $vendorFilter = array('vendor_id' => $vendor->id);
+            $vendorMeta = ' '. $vendor->name;
+        }
         else if($vendorSlug == '' || $vendorSlug == 'all')
             $vendorFilter = array();
         else
@@ -43,14 +46,18 @@ class PostController extends Controller
 
         $sort = $request->input('sort');
 
+        $sortMeta = "Newest";
         if($sort == 'new'){
             $query->orderBy('created_at', 'desc');
+            $sortMeta = "Newest";
         }
         else if($sort == 'comments'){
            $query->orderBy('comments_count','desc');
+            $sortMeta = "Active";
         }
         else if($sort == 'views'){
             $query->orderBy('view_counter','desc');
+            $sortMeta = "Popular";
         }
         else{
             $query->orderBy('created_at', 'desc'); // on default, show the new posts first
@@ -83,6 +90,8 @@ class PostController extends Controller
         return view('home')
             ->withPosts($posts)
             ->withInputs($inputs)
+            ->withVendor($vendorMeta)
+            ->withSort($sortMeta)
         ;
 
     }
@@ -203,8 +212,9 @@ class PostController extends Controller
        // return Redirect::to('new-post')->withErrors('wooops')->withInput();
 
         $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255', // no longer required to be unique
             'title' => array('Regex:/^[A-Za-z0-9 .\- ]+$/'),
+            'description' => 'required|max:160', // 160 is what google recommends as the cap
             'body' => 'required',
             'tags' => 'required|arrayCountMax:6|arrayCountMin:1',
             'topics' => 'required|arrayCountMax:4|arrayCountMin:1',
@@ -233,6 +243,7 @@ class PostController extends Controller
 
         $post = new Posts();
         $post->title = $request->get('title');
+        $post->descrption = $request->get('description');
         $post->body = $request->get('body');
         $post->body_html = Purifier::clean(Markdown::convertToHtml($request->get('body'))); // convert ONCE here
         $post->slug = str_slug($post->title);
@@ -386,8 +397,9 @@ class PostController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255',
             'title' => array('Regex:/^[A-Za-z0-9 .\- ]+$/'),
+            'description' => 'required|max:160', // 160 is what google recommends as the cap
             'body' => 'required',
             'tags' => 'required|arrayCountMax:6|arrayCountMin:1',
             'topics' => 'required|arrayCountMax:4|arrayCountMin:1',
@@ -424,6 +436,7 @@ class PostController extends Controller
             $title = $request->input('title');
             $post->slug = str_slug($title); // Don't check for duplicates anymore since postId is part of the title URL
             $post->title = $title;
+            $post->description = $request->input('description');
             $post->body = $request->input('body');
             $post->body_html = Purifier::clean(Markdown::convertToHtml($request->input('body')));
             $post->more_info_link = $request->get('more_info_link');

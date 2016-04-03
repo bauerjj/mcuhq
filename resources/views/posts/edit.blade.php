@@ -38,6 +38,11 @@
             <input required="required" placeholder="Enter title here" type="text" name = "title" class="form-control" value="@if(!old('title')){{$post->title}}@endif{{ old('title') }}"/>
         </div>
         <div class="form-group">
+            <label for="description" class="control-label required">Description </label>
+            <input required="required" placeholder="Enter description here" type="text" name = "description" class="form-control" value="@if(!old('description')){{$post->description}}@endif{{ old('description') }}"/>
+        </div>
+
+        <div class="form-group">
             <input type="hidden" name="body" id="body-text">
 
 

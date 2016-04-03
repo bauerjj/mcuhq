@@ -36,9 +36,17 @@
                 <div class="form-group">
                     <label for="title" class="control-label required">Title </label>
 
-                        <input required="required" value="{{ old('title') }}" placeholder="Enter title here" type="text"
-                               name="title" class="form-control" id="title"/>
+                    <input required="required" value="{{ old('title') }}" placeholder="Enter title here" type="text"
+                           name="title" class="form-control" id="title"/>
                 </div>
+
+                <div class="form-group">
+                    <label for="description" class="control-label required">Description </label>
+
+                    <input required="required" value="{{ old('description') }}" placeholder="Enter description here" type="text"
+                           name="description" class="form-control" id="description"/>
+                </div>
+
                 <input type="hidden" name="body" id="body-text">
 
                 <div id="editor">{{ old('body') }}</div>

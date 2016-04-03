@@ -1,6 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('title'){{$post->title}} @endsection
+@section('meta'){{$post->description}} @endsection
 
 @section('header')
     <header class="main-header">

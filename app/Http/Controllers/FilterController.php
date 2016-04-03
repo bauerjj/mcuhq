@@ -60,6 +60,7 @@ class FilterController extends Controller
             ->withPosts($posts)
             ->withInputs($inputs)
             ->withSearch($search)
+            ->withMeta('Latest posts containing the words: ' . $search)
             ;
 
     }
@@ -229,6 +230,8 @@ class FilterController extends Controller
             ->withBreadcrumb('Tag - ' .$tagRoot->name)
             ->withTitle($tagRoot->name)
             ->withDescription('')
+            ->withMeta('Most recent articles tagged with ' . $tagRoot->name)
+
 
             ->withCategories($categoryZ)
             ->withMcus($mcuZ)
@@ -407,6 +410,8 @@ class FilterController extends Controller
             ->withBreadcrumb('Category - ' .$category->name)
             ->withTitle($category->name)
             ->withDescription($category->description)
+            ->withMeta('All articles in ' . $category->name . ' category')
+
 
             ->withCategories($categoryZ)
             ->withMcus($mcuZ)
@@ -415,6 +420,7 @@ class FilterController extends Controller
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
+
             ;
 
 
@@ -607,6 +613,8 @@ class FilterController extends Controller
             ->withTopic('Vendors')
             ->withTitle($vendor->name)
             ->withDescription($vendor->description)
+            ->withMeta('All articles related to ' . $vendor->name)
+
 
             ->withCategories($categoryZ)
             ->withMcus($mcuZ)
