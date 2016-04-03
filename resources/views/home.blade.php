@@ -2,7 +2,7 @@
 
 @section('title'){{$sort . $vendor}} microcontroller projects and tutorials | mcuhq @endsection
 
-@section('meta')A community-driven analysis and discussion of microcontroller projects and ideas | mcuhq @endsection
+@section('meta')A community-driven analysis and discussion of microcontroller projects and ideas  @endsection
 
 @section('header')
     <header class="main-header animated fadeInDown animation-delay-1">
