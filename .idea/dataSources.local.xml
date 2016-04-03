@@ -7,5 +7,10 @@
       <schema-pattern>mcuhq.*</schema-pattern>
       <default-schemas>mcuhq.*</default-schemas>
     </data-source>
+    <data-source name="MySQL - db67560_mcuhq_v2@mcuhq.com" uuid="6802331d-aaba-4811-8abf-7af3174ce106">
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>db67560_justin</user-name>
+    </data-source>
   </component>
 </project>

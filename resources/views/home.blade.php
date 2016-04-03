@@ -36,7 +36,7 @@
                     <h4 class="first-letter">Sort</h4>
                     <ul class="portfolio-topbar-cats">
                         <li><a href="{{Helper::modify_url(array('sort'=> 'new'))}}"><span class="filter  @if($inputs['sort'] == '' || $inputs['sort'] == 'new') active @else '' @endif" data-filter=".category-1">New</span></a></li>
-                        <li><a href="{{Helper::modify_url(array('sort'=> 'views'))}}"><span class="filter  @if($inputs['sort'] == 'view') active @else '' @endif" data-filter=".category-1">Popular</span></a></li>
+                        <li><a href="{{Helper::modify_url(array('sort'=> 'views'))}}"><span class="filter  @if($inputs['sort'] == 'views') active @else '' @endif" data-filter=".category-1">Popular</span></a></li>
                         <li><a href="{{Helper::modify_url(array('sort'=> 'comments'))}}"><span class="filter  @if($inputs['sort'] == 'comments') active @else '' @endif" data-filter=".category-1">Active</span></a></li>
                     </ul>
                     <span class="topbar-border">&nbsp;</span>
