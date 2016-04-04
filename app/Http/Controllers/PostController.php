@@ -243,7 +243,7 @@ class PostController extends Controller
 
         $post = new Posts();
         $post->title = $request->get('title');
-        $post->descrption = $request->get('description');
+        $post->description = $request->get('description');
         $post->body = $request->get('body');
         $post->body_html = Purifier::clean(Markdown::convertToHtml($request->get('body'))); // convert ONCE here
         $post->slug = str_slug($post->title);
@@ -262,8 +262,9 @@ class PostController extends Controller
             $message = 'Post published successfully';
         }
 
-        if($post->save()) {
 
+
+        if($post->save()) {
             $cat_string = $request->get('topics');
             $languages = $request->get('languages');
             $cat_ids = explode(',', $cat_string);
