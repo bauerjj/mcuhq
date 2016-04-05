@@ -78,7 +78,7 @@ class PostController extends Controller
             ->whereHas('mcu', function ($q) use ($vendorFilter) {
                 $q->where($vendorFilter);
             })
-            ->paginate(5);
+            ->paginate(15);
 
 
         $inputs = array(

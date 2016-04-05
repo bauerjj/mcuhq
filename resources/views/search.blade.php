@@ -1,6 +1,6 @@
 @extends('layouts.full')
 
-@section('title') Search - {{$search}} @endsection
+@section('title') Search - {{$search}} | mcuhq @endsection
 
 @section('header')
     <header class="main-header">
