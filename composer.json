@@ -11,7 +11,8 @@
         "rtconner/laravel-tagging": "~2.0",
         "devfactory/minify": "1.0.*",
         "mews/purifier": "^2.0",
-        "roumen/sitemap": "2.6.*"
+        "roumen/sitemap": "2.6.*",
+        "webuni/commonmark-table-extension": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
