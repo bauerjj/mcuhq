@@ -161,7 +161,7 @@
     <script>
         // So to make any large images fit inside viewing area
         $( ".main-content img" ).addClass( "img-responsive img-thumbnail" );
-        //$( "img" ).wrap("<a href='" + $("img").closest("img").attr("src") + "'>");
+        $("table").addClass("table-bordered table table-striped");
 
         $('.main-content').find('img').each(function() {
             //for each img add the width plus a specific value, in this case 20

@@ -264,10 +264,6 @@ body{
     margin-left:auto;
     margin-right:auto;
 }
-.post-show table td,
-.post-show table th{ /* so that the markdown tables don't pile up on one another */
-    padding-right: 5px;
-}
 
 .panel-title p{
     font-size: 14px; /* author info make smaller */
