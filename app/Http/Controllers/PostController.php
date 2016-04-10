@@ -453,9 +453,13 @@ class PostController extends Controller
                 $message = 'Post updated successfully';
                 $landing = $post->id .'/'.$post->slug;
             }
+            $prevCategories = $post->categories; // save the old cateogires before saving so that we can decrement count
             if($post->save()) {
-                // First remove existing relationships
+                foreach($prevCategories as $cat){
+                    Db::table('categories')->where('id',$cat->id)->decrement('count'); // Decrement existing categories
+                }
 
+                // First remove existing relationships
                 $cat_string = $request->get('topics');
                 $languages = $request->get('languages');
                 $cat_ids = explode(',', $cat_string);
@@ -463,6 +467,10 @@ class PostController extends Controller
                 $language_ids = explode(',', $languages);
                 if(empty($languages)){
                     $language_ids = array(99); // If none posted, save the language as 'None'
+                }
+
+                foreach($cat_ids as $id){
+                    Db::table('categories')->where('id',$id)->increment('count'); // increment new categories
                 }
 
                 $post->languages()->sync($language_ids);

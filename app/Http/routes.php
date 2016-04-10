@@ -16,6 +16,7 @@
 });*/
 
 use App\Models\Posts;
+use \Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,15 @@ Route::group(['middleware' => ['web','ViewThrottle']], function()
     Route::post('comment/delete/{id}','CommentController@distroy');
 
 
+});
+
+// Every request will enter this function which populates the navbar
+// MAKE SURE THE VARIABLE NAMES DON'T INTERFERE WITH EXISTING ONES
+// FROM THE VIEWS!!!
+View::composer('*', function($view) {
+    $categories = Db::table("categories")->orderby('name','asc')->get();
+    $tags = Db::table('tagging_tags')->orderby('count','desc')->get();
+    $view->with(array('categoriesNavBar'=>$categories, 'tagsNavBar'=>$tags));
 });
 
 Route::group(['middleware' =>  ['web','ViewThrottle']], function () {

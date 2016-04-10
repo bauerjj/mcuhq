@@ -34,70 +34,71 @@
             </li> <!-- dropdown -->
             <li class="dropdown yamm-fw">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                   data-hover="dropdown">Topics and Tags</a>
+                   data-hover="dropdown">Tags and Categories</a>
                 <ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn">
                     <li>
                         <div class="yamm-content">
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
-                                        <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Topics</h4>
-                                        <ul>
-                                            <li><a href="/categories/general-purpose">
-                                                    General Purpose <span class="badge">1</span></a></li>
-                                            <li><a href="/categories/audio">
-                                                    Audio <span class="badge">0</span></a></li>
-                                            <li><a href="/categories/rtos">
-                                                    RTOS <span class="badge">0</span></a></li>
-                                            <li><a href="/categories/power-supplies">
-                                                    Power Supplies <span class="badge">0</span></a></li>
-                                            <li><a href="/categories/communication">
-                                                    Communication <span class="badge">1</span></a></li>
-                                            <li><a href="/categories/low-energy">
-                                                    Low Energy <span class="badge">0</span></a></li>
-                                            <li><a href="/categories/iot">
-                                                    Internet of Things <span class="badge">1</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
-                                    <div class="megamenu-block">
-                                        <h4>&nbsp;</h4>
-                                        <ul>
-                                            <li><a href="/categories/wireless">
-                                                    Wireless <span class="badge">0</span></a></li>
-                                            <li><a href="/categories/display">
-                                                    Display <span class="badge">1</span></a></li>
-                                            <li><a href="/categories/analog">
-                                                    Analog <span class="badge">0</span></a></li>
-                                            <li><a href="/categories/i-o">
-                                                    I/O <span class="badge">1</span></a></li>
-                                        </ul>
+                                        {{--<h4 class="megamenu-block-title"><i class="fa fa-tag"></i>--}}
+                                            {{--Top Tags</h4>--}}
+                                        <div class="tags-cloud">
+                                            <?php $count = 0; ?>
+                                            @foreach($tagsNavBar as $tag)
+                                                @if($count++ < 10)
+                                                   <a href="/tags/{{$tag->slug}}" class="tag">{{$tag->slug}}</a>
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
 
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
+                                    <div class="megamenu-block">
+                                        <div class="tags-cloud">
+                                            <?php $count = 0; ?>
+                                            @foreach($tagsNavBar as $tag)
+                                                @if($count++ < 10)
+
+                                                @elseif($count > 10 && $count < 20)
+                                                    <a href="/tags/{{$tag->slug}}" class="tag">{{$tag->slug}}</a>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="clearfix  hidden-lg"></div>
 
 
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
-                                        <h4 class="megamenu-block-title"><i class="fa fa-tag"></i>
-                                            Top Tags</h4>
-                                        <div class="tags-cloud">
-                                            <a href="/tags/launchpad" class="tag">launchpad</a>
-                                            <a href="/tags/led" class="tag">led</a>
-                                            <a href="/tags/led" class="tag">gui-composer</a>
-                                            <a href="/tags/led" class="tag">user-interface</a>
-                                            <a href="/tags/io" class="tag">io</a>
-                                            <a href="/tags/led" class="tag">debug</a>
-                                        </div>
+                                        {{--<h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Topics</h4>--}}
+                                        <ul>
+                                            <?php $count = 0; ?>
+                                            @foreach($categoriesNavBar as $cat)
+                                                @if($count++ < 5)
+                                                    <li><a href="/categories/{{$cat->slug}}">
+                                                            {{$cat->name}} <span class="badge">{{$cat->count}}</span></a></li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
-                                        <div class="tags-cloud">
-                                        </div>
+                                        {{--<h4>&nbsp;</h4>--}}
+                                        <ul>
+                                            <?php $count = 0; ?>
+                                            @foreach($categoriesNavBar as $cat)
+                                                @if($count++ < 5)
+
+                                                @elseif($count++ > 5 && $count < 16)
+                                                    <li><a href="/categories/{{$cat->slug}}">
+                                                            {{$cat->name}} <span class="badge">{{$cat->count}}</span></a></li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
