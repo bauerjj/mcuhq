@@ -266,7 +266,7 @@ body{
 }
 .post-show table td,
 .post-show table th{ /* so that the markdown tables don't pile up on one another */
-    padding: 5px;
+    padding-right: 5px;
 }
 
 .panel-title p{
