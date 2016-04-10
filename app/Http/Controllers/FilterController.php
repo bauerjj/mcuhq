@@ -170,6 +170,7 @@ class FilterController extends Controller
         $languageVals = array_count_values($languages);
         $categoriesVals = array_count_values($categories);
         $tagsVals = array_count_values($tags);
+        arsort($tagsVals); arsort($categoriesVals);arsort($languageVals);arsort($mcusVals);arsort($vals);
 
         // Get the slug of each. This is EXTREMELY inefficient, but it works for now
         $categoryZ = array(); $languageZ = array(); $mcuZ = array(); $compilersZ = array();
@@ -349,6 +350,7 @@ class FilterController extends Controller
         $languageVals = array_count_values($languages);
         $categoriesVals = array_count_values($categories);
         $tagsVals = array_count_values($tags);
+        arsort($tagsVals); arsort($categoriesVals);arsort($languageVals);arsort($mcusVals);arsort($vals);
 
         // Get the slug of each. This is EXTREMELY inefficient, but it works for now
         $categoryZ = array(); $languageZ = array(); $mcuZ = array(); $compilersZ = array();
@@ -466,17 +468,6 @@ class FilterController extends Controller
             $catFilter = array();
 
 
-
-//        if(($inTag!='all' && isset($inTag))) {
-//            $tag = Categories::where('slug', $inCategory)->first();
-//            $catFilter = array('id' => $cat->id);
-//        }
-//        else
-//            $catFilter = array();
-
-
-       // ->withAnyTag(['tiger','cat','elephant'])
-    //print_r(Posts::existingTags()->toArray()); die;
         $existingTags = Posts::existingTags()->toArray();
         $tags = array();
         foreach($existingTags as $tag){
@@ -553,6 +544,7 @@ class FilterController extends Controller
         $languageVals = array_count_values($languages);
         $categoriesVals = array_count_values($categories);
         $tagsVals = array_count_values($tags);
+        arsort($tagsVals); arsort($categoriesVals);arsort($languageVals);arsort($mcusVals);arsort($vals);
 
         // Get the slug of each. This is EXTREMELY inefficient, but it works for now
         $categoryZ = array(); $languageZ = array(); $mcuZ = array(); $compilersZ = array();
