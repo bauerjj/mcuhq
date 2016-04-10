@@ -5,7 +5,10 @@
 <title>@yield('title')</title>
 <meta name="Description" content="@yield('meta')">
 
-<link rel="shortcut icon" href="/assets/img/favicon.png"/>
+{{--<link rel="shortcut icon" href="/assets/img/favicon.png"/>--}}
+<link rel="icon" type="image/png" href="/assets/img/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/assets/img/favicon-16x16.png" sizes="16x16" />
+
 <meta name="_token" content="{{ csrf_token() }}"/>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
