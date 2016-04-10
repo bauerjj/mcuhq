@@ -259,6 +259,9 @@ body{
     margin-top: 0px;
 
 }
+pre{
+    max-height: 600px;
+}
 
 .post-show table{
     margin-left:auto;
