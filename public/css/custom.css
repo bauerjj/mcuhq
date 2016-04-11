@@ -242,6 +242,9 @@ body{
 #bs-example-navbar-collapse-1 li{
     line-height: 1em;
 }
+.yamm-content .row{
+    padding: 5px; /* Give space between tag boxes and border of navbar */
+}
 
 /**************************************/
 
@@ -250,6 +253,9 @@ body{
 .panel-title {
     padding: 0px;
 
+}
+.main-image-preview{
+    margin-bottom: 6px;
 }
 .post-show
 .panel-title h2{

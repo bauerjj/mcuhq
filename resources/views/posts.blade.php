@@ -2,7 +2,7 @@
     <div class=""> {{--panel panel-default--}}
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                     @if($post->main_image != '')
                         <img src="{{'/uploads/'.$post->main_image}}" class="img-post img-responsive main-image" alt="Image">
                         @else
@@ -11,7 +11,7 @@
 
                     @endif
                 </div>
-                <div class="col-md-9 col-sm-9 post-content">
+                <div class="col-md-10 col-sm-10 post-content">
                     <h3 class="post-title">
                         <a href="{{ url('/'.$post->id .'/'.$post->slug) }}">{{ $post->title }}</a>
                     </h3>

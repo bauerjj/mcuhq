@@ -91,6 +91,9 @@
 
 @section('right_sidebar')
     <div class="">
+        @if($post->main_image != '')
+            <img src="{{'/uploads/'.$post->main_image}}" class="main-image-preview" alt="Image">
+        @endif
         @if($post->source_file == '')
             <a href="#" type="button" class="btn btn-block btn-ar btn-primary disabled">No Source Download</a>
         @else
@@ -164,8 +167,10 @@
         $("table").addClass("table-bordered table table-striped");
 
         $('.main-content').find('img').each(function() {
-            //for each img add the width plus a specific value, in this case 20
-            $( this ).wrap("<div class='row'><div class='col-md-offset-4 col-sm-offset-4 col-md-5 col-sm-5 '>" +  " <a href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'></div></div<");
+            // Don't do anything to the main image picture though!
+            if(!$(this).hasClass('main-image-preview'))
+                //for each img add the width plus a specific value, in this case 20
+                $( this ).wrap("<div class='row'><div class='col-md-offset-4 col-sm-offset-4 col-md-5 col-sm-5 '>" +  " <a href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'></div></div<");
 
         });
 
