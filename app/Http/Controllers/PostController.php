@@ -258,8 +258,15 @@ class PostController extends Controller
             $post->active = 0;
             $message = 'Post saved successfully';
         } else {
-            $post->active = 1;
-            $message = 'Post published successfully';
+            // Only allow an admin to post content directly to website before being reviewed
+            if(Auth::user()->is_admin()) {
+                $post->active = 1;
+                $message = 'Post published successfully';
+            }
+            else{
+                $post->active = 0;
+                $message = 'Post published successfully - awaiting review!';
+            }
         }
 
 

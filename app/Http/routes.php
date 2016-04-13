@@ -62,7 +62,8 @@ Route::group(['middleware' => ['web','ViewThrottle']], function()
 View::composer('*', function($view) {
     $categories = Db::table("categories")->orderby('name','asc')->get();
     $tags = Db::table('tagging_tags')->orderby('count','desc')->get();
-    $view->with(array('categoriesNavBar'=>$categories, 'tagsNavBar'=>$tags));
+    $recentPosts = Db::table('posts')->orderby('updated_at', 'desc')->limit(8)->get();
+    $view->with(array('categoriesNavBar'=>$categories, 'tagsNavBar'=>$tags, 'recentPostsSidebar'=>$recentPosts));
 });
 
 Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
@@ -83,10 +84,11 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
 
     // display single post
     Route::get('{id}/{slug}',['as' => 'post', 'uses' => 'PostController@show'])->where(['id' => '[0-9]+', 'slug' => '[A-Za-z0-9-_]+']);
-    //users profile
-    Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+');
     // display list of posts
     Route::get('user/{id}/posts','UserController@user_posts')->where('id', '[0-9]+');
+    //users profile
+    Route::get('user/{id}/{username}','UserController@profile')->where('id', '[0-9]+'); // username is wildcard
+    Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+'); // username is wildcard
 
     Route::get('sitemap', function(){
 

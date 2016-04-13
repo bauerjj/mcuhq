@@ -1,18 +1,11 @@
-html,
-body {
-    height: 100%;
-    /* The html and body elements cannot have any padding or margin. */
-}
-body {
-    /* The html and body elements cannot have any padding or margin. */
-}
+
 body{
     background: url("/css/noisy_grid.png") repeat scroll left top #EEEEEE;
 
 }
 
 /* Wrapper for page content to push down footer */
-#wrap {
+.wrap {
     min-height: 100%;
     height: auto;
     /* Negative indent footer by its height */
@@ -21,11 +14,19 @@ body{
     padding: 0 0 60px;
 
 }
+#sb-site, .sb-site-container{
+    background-color:inherit;
+}
+.sb-slidebar.sb-active{
+    margin-left: -20px;
+}
 
 #footer{
     //height: 230px;
-    margin-top: 10px;
+    //margin-top: 10px;
     background-color: #444;
+    padding: 12px 0px;
+    margin-top: 15px;
 }
 
 .container{
@@ -59,6 +60,18 @@ body{
 .navbar-default.navbar-dark + .main-header .page-title, .navbar-default.navbar-dark + .main-header a{
     color: #0099da;
 }
+
+
+/* So the right-hand slidebar doesn't encroach the login navbar stuff */
+@media (min-width: 768px) {
+    .navbar-right {
+        margin-right: 30px;
+    }
+}
+
+/*/////////////// */
+
+
 @media  (min-width: 768px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 14px;
@@ -419,6 +432,15 @@ h1, h2, h3, h4, h5, h6{
     color: #0099da;
     text-decoration: none;
     background: white;
+}
+
+.highlight-blue{
+    color: #0099da
+}
+
+.no-padding{ /* for center columns */
+    padding: 0px;
+    margin: 0px;
 }
 
 .btn-group .btn-default,

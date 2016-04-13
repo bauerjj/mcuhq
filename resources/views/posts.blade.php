@@ -25,7 +25,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <i class="fa fa-clock-o"></i> {{ $post->created_at->format('M d, Y') }}
                     <i class="fa fa-user"> </i> <a
-                            href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a>
+                            href="{{ url('/user/'.$post->author_id.'/'.urlencode($post->author->name))}}">{{ $post->author->name }}</a>
                     <i class="fa fa-comments"></i><a href="{{url('/'.$post->id.'/'.$post->slug.'#comments')}}">{{$post->comments_count}}</a>
                     <i class="fa fa-eye"></i> {{$post->view_counter}}
                     <i class="fa fa-folder-open"></i>

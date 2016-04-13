@@ -13,6 +13,11 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slidebars/0.10.2/slidebars.min.css">
+
+
 {!! Minify::stylesheet(array("/assets/css/style-blue.css","/assets/css/width-full.css",
  "/assets/css/animate.min.css","/assets/css/jquery.bxslider.min.css", "/css/custom.css")) !!}
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
