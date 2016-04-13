@@ -62,7 +62,7 @@ Route::group(['middleware' => ['web','ViewThrottle']], function()
 View::composer('*', function($view) {
     $categories = Db::table("categories")->orderby('name','asc')->get();
     $tags = Db::table('tagging_tags')->orderby('count','desc')->get();
-    $recentPosts = Db::table('posts')->orderby('updated_at', 'desc')->limit(8)->get();
+    $recentPosts = Db::table('posts')->where('active', 1)->orderby('created_at', 'desc')->limit(8)->get();
     $view->with(array('categoriesNavBar'=>$categories, 'tagsNavBar'=>$tags, 'recentPostsSidebar'=>$recentPosts));
 });
 

@@ -51,13 +51,13 @@
         </div>
     </div>
 
-        <div id="footer">
-            @include('includes.footer')
-        </div>
+
     <!-- footer-widgets -->
 
 </div>
-
+<div id="footer">
+    @include('includes.footer')
+</div>
 
 @include('includes.slidebar')
 

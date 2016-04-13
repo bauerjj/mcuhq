@@ -15,7 +15,8 @@ body{
 
 }
 #sb-site, .sb-site-container{
-    background-color:inherit;
+    background: url("/css/noisy_grid.png") repeat scroll left top #EEEEEE;
+
 }
 .sb-slidebar.sb-active{
     margin-left: -20px;
