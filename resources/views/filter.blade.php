@@ -31,9 +31,21 @@
             @include('posts')
         @endforeach
 
-        <section class="text-center">
-            {!! $pagination->render() !!}
-        </section>
+        @if(sizeof($posts) <1)
+            <section class="text-center">
+                <h1>No Posts found matching your criteria</h1>
+
+                <a href="{{url('/new-post')}}" role="button" class="btn btn-ar btn-lg btn-primary">Contribute one now!</a>
+
+            </section>
+
+
+        @else
+            <section class="text-center">
+                {!! $pagination->render() !!}
+            </section>
+
+        @endif
 
     </div>
 

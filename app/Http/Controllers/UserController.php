@@ -74,7 +74,12 @@ class UserController extends Controller
             return redirect('/');
         if ($request->user() && $data['user']->id == $request->user()->id) {
             $data['author'] = true;
-        } else {
+        }
+        if($request->user()->role == 'admin'){
+            $data['author'] = true; // also allow admin access to see
+        }
+
+        else {
             $data['author'] = null;
         }
 

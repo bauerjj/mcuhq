@@ -1,4 +1,4 @@
-@extends('layouts.full')
+@extends('layouts.sidebar')
 
 @section('title'){{$sort . $vendor}} microcontroller projects and tutorials | mcuhq @endsection
 
@@ -62,14 +62,13 @@
         </div>
     </div>
 
-
-
 @endsection
 
 @section('center')
     @foreach( $posts as $post )
             @include('posts')
     @endforeach
+
 
     @if(sizeof($posts) <1)
         <section class="text-center">
@@ -87,6 +86,24 @@
 
     @endif
 @endsection
+
+@section('right_sidebar')
+    {{--<a href="" type="button" class="btn btn-block btn-ar btn-primary">Reset Filters</a>--}}
+
+    <div class="">
+        <div class="panel-item block">
+            <div class="tab-pane" id="categories">
+                <h3 class="post-title no-margin-top section-title">Top Tags</h3>
+                <div class="tags-cloud">
+                    @foreach($tagsNavBar as $tag)
+                            <a href="/tags/{{$tag->slug}}" class="tag">{{$tag->slug .' x '.$tag->count.''}}</a>
+                    @endforeach
+                </div>
+    </div>
+    </div>
+    </div>
+
+   @endsection
 
 
 

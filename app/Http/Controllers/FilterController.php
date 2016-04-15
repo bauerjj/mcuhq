@@ -445,6 +445,10 @@ class FilterController extends Controller
         $filterMcu = $request->input('mcu');
         if(($filterMcu!='all' && isset($filterMcu))) {
             $filterMcu = Mcus::where('name', $filterMcu)->first();
+            if((!isset($filterMcu->id))) {
+                $filterMcu = new \stdClass();
+                $filterMcu->id = 99; // bogus ID
+            }
             $mcuFilter = array('vendor_id' => $vendorId, 'id' => $filterMcu->id);
         }
         else

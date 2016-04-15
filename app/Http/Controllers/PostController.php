@@ -98,6 +98,8 @@ class PostController extends Controller
 
     public function about()
     {
+        //echo memory_get_usage();
+        //echo phpinfo(); die;
         return view('static.about');
     }
 

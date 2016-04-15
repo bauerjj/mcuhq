@@ -117,29 +117,29 @@
                                     <div class="megamenu-block">
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Microchip</h4>
                                         <div>
-                                            <a href="#" class="tag">PIC10</a>
-                                            <a href="#" class="tag">PIC12</a>
-                                            <a href="#" class="tag">PIC16</a>
-                                            <a href="#" class="tag">PIC18</a>
-                                            <a href="#" class="tag">PIC24</a>
-                                            <a href="#" class="tag">dsPIC</a>
-                                            <a href="#" class="tag">PIC32</a>
+                                            <a href="{{url('vendors/microchip?mcu=pic10')}}" class="tag">PIC10</a>
+                                            <a href="{{url('vendors/microchip?mcu=pic12')}}" class="tag">PIC12</a>
+                                            <a href="{{url('vendors/microchip?mcu=pic16')}}" class="tag">PIC16</a>
+                                            <a href="{{url('vendors/microchip?mcu=pic18')}}" class="tag">PIC18</a>
+                                            <a href="{{url('vendors/microchip?mcu=pic24')}}" class="tag">PIC24</a>
+                                            <a href="{{url('vendors/microchip?mcu=dspic')}}" class="tag">dsPIC</a>
+                                            <a href="{{url('vendors/microchip?mcu=pic32')}}" class="tag">PIC32</a>
 
                                         </div>
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Atmel</h4>
                                         <div>
-                                            <a href="#" class="tag">Arduino</a>
-                                            <a href="#" class="tag">ATtiny</a>
-                                            <a href="#" class="tag">ATmega</a>
-                                            <a href="#" class="tag">ATxmega</a>
-                                            <a href="#" class="tag">AT91SAM</a>
-                                            <a href="#" class="tag">AVR32</a>
+                                            <a href="{{url('vendors/atmel?mcu=aruduino')}}" class="tag">Arduino</a>
+                                            <a href="{{url('vendors/atmel?mcu=attiny')}}" class="tag">ATtiny</a>
+                                            <a href="{{url('vendors/atmel?mcu=atmega')}}" class="tag">ATmega</a>
+                                            <a href="{{url('vendors/atmel?mcu=atxmega')}}" class="tag">ATxmega</a>
+                                            <a href="{{url('vendors/atmel?mcu=at91asm')}}" class="tag">AT91SAM</a>
+                                            <a href="{{url('vendors/atmel?mcu=avr32')}}" class="tag">AVR32</a>
                                         </div>
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Cypress</h4>
                                         <div>
-                                            <a href="#" class="tag">PSoC1</a>
-                                            <a href="#" class="tag">PSoC3</a>
-                                            <a href="#" class="tag">PSoC5</a>
+                                            <a href="{{url('vendors/cypress?mcu=psoc3')}}" class="tag">PSoC3</a>
+                                            <a href="{{url('vendors/cypress?mcu=psoc4')}}" class="tag">PSoC4</a>
+                                            <a href="{{url('vendors/atmel?mcu=psoc5')}}" class="tag">PSoC5</a>
                                         </div>
 
                                     </div>
@@ -148,25 +148,25 @@
                                     <div class="megamenu-block">
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Texas Inst.</h4>
                                         <div>
-                                            <a href="#" class="tag">MSP430</a>
-                                            <a href="#" class="tag">MSP432</a>
-                                            <a href="#" class="tag">TMS570</a>
+                                            <a href="{{url('vendors/ti?mcu=msp430')}}" class="tag">MSP430</a>
+                                            <a href="{{url('vendors/ti?mcu=msp432')}}" class="tag">MSP432</a>
+                                            <a href="{{url('vendors/ti?mcu=tms570')}}" class="tag">TMS570</a>
                                         </div>
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Renasas</h4>
                                         <div>
-                                            <a href="#" class="tag">RL78</a>
-                                            <a href="#" class="tag">78K</a>
-                                            <a href="#" class="tag">R8C</a>
-                                            <a href="#" class="tag">RX</a>
-                                            <a href="#" class="tag">RZ</a>
-                                            <a href="#" class="tag">V850</a>
+                                            <a href="{{url('vendors/renasas?mcu=rl78')}}" class="tag">RL78</a>
+                                            <a href="{{url('vendors/renasas?mcu=78k')}}" class="tag">78K</a>
+                                            <a href="{{url('vendors/renasas?mcu=r8c')}}" class="tag">R8C</a>
+                                            <a href="{{url('vendors/renasas?mcu=rx')}}" class="tag">RX</a>
+                                            <a href="{{url('vendors/renasas?mcu=rz')}}" class="tag">RZ</a>
+                                            <a href="{{url('vendors/renasas?mcu=v850')}}" class="tag">V850</a>
                                         </div>
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> STMicro</h4>
                                         <div>
-                                            <a href="#" class="tag">ST7</a>
-                                            <a href="#" class="tag">STM8</a>
-                                            <a href="#" class="tag">ST10</a>
-                                            <a href="#" class="tag">STM32</a>
+                                            <a href="{{url('vendors/stmicro?mcu=st7')}}" class="tag">ST7</a>
+                                            <a href="{{url('vendors/stmicro?mcu=stm8')}}" class="tag">STM8</a>
+                                            <a href="{{url('vendors/stmicro?mcu=st10')}}" class="tag">ST10</a>
+                                            <a href="{{url('vendors/stmicro?mcu=stm32')}}" class="tag">STM32</a>
                                         </div>
 
                                     </div>
@@ -179,22 +179,22 @@
                                     <div class="megamenu-block">
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> NXP</h4>
                                         <div>
-                                            <a href="#" class="tag">LPC700</a>
-                                            <a href="#" class="tag">LPC2100</a>
-                                            <a href="#" class="tag">LPC1300</a>
-                                            <a href="#" class="tag">LPC4000</a>
+                                            <a href="{{url('vendors/nxp?mcu=lpc700')}}" class="tag">LPC700</a>
+                                            <a href="{{url('vendors/nxp?mcu=lpc2100')}}" class="tag">LPC2100</a>
+                                            <a href="{{url('vendors/nxp?mcu=lpc1300')}}" class="tag">LPC1300</a>
+                                            <a href="{{url('vendors/nxp?mcu=lpc4000')}}" class="tag">LPC4000</a>
                                         </div>
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Fujitsu</h4>
                                         <div>
-                                            <a href="#" class="tag">FR</a>
-                                            <a href="#" class="tag">FM3</a>
-                                            <a href="#" class="tag">FM4</a>
-                                            <a href="#" class="tag">FCR4</a>
+                                            <a href="{{url('vendors/fujitsu?mcu=fr')}}" class="tag">FR</a>
+                                            <a href="{{url('vendors/fujitsu?mcu=fm3')}}" class="tag">FM3</a>
+                                            <a href="{{url('vendors/fujitsu?mcu=fm4')}}" class="tag">FM4</a>
+                                            <a href="{{url('vendors/fujitsu?mcu=fcr4')}}" class="tag">FCR4</a>
                                         </div>
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Silicon Labs</h4>
                                         <div>
-                                            <a href="#" class="tag">C8051</a>
-                                            <a href="#" class="tag">EFM32</a>
+                                            <a href="{{url('vendors/fujitsu?mcu=c8051')}}" class="tag">C8051</a>
+                                            <a href="{{url('vendors/fujitsu?mcu=efm32')}}" class="tag">EFM32</a>
                                         </div>
                                     </div>
                                 </div>
@@ -203,11 +203,11 @@
                                     <div class="megamenu-block">
                                         <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Infineon</h4>
                                         <div>
-                                            <a href="#" class="tag">XC800</a>
-                                            <a href="#" class="tag">XE166</a>
-                                            <a href="#" class="tag">XC 2000</a>
-                                            <a href="#" class="tag">C166</a>
-                                            <a href="#" class="tag">XMC4000</a>
+                                            <a href="{{url('vendors/infineon?mcu=xc800')}}" class="tag">XC800</a>
+                                            <a href="{{url('vendors/infineon?mcu=xe166')}}" class="tag">XE166</a>
+                                            <a href="{{url('vendors/infineon?mcu=xc2000')}}" class="tag">XC 2000</a>
+                                            <a href="{{url('vendors/infineon?mcu=c166')}}" class="tag">C166</a>
+                                            <a href="{{url('vendors/infineon?mcu=xmc4000')}}" class="tag">XMC4000</a>
                                         </div>
                                     </div>
                                 </div>
