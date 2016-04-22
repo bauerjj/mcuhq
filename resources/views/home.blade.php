@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 
-@section('title'){{$sort . $vendor}} microcontroller projects and tutorials | mcuhq @endsection
+@section('title')@if(isset($sort) && isset($vendor)){{$sort . $vendor}}@endif microcontroller projects and tutorials | mcuhq @endsection
 
 @section('meta')A community-driven analysis and discussion of microcontroller projects and ideas  @endsection
 

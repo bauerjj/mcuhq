@@ -22,7 +22,8 @@
 
     <h2 class="slidebar-header">Obligatory</h2>
     <div class="slidebar-social-icons">
-        <a href="https://twitter.com/mcuhq" class="twitter"><i class="fa my-fa-twitter fa-3x"></i></a>
-        <a href="https://github.com/mcuhq/mcuhq" class="github"><i class="fa fa fa-github fa-3x"></i></a>
+        <a href="https://twitter.com/mcuhq" class="twitter"><i class="fa my-fa-twitter fa-3x"> </i></a>
+        <a href="https://github.com/mcuhq/mcuhq" class="github"><i class="fa fa fa-github fa-3x"> </i></a>
+        <a href="https://www.linkedin.com/in/justin-bauer-a7a9ba116" class="linkedin"><i class="fa my-fa-linkedin-square fa-3x"> </i></a>
     </div>
 </div> <!-- sb-slidebar sb-right -->

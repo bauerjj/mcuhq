@@ -163,14 +163,14 @@
 
     <script>
         // So to make any large images fit inside viewing area
-        $( ".main-content img" ).addClass( "img-responsive img-thumbnail" );
+        $( ".main-content img" ).addClass( "img-responsive img-thumbnail center-block" );
         $("table").addClass("table-bordered table table-striped");
 
         $('.main-content').find('img').each(function() {
             // Don't do anything to the main image picture though!
             if(!$(this).hasClass('main-image-preview'))
                 //for each img add the width plus a specific value, in this case 20
-                $( this ).wrap("<div class='row'><div class='col-md-offset-4 col-sm-offset-4 col-md-5 col-sm-5 '>" +  " <a href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'></div></div<");
+                $( this ).wrap("<div class='row'><div class='testt'>" +  " <a class='inline' href='" + $(this).attr("src") + "' " + " data-toggle='lightbox'></div></div<");
 
         });
 
