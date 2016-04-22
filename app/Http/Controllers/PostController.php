@@ -159,14 +159,15 @@ class PostController extends Controller
                 // if everything is ok, try to upload file
                 } else {
                     $uploadedFiles[] = $target_file;
+                    //echo json_encode($_SERVER['DOCUMENT_ROOT'].$target_file); die;
 
                     // For some reason, the media temple configuration has a hard time
                     // moving files. I had to manually set the upload path in php.ini
                     // in: cd ~/../../etc after logging into SSH
                     // more info: https://mediatemple.net/community/products/grid/204403894/how-can-i-edit-the-php.ini-file
-                    if(strpos($_SERVER['DOCUMENT_ROOT'], 'home'))
-                        $rootPath = '/nfs/c04/h05/mnt/67560/domains/mcuhq.com/html/public/'.$target_file;
-                    else
+//                    if(strpos($_SERVER['DOCUMENT_ROOT'], 'home'))
+//                        $rootPath = '/nfs/c04/h05/mnt/67560/domains/mcuhq.com/html/public/'.$target_file;
+//                    else
                         $rootPath = $_SERVER['DOCUMENT_ROOT'].$target_file;
 
 
@@ -261,7 +262,7 @@ class PostController extends Controller
             $message = 'Post saved successfully';
         } else {
             // Only allow an admin to post content directly to website before being reviewed
-            if(Auth::user()->is_admin()) {
+            if($request->user()->role == 'admin') {
                 $post->active = 1;
                 $message = 'Post published successfully';
             }
