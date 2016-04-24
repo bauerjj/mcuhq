@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.min.css"
           type="text/css"/>
 
-    {!! Minify::stylesheet("/bower_components/bootstrap-markdown-editor/dist/css/bootstrap-markdown-editor.css") !!}
+    {!! Minify::stylesheet("/bower_components/bootstrap-markdown-editor/css/bootstrap-markdown-editor.css") !!}
 
 
 @endsection
@@ -49,7 +49,7 @@
 
                 <input type="hidden" name="body" id="body-text">
 
-                <div id="editor">{{ old('body') }}</div>
+                <textarea name="body" id="editor">{{ old('body') }}</textarea>
                 <br/>
 
                 <div class="alert alert-info">
@@ -201,7 +201,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
-    {!! Minify::javascript("/bower_components/bootstrap-markdown-editor/dist/js/bootstrap-markdown-editor.js") !!}
+    {!! Minify::javascript("/bower_components/bootstrap-markdown-editor/js/bootstrap-markdown-editor.js") !!}
 
 
 
@@ -374,17 +374,9 @@
             }
         });
 
-        $('#editor').markdownEditor('setContent','{{ old('body') }}') // NEED THIS to repopluate form if errors!
-
-        // Can't repopluate!
-        //$("#upload-file-info").html('{{old('file_source')}}')
-        //$("#upload-file-image").val('{{old('file_image')}}')
-
 
         $(function () {
             $('.btn-form').click(function () { // enter here if publishing or drafting
-                var mysave = $('#editor').markdownEditor('content')
-                $('#body-text').val(mysave);
                 $('#compiler-assembler-input').val($('#compiler-assembler').val())
                 $('#micro-input').val($('#micro').val())
                 $('#topics-input').val($('#topic-dropdown').val())
