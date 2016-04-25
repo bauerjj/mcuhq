@@ -224,8 +224,8 @@ class PostController extends Controller
             'micro' => 'required',
             'languages' => 'arrayCountMax:3',
             'compiler-assembler' => 'required|arrayCountMax:3|arrayCountMin:1',
-            'file_source'=> 'max:10000|mimes:zip', // don't require this
-            'file_image'=> 'max:10000|image', // don't require this
+            'file_source'=> 'max:50000|mimes:zip', // don't require this
+            'file_image'=> 'max:50000|image', // don't require this
         ]);
 
 
@@ -417,8 +417,8 @@ class PostController extends Controller
             'micro' => 'required',
             'languages' => 'arrayCountMax:3',
             'compiler-assembler' => 'required|arrayCountMax:3',
-            'file_source'=> 'max:10000|mimes:zip', // don't require this
-            'file_image'=> 'max:10000|image', // don't require this
+            'file_source'=> 'max:50000|mimes:zip', // don't require this
+            'file_image'=> 'max:50000|image', // don't require this
         ]);
 
 
