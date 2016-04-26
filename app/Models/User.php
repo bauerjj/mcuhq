@@ -26,6 +26,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = ['id' => 'integer'];
+
     // user has many posts
     public function posts()
     {
@@ -45,6 +53,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
         return false;
     }
+
     public function is_admin()
     {
         $role = $this->role;
@@ -53,5 +62,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             return true;
         }
         return false;
+    }
+
+    public function getAuthor()
+    {
+        return [
+            'id'     => $this->id,
+            'name'   => $this->name,
+            'email'  => $this->email,
+            'url'    => $this->url,
+            'avatar' => 'gravatar',
+            'admin'  => $this->role === 'admin',
+        ];
     }
 }

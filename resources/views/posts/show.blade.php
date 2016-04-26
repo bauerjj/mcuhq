@@ -16,6 +16,14 @@
     </header>
 @endsection
 
+@section('head')
+     {{--For the comments plugin--}}
+    <link rel="stylesheet" href="/vendor/comments/css/prism-okaidia.css">
+    <link rel="stylesheet" href="/vendor/comments/css/comments.css">
+    <link rel="stylesheet" href="/vendor/comments/css/demo.css">
+
+@endsection
+
 
 @section('center')
 
@@ -41,45 +49,25 @@
                 <div>
                     {!! $post->body_html !!}
                 </div>
-                <div>
-                    <h2>Leave a comment</h2>
-                </div>
-                @if(Auth::guest())
-                    <p>Login to Comment</p>
-                @else
-                    <div class="panel-body">
-                        <form method="post" action="/comment/add">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="on_post" value="{{ $post->id }}">
-                            <input type="hidden" name="slug" value="{{{ $post->slug }}}">
 
-                            <div class="form-group">
-                                <textarea required="required" placeholder="Enter comment here" name="body"
-                                          class="form-control"></textarea>
-                            </div>
-                            <input type="submit" name='post_comment' class="btn btn-success" value="Post"/>
-                        </form>
+
+                <div class="">
+                    <h2>Comments</h2>
+                    <div id="demo" class="">
+                        @if(!Auth::guest() && Auth::user()->is_admin())
+                        <div class="pull-left">
+                            <a href="{{ route('comments.admin.index') }}" class="btn btn-default btn-sm">Admin Dashboard</a>
+                        </div>
+                        @endif
+                            {{--If comments arn't showing up: do php artisan config:cache and composer dump-autoload--}}
+
+                        <div class="clearfix"></div>
+
+                        @include('help')
+
+                                <!-- Display comments. -->
+                        @include('comments::display', ['pageId' => $post->id, 'id' => 'comments'])
                     </div>
-                @endif
-                <div id="comments">
-                    @if($comments)
-                        <ul style="list-style: none; padding: 0">
-                            @foreach($comments as $comment)
-                                <li class="panel-body">
-                                    <div class="list-group">
-                                        <div class="list-group-item author-name">
-                                            <h3>{{{ $comment->author->name }}}</h3>
-
-                                            <p>{{ $comment->created_at->format('M d,Y \a\t h:i a') }}</p>
-                                        </div>
-                                        <div class="list-group-item">
-                                            <p>{{ $comment->body }}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
                 </div>
             @else
                 404 error
@@ -160,6 +148,16 @@
 
 @section('script')
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.7.0/bootstrap-lightbox.min.js"></script>--}}
+
+     {{--For the comments plugin--}}
+    <script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.min.js"></script>
+    <script src="/vendor/comments/js/utils.js"></script>
+    <script src="/vendor/comments/js/comments.min.js"></script>
+    <script>
+        // Vue.config.debug = true;
+        new Vue({el: '#comments'});
+    </script>
+    {{--///////////////////////////////////////////////////////--}}
 
     <script>
         // So to make any large images fit inside viewing area

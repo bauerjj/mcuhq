@@ -17,6 +17,7 @@ use App\Events\ViewPostHandler;
 use Event;
 use App\Models\User;
 use Redirect;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 //use App\Http\Requests\PostFormRequest; // don't use for validation anymore
 use Illuminate\Http\Request;
@@ -29,6 +30,14 @@ class PostController extends Controller
     //
     public function index(Request $request)
     {
+
+//        Mail::send('static.about', array('key' => 'value'), function($message)
+//        {
+//            $message->from('xxxxx@xxxx.com');
+//            $message->to('xxxxx@xxxx.com', 'John Smith')->subject('Welcome!');
+//        });
+
+
         $query = Posts::query();
         $query->with('comments')->count();
 
@@ -66,7 +75,7 @@ class PostController extends Controller
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
                 '*',
-                DB::raw('(SELECT count(*) FROM comments WHERE on_post = posts.id) as comments_count')
+                DB::raw('(SELECT count(*) FROM comments WHERE page_id = posts.id) as comments_count')
             ));
 
         // fetch 5 posts from db which are active and latest

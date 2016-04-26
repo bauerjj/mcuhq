@@ -16,6 +16,6 @@ class Comments extends Model
     // returns post of any comment
     public function post()
     {
-        return $this->belongsTo('App\Models\Posts','on_post');
+        return $this->belongsTo('App\Models\Posts','page_id');
     }
 }

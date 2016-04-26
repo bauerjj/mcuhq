@@ -163,6 +163,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\ValidatorServiceProvider::class,
+        Hazzard\Comments\CommentsServiceProvider::class,
 
     ],
 
