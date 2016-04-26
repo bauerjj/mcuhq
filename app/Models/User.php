@@ -42,7 +42,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     // user has many comments
     public function comments()
     {
-        return $this->hasMany('App\Models\Comments','from_user');
+        return $this->hasMany('App\Models\Comments','user_id')->where('status','=','approved');
     }
     public function can_post()
     {

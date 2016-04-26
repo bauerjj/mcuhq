@@ -84,6 +84,9 @@
             // scrollLock: false // true or false
         });
 
+        // Vue.config.debug = true;
+        new Vue({el: '#comments'});
+
 
     });
 

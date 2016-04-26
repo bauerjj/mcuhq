@@ -11,7 +11,7 @@ class Comments extends Model
     // user who has commented
     public function author()
     {
-        return $this->belongsTo('App\Models\User','from_user');
+        return $this->belongsTo('App\Models\User','user_id');
     }
     // returns post of any comment
     public function post()
