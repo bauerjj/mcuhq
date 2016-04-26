@@ -20,7 +20,6 @@
      {{--For the comments plugin--}}
     <link rel="stylesheet" href="/vendor/comments/css/prism-okaidia.css">
     <link rel="stylesheet" href="/vendor/comments/css/comments.css">
-    <link rel="stylesheet" href="/vendor/comments/css/demo.css">
 
 @endsection
 
@@ -53,13 +52,20 @@
 
                 <div class="">
                     <h2>Comments</h2>
-                    <div id="demo" class="">
-                        @if(!Auth::guest() && Auth::user()->is_admin())
-                        <div class="pull-left">
-                            <a href="{{ route('comments.admin.index') }}" class="btn btn-default btn-sm">Admin Dashboard</a>
-                        </div>
-                        @endif
+                    <div id="demoo" class="">
+                        {{--@if(!Auth::guest() && Auth::user()->is_admin())--}}
+                        {{--<div class="pull-left">--}}
+                            {{--<a href="{{ route('comments.admin.index') }}" class="btn btn-default btn-sm">Admin Dashboard</a>--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
                             {{--If comments arn't showing up: do php artisan config:cache and composer dump-autoload--}}
+                        {{--comments/src/Jobs/FetchComments.php commment out the following:--}}
+                        {{--//            if ($this->author->guest()) {--}}
+                        {{--//                $query->authorEmail($email, 'or');--}}
+                        {{--//            } elseif ($email) {--}}
+                        {{--//                $query->userId($this->author->id(), 'or');--}}
+                        {{--//            }--}}
+                        {{--Also comment out the URL portion of the form in 'post-form.blade.php'--}}
 
                         <div class="clearfix"></div>
 

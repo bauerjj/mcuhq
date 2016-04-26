@@ -114,7 +114,7 @@ class FilterController extends Controller
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
                 '*',
-                DB::raw('(SELECT count(*) FROM comments WHERE page_id = posts.id) as comments_count')
+                DB::raw("(SELECT count(*) FROM comments WHERE page_id = posts.id AND comments.status = 'approved') as comments_count")
             ));
 
         $posts = $query->where('active', 1)
@@ -294,7 +294,7 @@ class FilterController extends Controller
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
                 '*',
-                DB::raw('(SELECT count(*) FROM comments WHERE page_id = posts.id) as comments_count')
+                DB::raw("(SELECT count(*) FROM comments WHERE page_id = posts.id AND comments.status = 'approved') as comments_count")
             ));
 
         $posts = $query->where('active', 1)
@@ -489,7 +489,7 @@ class FilterController extends Controller
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
                 '*',
-                DB::raw('(SELECT count(*) FROM comments WHERE page_id = posts.id) as comments_count')
+                DB::raw("(SELECT count(*) FROM comments WHERE page_id = posts.id AND comments.status = 'approved') as comments_count")
             ));
 
         $posts = $query->where('active', 1)

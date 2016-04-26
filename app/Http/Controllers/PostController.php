@@ -75,7 +75,7 @@ class PostController extends Controller
         $query->select( ////http://stackoverflow.com/questions/24208502/laravel-orderby-relationship-count
             array(
                 '*',
-                DB::raw('(SELECT count(*) FROM comments WHERE page_id = posts.id) as comments_count')
+                DB::raw("(SELECT count(*) FROM comments WHERE page_id = posts.id AND comments.status = 'approved') as comments_count")
             ));
 
         // fetch 5 posts from db which are active and latest
@@ -326,7 +326,7 @@ class PostController extends Controller
         // Grab other associated display things
         $categories = $post->categories;
         $languages = $post->languages;
-        $comments = $post->comments;
+        //$comments = $post->comments;
 
         $compiler = $post->compiler;
         $mcu = $post->mcu;
@@ -353,7 +353,7 @@ class PostController extends Controller
 
 
 
-        return view('posts.show')->withPost($post)->withComments($comments)->withCategories($categories)
+        return view('posts.show')->withPost($post)->withCategories($categories)
             ->withLanguages($languages)
             ->withVendor($vendor)
             ->withArch($arch)

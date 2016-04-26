@@ -69,10 +69,10 @@
                             </ul>
                         </td>
                     </tr>
-                    <tr>
-                        <td><span>[youtube]</span>N8ZAx_OvKpM<span>[/youtube]</span></td>
-                        <td><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/N8ZAx_OvKpM?rel=0&amp;showinfo=0" allowfullscreen=""></iframe></div></td>
-                    </tr>
+                    {{--<tr>--}}
+                        {{--<td><span>[youtube]</span>N8ZAx_OvKpM<span>[/youtube]</span></td>--}}
+                        {{--<td><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/N8ZAx_OvKpM?rel=0&amp;showinfo=0" allowfullscreen=""></iframe></div></td>--}}
+                    {{--</tr>--}}
                     </tbody>
                 </table>
             </div>
@@ -141,7 +141,6 @@
 
 <style>
     .help {
-        margin-top: 20px;
         padding-left: 20px;
         list-style-type: circle;
     }

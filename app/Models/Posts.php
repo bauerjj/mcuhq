@@ -16,7 +16,7 @@ class Posts extends Model
     // returns all comments on that post
     public function comments()
     {
-        return $this->hasMany('App\Models\Comments','page_id');
+        return $this->hasMany('App\Models\Comments','page_id')->where('status','=','approved');
     }
 
     public function categories()
