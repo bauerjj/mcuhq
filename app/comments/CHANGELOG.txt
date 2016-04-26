@@ -1,0 +1,26 @@
+# Change Log
+
+Go to https://git.hazzardweb.com for the latest changes.
+
+## 1.1.1 - 2016-03-01
+
+- Fix comment replies. To update run:
+ `php artisan vendor:publish --provider="Hazzard\Comments\CommentsServiceProvider" --tag=public --force`
+
+## 1.1.0 - 2016-02-21
+
+- Upgrade Guide: http://j.mp/acsl-110
+- Upgrade to Vue 1.0.
+- Refactor components.
+- Switch to Sass.
+- Update dependencies.
+- Remove bower.
+
+## 1.0.1 - 2015-09-14
+
+- Fix date.
+- Fix timeago plugin message.
+
+## 1.0.0 - 2015-09-01
+
+- Initial release.
