@@ -86,7 +86,7 @@
 @section('right_sidebar')
     <div class="">
         @if($post->main_image != '')
-            <img src="{{'/uploads/'.$post->main_image}}" class="main-image-preview" alt="Image">
+            <img src="{{'/uploads/'.$post->main_image}}" class="main-image-preview img-responsive" alt="Image">
         @endif
         @if($post->source_file == '')
             <a href="#" type="button" class="btn btn-block btn-ar btn-primary disabled">No Source Download</a>
@@ -159,7 +159,7 @@
 
     <script>
         // So to make any large images fit inside viewing area
-        $( ".main-content img" ).addClass( "img-responsive img-thumbnail center-block" );
+        //$( ".main-content img" ).addClass( "img-responsive img-thumbnail center-block" );
         $("table").addClass("table-bordered table table-striped");
 
         $('.main-content').find('img').each(function() {

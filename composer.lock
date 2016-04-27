@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "afe6d91aad04b2969fd3fa70696814c9",
-    "content-hash": "cd56fe8bc80998e5287c7648b68e8fab",
+    "hash": "8bd79548da82eead423695a4fd9cbcf5",
+    "content-hash": "9831aecd957f519db77e96aea712cab2",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -255,22 +255,22 @@
         },
         {
             "name": "graham-campbell/markdown",
-            "version": "v6.0.1",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
-                "reference": "29e4f49b40a3b588cc6154d4e5e2df90d89fd898"
+                "reference": "2208ec910d9880d6bca28d332ae7f3b7350355d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/29e4f49b40a3b588cc6154d4e5e2df90d89fd898",
-                "reference": "29e4f49b40a3b588cc6154d4e5e2df90d89fd898",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/2208ec910d9880d6bca28d332ae7f3b7350355d1",
+                "reference": "2208ec910d9880d6bca28d332ae7f3b7350355d1",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.1.*|5.2.*",
-                "illuminate/support": "5.1.*|5.2.*",
-                "illuminate/view": "5.1.*|5.2.*",
+                "illuminate/contracts": "5.1.*|5.2.*|5.3.*",
+                "illuminate/support": "5.1.*|5.2.*|5.3.*",
+                "illuminate/view": "5.1.*|5.2.*|5.3.*",
                 "league/commonmark": "^0.13",
                 "php": ">=5.5.9"
             },
@@ -283,7 +283,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.0-dev"
+                    "dev-master": "6.1-dev"
                 }
             },
             "autoload": {
@@ -313,7 +313,7 @@
                 "laravel",
                 "markdown"
             ],
-            "time": "2016-01-30 14:29:18"
+            "time": "2016-04-26 14:28:21"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -742,16 +742,16 @@
         },
         {
             "name": "mews/purifier",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/Purifier.git",
-                "reference": "8a242619c848d7477b8ff1b21a54df5ebb7e22d5"
+                "reference": "73c8b50c5626a5d0e416ceea745587d582d10455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/8a242619c848d7477b8ff1b21a54df5ebb7e22d5",
-                "reference": "8a242619c848d7477b8ff1b21a54df5ebb7e22d5",
+                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/73c8b50c5626a5d0e416ceea745587d582d10455",
+                "reference": "73c8b50c5626a5d0e416ceea745587d582d10455",
                 "shasum": ""
             },
             "require": {
@@ -800,7 +800,7 @@
                 "security",
                 "xss"
             ],
-            "time": "2016-02-02 14:52:29"
+            "time": "2016-04-26 15:21:32"
         },
         {
             "name": "monolog/monolog",
@@ -2318,6 +2318,61 @@
                 "environment"
             ],
             "time": "2016-04-15 10:48:49"
+        },
+        {
+            "name": "webuni/commonmark-attributes-extension",
+            "version": "0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webuni/commonmark-attributes-extension.git",
+                "reference": "c4ca74cf86889b3e64305684234c33b6cb6733f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webuni/commonmark-attributes-extension/zipball/c4ca74cf86889b3e64305684234c33b6cb6733f6",
+                "reference": "c4ca74cf86889b3e64305684234c33b6cb6733f6",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^0.11|^0.12|^0.13",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.3",
+                "symfony/var-dumper": "^2.7",
+                "webuni/commonmark-table-extension": "0.4.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webuni\\CommonMark\\AttributesExtension\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Hasoň",
+                    "email": "martin.hason@gmail.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "The attributes extension adds a syntax to define attributes on the various HTML elements in CommonMark PHP implementation.",
+            "homepage": "https://github.com/webuni/commonmark-attributes-extension",
+            "keywords": [
+                "attributes",
+                "commonmark",
+                "markdown"
+            ],
+            "time": "2016-01-14 23:00:32"
         },
         {
             "name": "webuni/commonmark-table-extension",

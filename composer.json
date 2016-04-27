@@ -13,6 +13,7 @@
         "mews/purifier": "^2.0",
         "roumen/sitemap": "2.6.*",
         "webuni/commonmark-table-extension": "*",
+        "webuni/commonmark-attributes-extension": "*",
 		"s9e/text-formatter": "^0.4"
     },
     "require-dev": {

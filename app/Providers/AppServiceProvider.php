@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Webuni\CommonMark\TableExtension\TableExtension;
+use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 use League\CommonMark\Environment;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->resolving('markdown.environment', function (Environment $environment) {
             $environment->addExtension(new TableExtension());
+            $environment->addExtension(new AttributesExtension());
+
         });
     }
 }

@@ -7,6 +7,7 @@ use App\Models\McuCompilers;
 use App\Models\McuLanguages;
 use App\Models\Mcus;
 use App\Models\McuVendors;
+use DOMDocument;
 use Input;
 use Validator;
 use Session;
@@ -23,6 +24,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown; // use this to convert markdown to html
 use Illuminate\Pagination\LengthAwarePaginator;
+
+
 
 // @see http://stackoverflow.com/a/35347256
 class PostController extends Controller
@@ -266,6 +269,17 @@ class PostController extends Controller
         $post->source_file = $file_source_dest;
         $post->main_image = $main_image_dest;
 
+        ////////// Find all images and center them and make them responsive!
+        $dom = new DOMDocument;
+        $dom->loadHTML($post->body_html);
+        $images = $dom->getElementsByTagName('img');
+        foreach ($images as $image) {
+            $image->setAttribute('class', 'img-responsive img-thumbnail center-block');
+        }
+        $html = $dom->saveHTML();
+        $post->body_html = $html;
+        //////////
+
         if ($request->has('save')) {
             $post->active = 0;
             $message = 'Post saved successfully';
@@ -459,6 +473,18 @@ class PostController extends Controller
             $post->description = $request->input('description');
             $post->body = $request->input('body');
             $post->body_html = Purifier::clean(Markdown::convertToHtml($request->input('body')));
+
+            ////////// Find all images and center them and make them responsive!
+            $dom = new DOMDocument;
+            $dom->loadHTML($post->body_html);
+            $images = $dom->getElementsByTagName('img');
+            foreach ($images as $image) {
+                    $image->setAttribute('class', 'img-responsive img-thumbnail center-block');
+            }
+            $html = $dom->saveHTML();
+            $post->body_html = $html;
+            //////////
+
             $post->more_info_link = $request->get('more_info_link');
             $post->mcu_id = $request->get('micro');
             $post->compiler_id = $request->get('compiler-assembler');
