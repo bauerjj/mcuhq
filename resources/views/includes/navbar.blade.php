@@ -217,6 +217,10 @@
                 </ul>
             </li>
             <li>
+                <a href="/blog">Blog</a>
+
+            </li>
+            <li>
                 <a href="/about">About</a>
 
             </li>
@@ -239,6 +243,11 @@
                                     <li>
                                         <a href="{{ url('/new-post') }}">Add new post</a>
                                     </li>
+                                    @if(Auth::user()->is_admin())
+                                        <li>
+                                            <a href="{{ url('/new-blog') }}">Add new blog</a>
+                                        </li>
+                                    @endif
                                     <li>
                                         <a href="{{ url('/user/'.Auth::id().'/posts') }}">My Posts</a>
                                     </li>

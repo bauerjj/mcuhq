@@ -171,6 +171,8 @@
         });
 
 
+
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
@@ -204,6 +206,8 @@
     <script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.min.js"></script>
     <script src="/vendor/comments/js/utils.js"></script>
     <script src="/vendor/comments/js/comments.min.js"></script>
+    <script>// Vue.config.debug = true;
+        new Vue({el: '#comments'});</script>
     {{--///////////////////////////////////////////////////////--}}
 
 

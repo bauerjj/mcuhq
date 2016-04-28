@@ -74,6 +74,9 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
     Route::get('/blog', 'HomeController@blog');
     Route::get('/about','PostController@about');
 
+    Route::get('/blog','BlogController@index');
+    Route::get('/new-blog','BlogController@create');
+
     Route::get('/search','FilterController@search');
     Route::get('/vendors/{vendor}','FilterController@vendor')->where('vendor','[A-Za-z0-9-_]+');
     Route::get('/tags/{tag}','FilterController@tag')->where('tag','[A-Za-z0-9-_]+');
