@@ -1,8 +1,8 @@
 <ul class="help">
     <li>You can use <a href="#" data-toggle="modal" data-target="#bbcode-modal">BBCodes</a> and <a href="#" data-toggle="modal" data-target="#emoji-modal">Emoticons</a>.</li>
-    <li>URLs will be conveted into clickable links.</li>
-    <li>Image URLs will be conveted into actual images.</li>
-    <li>URLs from YouTube, Facebook, Twitter, <a href="http://s9etextformatter.readthedocs.org/Plugins/MediaEmbed/Sites/" target="_blank">etc.</a> will be embedded.</li>
+    {{--<li>URLs will be conveted into clickable links.</li>--}}
+    {{--<li>Image URLs will be conveted into actual images.</li>--}}
+    {{--<li>URLs from YouTube, Facebook, Twitter, <a href="http://s9etextformatter.readthedocs.org/Plugins/MediaEmbed/Sites/" target="_blank">etc.</a> will be embedded.</li>--}}
 </ul>
 
 <div class="modal fade" id="bbcode-modal" tabindex="-1" role="dialog">

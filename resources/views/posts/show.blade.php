@@ -205,9 +205,15 @@
     {{--For the comments plugin--}}
     <script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.min.js"></script>
     <script src="/vendor/comments/js/utils.js"></script>
-    <script src="/vendor/comments/js/comments.min.js"></script>
-    <script>// Vue.config.debug = true;
-        new Vue({el: '#comments'});</script>
+    <script>
+        $( document ).ready(function(){
+            $.getScript('/vendor/comments/js/comments.min.js', function(){
+                Vue.config.debug = true;
+                new Vue({el: '#comments'});
+            })
+        });
+    </script>
+
     {{--///////////////////////////////////////////////////////--}}
 
 
