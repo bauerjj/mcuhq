@@ -1,5 +1,7 @@
 @extends('layouts.full')
 
+@section('head') <meta name="robots" content="noindex, follow"> @endsection
+
 @section('header')
     <header class="main-header">
         <div class="container">

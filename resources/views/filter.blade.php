@@ -3,7 +3,15 @@
 @section('title'){{$title . ' | mcuhq'}} @endsection
 @section('meta'){{$meta}} @endsection
 
+@section('head')
+    @if(isset($canonical))
+        <link rel="canonical" href="{{$canonical}}" />
+    @endif
+@endsection
+
 @section('header')
+
+
     <header class="main-header">
         <div class="container">
 

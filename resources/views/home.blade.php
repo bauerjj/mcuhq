@@ -4,6 +4,14 @@
 
 @section('meta')A community-driven analysis and discussion of microcontroller projects and ideas  @endsection
 
+@section('head')
+    @if(isset($canonical))
+        <link rel="canonical" href="{{$canonical}}" />
+        @else
+        <link rel="canonical" href="{{url("/")}}" />
+    @endif
+@endsection
+
 @section('header')
     <header class="main-header animated fadeInDown animation-delay-1">
         <div class="container home-phrase">

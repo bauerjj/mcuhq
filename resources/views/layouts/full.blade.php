@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @yield('head')
-
 
     @include('includes.head') {{-- importantt this comes last so that custom.css is not overriden--}}
+
+    @yield('head')
 
 </head>
 

@@ -1,5 +1,8 @@
 @extends('layouts.full')
 
+@section('head') <meta name="robots" content="noindex, follow"> @endsection
+
+
 @section('header')
     <header class="main-header">
         <div class="container">
@@ -15,7 +18,7 @@
 
 
 @section('center')
-
+<!-- Place a rel="nofollow" inside the anchors of the "view all post" since it will contain duplicate content -->
     <div>
         <h3 class="first-letter padding-left-15">{{ $user->name }}</h3>
         <ul class="list-group">
@@ -33,21 +36,21 @@
                         <td>Total Posts</td>
                         <td> {{$posts_count}}</td>
                         @if($author && $posts_count)
-                            <td><a href="{{ url('/my-all-posts')}}">Show All</a></td>
+                            <td><a href="{{ url('/my-all-posts',array('rel','nofollow'))}}" rel="nofollow">Show All</a></td>
                         @endif
                     </tr>
                     <tr>
                         <td>Published Posts</td>
                         <td>{{$posts_active_count}}</td>
                         @if($posts_active_count)
-                            <td><a href="{{ url('/user/'.$user->id.'/posts')}}">Show All</a></td>
+                            <td><a href="{{ url('/user/'.$user->id.'/posts')}}" rel="nofollow">Show All</a></td>
                         @endif
                     </tr>
                     <tr>
                         <td>Posts in Draft </td>
                         <td>{{$posts_draft_count}}</td>
                         @if($author && $posts_draft_count)
-                            <td><a href="{{ url('my-drafts')}}">Show All</a></td>
+                            <td><a href="{{ url('my-drafts',array('rel','nofollow'))}}" rel="nofollow">Show All</a></td>
                         @endif
                     </tr>
                 </table>

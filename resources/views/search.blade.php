@@ -1,5 +1,5 @@
 @extends('layouts.full')
-
+@section('head') <meta name="robots" content="noindex"> @endsection
 @section('title') Search - {{$search}} | mcuhq @endsection
 
 @section('header')

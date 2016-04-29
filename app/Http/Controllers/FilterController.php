@@ -70,6 +70,8 @@ class FilterController extends Controller
 
         // Get tag that matches filter
         $tagRoot = DB::table('tagging_tags')->where('slug', $tagInput)->first();
+        $canonical = url('tags/'.$tagRoot->slug);
+
 
         $filterCompiler = $request->input('compiler');
         if(($filterCompiler!='all' && isset($filterCompiler))) {
@@ -228,7 +230,7 @@ class FilterController extends Controller
 
             ->withUrl(url('/tags/'.$tagRoot->slug))
             ->withBreadcrumb('Tag - ' .$tagRoot->name)
-            ->withTitle("Project and tutorials tagged as $tagRoot->name")
+            ->withTitle("Project and Tutorials tagged as $tagRoot->name")
             ->withDescription('')
             ->withMeta('Most recent projects and tutorials tagged with ' . $tagRoot->name)
             ->withTopic('Tags')
@@ -240,6 +242,7 @@ class FilterController extends Controller
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
+            ->withCanonical($canonical)
             ;
 
 
@@ -249,6 +252,8 @@ class FilterController extends Controller
         // Get the categoryID
         $category = Categories::where('slug', $category)->first();
         $categoryID = $category->id;
+        $canonical = url('categories/'.$category->slug);
+
 
 
         $query = Posts::query();
@@ -409,7 +414,7 @@ class FilterController extends Controller
             ->withUrl(url('/categories/'.$category->slug))
             ->withTopic('Category')
             ->withBreadcrumb('Category - ' .$category->name)
-            ->withTitle("$category->name projects and tutorials")
+            ->withTitle("$category->name Projects and Tutorials")
             ->withDescription($category->description)
             ->withMeta('All projects and tutorials in ' . $category->name . ' category')
 
@@ -421,6 +426,7 @@ class FilterController extends Controller
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
+            ->withCanonical($canonical)
 
             ;
 
@@ -432,6 +438,7 @@ class FilterController extends Controller
         // Get the vendor ID
         $vendor = McuVendors::where('slug', $vendor)->first();
         $vendorId = $vendor->id;
+        $canonical = url('vendors/'.$vendor->slug);
 
 
         $filterCompiler = $request->input('compiler');
@@ -606,9 +613,9 @@ class FilterController extends Controller
             ->withUrl(url('/vendors/'.$vendor->slug))
             ->withBreadcrumb('Vendor - ' .$vendor->name)
             ->withTopic('Vendors')
-            ->withTitle("$vendor->name projects and tutorials")
+            ->withTitle("$vendor->name Projects and Tutorials")
             ->withDescription($vendor->description)
-            ->withMeta('All projects and tutorials related to ' . $vendor->name)
+            ->withMeta('All '. $vendor->name. ' projects and tutorials')
 
 
             ->withCategories($categoryZ)
@@ -618,6 +625,7 @@ class FilterController extends Controller
 
 //            ->withLanguages($languages)
             ->withTags($tagsVals)
+            ->withCanonical($canonical)
             ;
     }
 }

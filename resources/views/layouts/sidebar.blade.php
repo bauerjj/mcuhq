@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 
-    @yield('head')
-
-
     @include('includes.head')
+
+    @yield('head')
 
 </head>
 

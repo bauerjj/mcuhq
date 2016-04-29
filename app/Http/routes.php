@@ -110,23 +110,23 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
         // add every post to the sitemap
         foreach ($posts as $post)
         {
-            $sitemap->add(url($post->id .'/'.$post->slug), $post->updated_at, 0.9, 'daily');
+            $sitemap->add(url($post->id .'/'.$post->slug), $post->updated_at, 0.99, 'weekly');
         }
 
 
         foreach ($tags as $tag)
         {
-            $sitemap->add(url('tags/'.$tag->slug), '2016-03-26T12:30:00+02:00', 0.4, 'weekly');
+            $sitemap->add(url('tags/'.$tag->slug), '2016-03-26T12:30:00+02:00', 0.7, 'weekly');
         }
 
         foreach ($categories as $category)
         {
-            $sitemap->add(url('categories/'.$category->slug), $category->updated_at, 0.4, 'weekly');
+            $sitemap->add(url('categories/'.$category->slug), $category->updated_at, 0.2, 'weekly');
         }
 
         foreach ($vendors as $vendor)
         {
-            $sitemap->add(url('vendors/'.$vendor->slug), $vendor->updated_at, 0.4, 'weekly');
+            $sitemap->add(url('vendors/'.$vendor->slug), $vendor->updated_at, 0.8, 'weekly');
         }
 
         // generate your sitemap (format, filename)

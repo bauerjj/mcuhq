@@ -47,9 +47,11 @@ class PostController extends Controller
         $vendorSlug = $request->input('vendor');
         $vendor = McuVendors::where('slug', $vendorSlug)->first();
         $vendorMeta = "";
+        $canonical = url('/');
         if(isset($vendor)) {
             $vendorFilter = array('vendor_id' => $vendor->id);
             $vendorMeta = ' '. $vendor->name;
+            $canonical = url('/vendors/'.$vendor->slug);
         }
         else if($vendorSlug == '' || $vendorSlug == 'all')
             $vendorFilter = array();
@@ -104,6 +106,7 @@ class PostController extends Controller
             ->withInputs($inputs)
             ->withVendor($vendorMeta)
             ->withSort($sortMeta)
+            ->withCanonical($canonical)
         ;
 
     }
