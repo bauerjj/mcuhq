@@ -29,7 +29,7 @@
 @endsection
 
 @section('center')
-    <form action="/new-post" method="post" class="input-post form-vertical" enctype="multipart/form-data">
+    <form action="/new-blog" method="post" class="input-post form-vertical" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" >
 
         <div class="form-group">

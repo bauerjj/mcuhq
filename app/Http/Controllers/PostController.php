@@ -315,10 +315,6 @@ class PostController extends Controller
             $post->tag($request->get('tags')); // delete current tags and save new tags
 
         }
-
-
-
-
         return redirect('/'.$post->id.'/' . $post->slug)->withMessage($message);
     }
 

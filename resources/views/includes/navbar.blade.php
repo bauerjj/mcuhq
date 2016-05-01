@@ -115,7 +115,6 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
-                                        <img src="microchip_headLogo.jpg"  class="navbarimg"/>
                                         <div>
                                             <a href="{{url('vendors/microchip?mcu=pic10')}}" class="tag">PIC10</a>
                                             <a href="{{url('vendors/microchip?mcu=pic12')}}" class="tag">PIC12</a>
@@ -216,10 +215,17 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="/blog">Blog</a>
+            @if (strpos(Route::getCurrentRoute()->getActionName(),'BlogController'))
+                <li class="addBlue">
+                    <a href="/blog">Blog</a>
+                 </li>
+            @else
+                <li>
+                    <a href="/blog">Blog</a>
+                </li>
 
-            </li>
+            @endif
+
             <li>
                 <a href="/about">About</a>
 

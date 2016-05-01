@@ -76,6 +76,11 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
 
     Route::get('/blog','BlogController@index');
     Route::get('/new-blog','BlogController@create');
+    Route::post('/new-blog','BlogController@store');
+    Route::get('/blog/{id}/{slug}',['as' => 'blog', 'uses' => 'BlogController@show'])->where(['id' => '[0-9]+', 'slug' => '[A-Za-z0-9-_]+']);
+    Route::get('/blog/edit/{id}/{slug}','BlogController@edit');
+    Route::post('/blog/update','BlogController@update');
+    Route::post('/blog/delete/{id}','BlogController@destroy');
 
     Route::get('/search','FilterController@search');
     Route::get('/vendors/{vendor}','FilterController@vendor')->where('vendor','[A-Za-z0-9-_]+');
