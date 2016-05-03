@@ -91,8 +91,8 @@
         <div class="panel-item">
             <ul class="list-unstyled">
                 <li><strong>Author:</strong> <a href="{{ url('/user/'.$blog->author_id)}}">{{ $blog->author->name }}</a></li>
-                <li><strong>Created:</strong> {{ $blog->created_at->format('M d,Y') }}</li>
-                <li><strong>Updated:</strong> {{ $blog->updated_at->format('M d,Y') }}</li>
+                <li><strong>Created:</strong> {{ $blog->created_at->format('M d, Y') }}</li>
+                <li><strong>Updated:</strong> {{ $blog->updated_at->format('M d, Y') }}</li>
                 {{--<li><strong>Views:</strong> {{$blog->view_counter}}</li>--}}
                 <li><strong>Comments:</strong> <a href="#comments">{{$blog->commentsCount()}}</a></li>
             </ul>
