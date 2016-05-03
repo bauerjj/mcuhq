@@ -119,7 +119,9 @@ class BlogController extends Controller
         $blog->body_html = Purifier::clean(Markdown::convertToHtml($request->get('body'))); // convert ONCE here
         $blog->slug = str_slug($blog->title);
         $blog->author_id = $request->user()->id;
-        $blog->main_image = $main_image_dest;
+
+        if($main_image)
+         $blog->main_image = $main_image_dest;
 
         ////////// Find all images and center them and make them responsive!
         $dom = new DOMDocument;

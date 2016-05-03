@@ -244,10 +244,13 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.0/masonry.pkgd.min.js"></script>
     <script>
-        $('.masonry-container').masonry({
-            // options
-            itemSelector: '.masonry-item',
-            columnWidth: '.masonry-item'
+        $( document ).ready(function() {
+            $('.masonry-container').masonry({
+                // options
+                itemSelector: '.masonry-item',
+                columnWidth: '.masonry-item'
+            });
         });
+
     </script>
 @endsection

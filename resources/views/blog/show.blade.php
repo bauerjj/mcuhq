@@ -40,7 +40,7 @@
                 @endif
 
             </h2>
-            <p>{{ $blog->created_at->format('M d,Y') }} By <a
+            <p>{{ $blog->created_at->format('M d, Y') }} By <a
                         href="{{ url('/user/'.$blog->author_id)}}">{{{ $blog->author->name }}}</a></p>
         </div>
         <div class="panel-body">

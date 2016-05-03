@@ -40,7 +40,7 @@
                 @endif
 
             </h2>
-            <p>{{ $post->created_at->format('M d,Y') }} By <a
+            <p>{{ $post->created_at->format('M d, Y') }} By <a
                         href="{{ url('/user/'.$post->author_id)}}">{{{ $post->author->name }}}</a></p>
         </div>
         <div class="panel-body">
