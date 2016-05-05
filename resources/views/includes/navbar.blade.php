@@ -215,7 +215,8 @@
                     </li>
                 </ul>
             </li>
-            @if (strpos(Route::getCurrentRoute()->getActionName(),'BlogController'))
+            @if(Route::getCurrentRoute() != null) <!-- 404 has not route controller -->
+            @if(strpos(Route::getCurrentRoute()->getActionName(),'BlogController'))
                 <li class="addBlue">
                     <a href="/blog">Blog</a>
                  </li>
@@ -224,6 +225,7 @@
                     <a href="/blog">Blog</a>
                 </li>
 
+            @endif
             @endif
 
             <li>

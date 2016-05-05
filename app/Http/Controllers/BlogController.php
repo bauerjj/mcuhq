@@ -21,7 +21,7 @@ class BlogController extends Controller
         $query = Blog::query();
         //$query->with('commentsCount');
 
-        $canonical = url('/');
+        $canonical = url('/blog');
         $sort = $request->input('sort');
 
         $categorySlug = $request->input('category');
@@ -30,7 +30,7 @@ class BlogController extends Controller
         if(isset($category)) {
             $catFilter = array('category_id' => $category->id);
             $vendorMeta = ' '. $category->name;
-            $canonical = url('/'.$category->slug);
+            $canonical = url('/blog/?category='.$category->slug);
         }
         else if($categorySlug == '' || $categorySlug == 'all')
             $catFilter = array();
@@ -44,10 +44,10 @@ class BlogController extends Controller
             $query->orderBy('created_at', 'desc');
             $sortMeta = "Newest";
         }
-        else if($sort == 'comments'){
-            $query->orderBy('comments_count','desc');
-            $sortMeta = "Active";
-        }
+//        else if($sort == 'comments'){
+//            $query->orderBy('comments_count','desc');
+//            $sortMeta = "Active";
+//        }
         else if($sort == 'views'){
             $query->orderBy('view_counter','desc');
             $sortMeta = "Popular";
@@ -68,7 +68,9 @@ class BlogController extends Controller
             'sort' => $request->input('sort'),
             'filter' => $request->input('filter'),
         );
-        return view('blog.home')->withInputs($inputs)->withPosts($blogPosts);
+        return view('blog.home')->withInputs($inputs)->withPosts($blogPosts)
+            ->withCanonical($canonical)
+            ;
     }
 
     public function create(Request $request)

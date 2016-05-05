@@ -2,7 +2,15 @@
 
 @section('title')blog | mcuhq @endsection
 
-@section('meta')Microcontroller plus random thoughs blog | mcuhq  @endsection
+@section('meta')Microcontroller plus related thoughts blog | mcuhq  @endsection
+
+@section('head')
+    @if(isset($canonical))
+        <link rel="canonical" href="{{$canonical}}" />
+    @else
+        <link rel="canonical" href="{{url("/blog")}}" />
+    @endif
+@endsection
 
 @section('header')
     <header class="main-header">
@@ -89,168 +97,25 @@
             </div> <!-- masonry-item  -->
 
             @endforeach
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<div class="video">--}}
-                        {{--<iframe src="http://player.vimeo.com/video/50061391?title=0&amp;byline=0&amp;portrait=0"></iframe>--}}
-                    {{--</div>--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/img14.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/img10.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, laudantium.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/img13.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/img09.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/7.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/img08.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-            {{--<div class="col-md-3 col-sm-6 masonry-item blog-item">--}}
-                {{--<div class="thumbnail">--}}
-                    {{--<img src="assets/img/demo/img22.jpg" class="img-responsive" alt="Image">--}}
-                    {{--<div class="caption">--}}
-                        {{--<h3>An amazing post title</h3>--}}
-                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptate aut recusandae numquam dicta placeat in facilis voluptas dolorem vitae aliquam, voluptatem illo quo, saepe beatae cumque provident similique porro.</p>--}}
-                        {{--<p>Tenetur labore fuga corporis tempore inventore minima itaque, veniam aliquid aliquam odit placeat tempora. Natus officia sit minima tempora.</p>--}}
-                        {{--<hr class="dotted">--}}
-                    {{--<span class="autor-post">--}}
-                        {{--<img src="assets/img/demo/avatar100.jpg" alt="">--}}
-                        {{--by <a href="#">adrigm</a>--}}
-                    {{--</span>--}}
-                        {{--<a href="#" class="btn btn-ar btn-primary pull-right" role="button">Read more &raquo;</a>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div> <!-- masonry-item  -->--}}
-
-
-        {{--</div> <!-- masonry-container  -->--}}
-
     </div> <!-- container  -->
         </div>
 @endsection
 
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.0/masonry.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
     <script>
-        $( document ).ready(function() {
+        // gotta wait until all the image are loaded before applying the maxonry
+        var $grid = $('.masonry-container').imagesLoaded( function() {
+            // init Masonry after all images have loaded
             $('.masonry-container').masonry({
                 // options
                 itemSelector: '.masonry-item',
                 columnWidth: '.masonry-item'
+                percentPosition: true
             });
         });
+
 
     </script>
 @endsection

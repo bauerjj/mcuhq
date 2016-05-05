@@ -1,6 +1,6 @@
 @extends('layouts.full')
 
-@section('head') <meta name="robots" content="noindex, follow"> @endsection
+@section('head') <meta name="robots" content="noindex, nofollow"> @endsection
 
 
 @section('header')
@@ -36,7 +36,7 @@
                         <td>Total Posts</td>
                         <td> {{$posts_count}}</td>
                         @if($author && $posts_count)
-                            <td><a href="{{ url('/my-all-posts',array('rel','nofollow'))}}" rel="nofollow">Show All</a></td>
+                            <td><a href="{{ url('/my-all-posts')}}" rel="nofollow">Show All</a></td>
                         @endif
                     </tr>
                     <tr>
@@ -50,7 +50,7 @@
                         <td>Posts in Draft </td>
                         <td>{{$posts_draft_count}}</td>
                         @if($author && $posts_draft_count)
-                            <td><a href="{{ url('my-drafts',array('rel','nofollow'))}}" rel="nofollow">Show All</a></td>
+                            <td><a href="{{ url('my-drafts')}}" rel="nofollow">Show All</a></td>
                         @endif
                     </tr>
                 </table>

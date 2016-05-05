@@ -115,7 +115,18 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
         // add every post to the sitemap
         foreach ($posts as $post)
         {
-            $sitemap->add(url($post->id .'/'.$post->slug), $post->updated_at, 0.99, 'weekly');
+            $sitemap->add(url($post->id .'/'.$post->slug), $post->created_at, 0.99, 'weekly');
+        }
+
+        $blogs = DB::table('blog')->orderBy('created_at', 'desc')->get();
+        foreach ($blogs as $blog)
+        {
+            $sitemap->add(url('/blog/'.$blog->id .'/'.$blog->slug), $blog->created_at, 0.99, 'weekly');
+        }
+
+        foreach ($vendors as $vendor)
+        {
+            $sitemap->add(url('vendors/'.$vendor->slug), $vendor->created_at, 0.8, 'weekly');
         }
 
 
@@ -126,13 +137,12 @@ Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
 
         foreach ($categories as $category)
         {
-            $sitemap->add(url('categories/'.$category->slug), $category->updated_at, 0.2, 'weekly');
+            $sitemap->add(url('categories/'.$category->slug), $category->created_at, 0.2, 'weekly');
         }
 
-        foreach ($vendors as $vendor)
-        {
-            $sitemap->add(url('vendors/'.$vendor->slug), $vendor->updated_at, 0.8, 'weekly');
-        }
+
+
+
 
         // generate your sitemap (format, filename)
         $sitemap->store('xml', 'sitemap');
