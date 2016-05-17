@@ -3,6 +3,10 @@
 @section('title'){{$post->title}} | mcuhq @endsection
 @section('meta'){{$post->description}} @endsection
 
+@section('head')
+        <link rel="canonical" href="{{url('/'.$post->id.'/'.$post->slug)}}" />
+@endsection
+
 @section('header')
     <header class="main-header">
         <div class="container">
