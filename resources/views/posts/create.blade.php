@@ -375,7 +375,6 @@
         });
 
 
-        $(function () {
             $('.btn-form').click(function () { // enter here if publishing or drafting
                 $('#compiler-assembler-input').val($('#compiler-assembler').val())
                 $('#micro-input').val($('#micro').val())
@@ -384,7 +383,6 @@
 
 
             });
-        });
 
     </script>
 
