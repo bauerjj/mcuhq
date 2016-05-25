@@ -37,7 +37,7 @@
             <p>For comments, suggestions, or errors, please contact me via <a href="http://github.com/mcuhq">github</a> or <a href="mailto:contact@mcuhq.com?Subject=Web%20Contact" target="_top">email</a>. I am still adding a bunch of new things to the site.</p>
 
 
-            <p> - <a href="/user/1">Justin Bauer</a></p>
+            <p> - <a href="https://www.linkedin.com/in/justin-bauer-a7a9ba116">Justin Bauer</a></p>
         </div>
         <div class="col-md-5">
             <h2 class="right-line">Completely Open Source</h2>
