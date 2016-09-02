@@ -103,7 +103,7 @@
 
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.0/masonry.pkgd.min.js"></script>
-    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
     <script>
         // gotta wait until all the image are loaded before applying the maxonry
         var $grid = $('.masonry-container').imagesLoaded( function() {
