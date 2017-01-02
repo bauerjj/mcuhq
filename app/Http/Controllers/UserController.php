@@ -84,9 +84,9 @@ class UserController extends Controller
             $data['author'] = null;
         }
 
-        if($data['user']->id == 1){
-            return redirect("http://www.linkedin.com/in/justin-bauer-a7a9ba116");
-        }
+//        if($data['user']->id == 1){
+//            return redirect("http://www.linkedin.com/in/justin-bauer-a7a9ba116");
+//        }
 
 
 
