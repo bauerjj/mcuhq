@@ -101,7 +101,7 @@
                 <ul class="list-unstyled">
                     <li><strong>Author:</strong> <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></li>
                     <li><strong>Created:</strong> {{ $post->created_at->format('M d, Y') }}</li>
-                    <li><strong>Updated:</strong> {{ $post->updated_at->format('M d, Y') }}</li>
+                    {{--<li><strong>Updated:</strong> {{ $post->updated_at->format('M d, Y') }}</li>--}}
                     @if(($post->more_info_link) != "")
                         @if(strpos($post->more_info_link, 'github'))
                             <li><strong>Follow: </strong><a href="{{$post->more_info_link}}">github</a></li>

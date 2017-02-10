@@ -49,8 +49,8 @@ class ViewThrottleFilter
     {
         $time = time();
 
-        // Let the views expire after 1 day
-        $throttleTime = 3600 * 24 * 1;
+        // Let the views expire after 1 hour
+        $throttleTime = 3600;
 
         // Filter through the post array. The argument passed to the
         // function will be the value from the array, which is the
