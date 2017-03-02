@@ -25,7 +25,7 @@
 {!! Minify::javascript("/assets/js/html5shiv.min.js") !!}
 {!! Minify::javascript("/assets/js/respond.min.js") !!}
 <![endif]-->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/solarized-dark.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/github.min.css">
 <script type="application/ld+json">
 {
   "@context" : "http://schema.org",
