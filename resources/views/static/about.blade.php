@@ -28,13 +28,13 @@
         <div class="col-md-7">
             <h2 class="right-line">What is this?</h2>
             <p>A "Microcontroller <span class="highlighted">H</span>ead<span class="highlighted">q</span>uarters"</span> dedicated to heavily detailed discussion on microcontroller hardware and sofware.
-            This content here focuses more on the microcontroller and its peripherals over the hack.
+            This content here focuses more on the microcontroller and its peripherals over the hack. I personally verify that everything that is posted actually compiles and works as advertised.
             </p>
 
            <p>It was born out of the frustration from using Instructables and hackaday where it was near impossible to replicate the project and learn how things really work under the hood. </p>
             <p>Originally I set out to create an online repository of my microcontroller studies, but soon realized that I can expand this so that anyone can add material.  </p>
 
-            <p>For comments, suggestions, or errors, please contact me via <a href="http://github.com/mcuhq">github</a> or <a href="mailto:contact@mcuhq.com?Subject=Web%20Contact" target="_top">email</a>. I am still adding a bunch of new things to the site.</p>
+            <p>For comments, suggestions, or errors, please contact me via <a href="http://github.com/bauerjj">github</a> or <a href="mailto:contact@mcuhq.com?Subject=Web%20Contact" target="_top">email</a>. I am still adding a bunch of new things to the site.</p>
 
 
             <p> - <a href="https://www.linkedin.com/in/justin-bauer-a7a9ba116">Justin Bauer</a></p>
@@ -43,7 +43,7 @@
             <h2 class="right-line">Completely Open Source</h2>
             <p>mcu<span>hq</span> strives for collaboration, which is why the source code for this entire website is openly avaliable to download and use!</p>
             <p>Built using <a href="https://laravel.com/">Laravel 5.2</a>, this "wiki-like" codebase can be easily migrated to other topics of interest. </p>
-            <div class="github-widget" data-repo="mcuhq/mcuhq"></div>
+            <div class="github-widget" data-repo="bauerjj/mcuhq"></div>
         </div>
     </div> <!-- row -->
     <div class="row">
