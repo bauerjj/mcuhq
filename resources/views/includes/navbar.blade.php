@@ -115,13 +115,14 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-megamenu">
                                     <div class="megamenu-block">
+                                        <h4 class="megamenu-block-title"><i class="fa fa-folder"></i> Microchip</h4>
                                         <div>
                                             <a href="{{url('vendors/microchip?mcu=pic10')}}" class="tag">PIC10</a>
                                             <a href="{{url('vendors/microchip?mcu=pic12')}}" class="tag">PIC12</a>
                                             <a href="{{url('vendors/microchip?mcu=pic16')}}" class="tag">PIC16</a>
                                             <a href="{{url('vendors/microchip?mcu=pic18')}}" class="tag">PIC18</a>
                                             <a href="{{url('vendors/microchip?mcu=pic24')}}" class="tag">PIC24</a>
-                                            <a href="{{url('vendors/microchip?mcu=dspic')}}" class="tag">dsPIC</a>
+                                            <a href="{{url('vendors/microchip?mcu=dspic33')}}" class="tag">dsPIC33</a>
                                             <a href="{{url('vendors/microchip?mcu=pic32')}}" class="tag">PIC32</a>
 
                                         </div>
