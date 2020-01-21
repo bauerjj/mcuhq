@@ -12,12 +12,12 @@ Includes the following:
     - https://github.com/inacho/bootstrap-markdown-editor
  - For Article tagging
     - https://github.com/rtconner/laravel-tagging
-
+ - View Counter
+    - http://blog.stidges.com/post/implementing-a-page-view-counter-in-laravel
 
 "WishList Items"
-- View counter (http://blog.stidges.com/post/implementing-a-page-view-counter-in-laravel)
 - Admin backend tracker (https://github.com/antonioribeiro/tracker)
-- Development tools trackable
+- Development tools (Platforms)
 - Voting/Liking/Favorite system for posts or users (https://github.com/rtconner/laravel-likeable)
 - A more comprehensive search page
 

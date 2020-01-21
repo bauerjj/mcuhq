@@ -1,5 +1,5 @@
 <!-- footer-widgets -->
-{{--<p>&copy; 2016 <a href="#">MCUHQ</a> | All rights reserved |--}}
+{{--<p>&copy; 2020 <a href="#">MCUHQ</a> | All rights reserved |--}}
 {{--<span class="pull-righttt">--}}
 {{--<a href="#"><i class="fa my-fa-youtube"> </i></a>--}}
 {{--<a href="#"><i class="fa my-fa-twitter"> </i></a>--}}
@@ -16,7 +16,7 @@
 {{--<div class="col-md-12">--}}
 {{--<a href="/index.php?r=site/page&amp;view=about">About</a>--}}
 {{--| <b><a href="/index.php?r=site/contact">Contact/Feedback</a></b>--}}
-{{--| <span class="muted ">Copyright &copy; 2016 mcuhq. Some Rights Reserved. </span>--}}
+{{--| <span class="muted ">Copyright &copy; 2020 mcuhq. Some Rights Reserved. </span>--}}
 
 {{--</div>--}}
 {{--</div>--}}
@@ -27,7 +27,7 @@
 {{--</div>--}}
 
 
-    <p>&copy; 2016 mcu<span class="highlight-blue">hq</span> - Some rights reserved.</p>
+    <p>&copy; 2020 mcu<span class="highlight-blue">hq</span> - Some rights reserved.</p>
 
 
 <!-- footer -->

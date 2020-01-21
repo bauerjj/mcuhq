@@ -208,7 +208,7 @@ class FilterController extends Controller
         $perPage =10;
         $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/tags/'.$tagRoot->slug)); // create pagination
 
-        parse_str($_SERVER['QUERY_STRING'],$url_array);
+        parse_str($_SERVER['PATH_INFO'],$url_array);
         $paginate->appends($url_array);
 
         $posts = $posts->splice(($perPage * $page) - $perPage, $perPage);
@@ -391,7 +391,7 @@ class FilterController extends Controller
         $perPage =10;
         $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/categories/'.$category->slug)); // create pagination
 
-        parse_str($_SERVER['QUERY_STRING'],$url_array);
+        parse_str($_SERVER['PATH_INFO'],$url_array);
         $paginate->appends($url_array);
 
         $posts = $posts->splice(($perPage * $page) - $perPage, $perPage);
@@ -589,8 +589,7 @@ class FilterController extends Controller
         if($page == '') $page = 1;
         $perPage = 10;
         $paginate = new LengthAwarePaginator($posts, $posts->count(), $perPage, $page, array('path' => '/vendors/'.$vendor->slug)); // create pagination
-
-        parse_str($_SERVER['QUERY_STRING'],$url_array);
+        parse_str($_SERVER['PATH_INFO'],$url_array);
         $paginate->appends($url_array);
 
         $posts = $posts->splice(($perPage * $page) - $perPage, $perPage);

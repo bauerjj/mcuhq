@@ -75,18 +75,23 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
-        // check if user can post and is admin
-        if ($request->user()->can_post() && $request->user()->is_Admin()) {
+        if($request->user() != NULL)
+        {
+            // check if user can post and is admin
+            if ($request->user()->can_post() && $request->user()->is_Admin()) {
 
-            // Grab the available categories and such
-            $categories = BlogCategories::all();
-            $tags = Blog::existingTags()->toArray();
+                // Grab the available categories and such
+                $categories = BlogCategories::all();
+                $tags = Blog::existingTags()->toArray();
 
-            return view('blog.create')
-                ->withCategories($categories)
-                ->withTags(json_encode($tags));
+                return view('blog.create')
+                    ->withCategories($categories)
+                    ->withTags(json_encode($tags));
+            } else {
+                return redirect('/')->withErrors('You do not have sufficient permissions to post!');
+            }
         } else {
-            return redirect('/')->withErrors('You do not have sufficient permissions to post!');
+            return redirect('/')->withErrors('You are not logged in!');
         }
     }
 

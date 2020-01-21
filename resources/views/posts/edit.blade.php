@@ -420,6 +420,13 @@
         });
 
 
+
+        @if(old('body'))
+       // $('#editor').markdownEditor('setContent',$('#editor').markdownEditor('content')) // NEED THIS to repopluate form if errors!
+        @else
+        //$('#editor').markdownEditor('setContent',$('#editor').markdownEditor('content')) // NEED THIS to repopluate form if errors!
+        @endif
+
             $('.btn-form').click(function () { // enter here if publishing or drafting
                 //var mysave = $('#editor').markdownEditor('content');
 

@@ -25,7 +25,7 @@ return array(
     */
 
     'ignore_environments' => array(
-	    'local', //local
+	    'production', //local
     ),
 
     /*

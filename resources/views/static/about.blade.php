@@ -42,7 +42,7 @@
         <div class="col-md-5">
             <h2 class="right-line">Completely Open Source</h2>
             <p>mcu<span>hq</span> strives for collaboration, which is why the source code for this entire website is openly avaliable to download and use!</p>
-            <p>Built using <a href="https://laravel.com/">Laravel 5.2</a>, this "wiki-like" codebase can be easily migrated to other topics of interest. </p>
+            <p>Built using <a href="https://laravel.com/">Laravel 5</a>, this "wiki-like" codebase can be easily migrated to other topics of interest. </p>
             <div class="github-widget" data-repo="bauerjj/mcuhq"></div>
         </div>
     </div> <!-- row -->

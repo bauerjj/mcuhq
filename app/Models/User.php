@@ -64,15 +64,29 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
-    public function getAuthor()
+    public function can($activity)
+    {
+        if($activity == "moderate"){
+            if($this->role == 'admin')
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function authorAttributes()
     {
         return [
-            'id'     => $this->id,
-            'name'   => $this->name,
-            'email'  => $this->email,
-            'url'    => $this->url,
-            'avatar' => 'gravatar',
-            'admin'  => $this->role === 'admin',
+            'name' => $this->name,
+            'email' => $this->email,
+            'url' => $this->url,    // optional
+            'avatar' => 'gravatar', // optional
         ];
     }
+
 }

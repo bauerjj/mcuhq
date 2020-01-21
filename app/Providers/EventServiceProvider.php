@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use Event;
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -17,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ViewPostHandler' => [
             'App\Listeners\ViewPostListener',
         ],
+        'Hazzard\Comments\Events\CommentWasPosted' => [
+            'App\Listeners\HandleCommentWasNotification',
+        ],
     ];
 
     /**
@@ -25,12 +27,10 @@ class EventServiceProvider extends ServiceProvider
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @return void
      */
-    public function boot(DispatcherContract $events)
+    public function boot()
     {
-        parent::boot($events);
+        parent::boot();
 
-        //Event::subscribe('posts.view', 'Mcuhq\Events\ViewPostHandler');
-
-       // $events->listen('ViewPostHandler');
+        //
     }
 }

@@ -67,9 +67,6 @@ View::composer('*', function($view) {
 });
 
 Route::group(['middleware' =>  ['web','ViewThrottle']], function () {
-    Route::auth();
-
-
     Route::get('/','PostController@index');
     Route::get('/blog', 'HomeController@blog');
     Route::get('/about','PostController@about');

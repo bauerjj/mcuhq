@@ -21,10 +21,9 @@
 @endsection
 
 @section('head')
-     {{--For the comments plugin--}}
-    <link rel="stylesheet" href="/vendor/comments/css/prism-okaidia.css">
-    <link rel="stylesheet" href="/vendor/comments/css/comments.css">
-
+    {{--For the comments plugin--}}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="/vendor/comments/comments.css" rel="stylesheet">
 @endsection
 
 
@@ -72,11 +71,11 @@
                         {{--Also comment out the URL portion of the form in 'post-form.blade.php'--}}
 
                         <div class="clearfix"></div>
-
+                        $post->id
                         @include('help')
 
                                 <!-- Display comments. -->
-                        @include('comments::display', ['pageId' => $post->id, 'id' => 'comments'])
+                                <div id="my-comments"></div>
                     </div>
                 </div>
             @else
@@ -150,8 +149,8 @@
 
             <h3 class="section-title">Related</h3>
             <ul class="list-unstyled related">
-                @foreach($related as $post)
-                    <li><a href="{{url($post->id.'/'.$post->slug)}}">{{{$post->title}}}</a></li>
+                @foreach($related as $related_post)
+                    <li><a href="{{url($related_post->id.'/'.$related_post->slug)}}">{{{$related_post->title}}}</a></li>
                 @endforeach
             </ul>
 
@@ -210,16 +209,24 @@
     </script>
 
     {{--For the comments plugin--}}
-    <script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.min.js"></script>
-    <script src="/vendor/comments/js/utils.js"></script>
+    <script src="/vendor/comments/comments.js"></script>
     <script>
-        $( document ).ready(function(){
-            $.getScript('/vendor/comments/js/comments.min.js', function(){
-                Vue.config.debug = true;
-                new Vue({el: '#comments'});
-            })
+        new Comments.default({
+        el: '#my-comments',
+        pageId: {{ $post->id }},
+        commentableId: {{ $post->id }}
         });
     </script>
+
+    <<style>
+    .comments__iframe {
+ width:100%;
+ border:none;
+ opacity:0;
+ -webkit-transition:opacity .25s;
+ transition:opacity .25s
+}
+</style> 
 
     {{--///////////////////////////////////////////////////////--}}
 

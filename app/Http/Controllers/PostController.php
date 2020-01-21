@@ -499,10 +499,13 @@ class PostController extends Controller
             }
             $prevCategories = $post->categories; // save the old cateogires before saving so that we can decrement count
             if($post->save()) {
+                // JJB 1.20.2020 - This gives an exception when updating catagory count since
+                // I don't think the count is being saved properly in the first palce - thus
+                // (0 - 1) is illegal insert!
+                /*
                 foreach($prevCategories as $cat){
-                    if($cat->count != 0)
                     Db::table('categories')->where('id',$cat->id)->decrement('count'); // Decrement existing categories
-                }
+                }*/
 
                 // First remove existing relationships
                 $cat_string = $request->get('topics');

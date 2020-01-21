@@ -18,8 +18,7 @@
 
 @section('head')
     {{--For the comments plugin--}}
-    <link rel="stylesheet" href="/vendor/comments/css/prism-okaidia.css">
-    <link rel="stylesheet" href="/vendor/comments/css/comments.css">
+    <link href="{{ mix('comments.css', 'vendor/comments') }}" rel="stylesheet">
 
 @endsection
 
@@ -72,7 +71,7 @@
                         @include('help')
 
                                 <!-- Display comments. -->
-                        @include('comments::display', ['pageId' => $blog->id + 900000, 'id' => 'comments'])
+                                <div id="my-comments"></div>
                     </div>
                 </div>
             @else
@@ -173,16 +172,16 @@
     </script>
 
     {{--For the comments plugin--}}
-    <script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.min.js"></script>
-    <script src="/vendor/comments/js/utils.js"></script>
+    <script src="/vendor/comments/comments.js"></script>
     <script>
-        $( document ).ready(function(){
-            $.getScript('/vendor/comments/js/comments.min.js', function(){
-                Vue.config.debug = true;
-                new Vue({el: '#comments'});
-            })
+    $(window).bind("load", function() {
+        new Comments.default({
+        el: '#my-comments',
+        pageId: {{ $blog->id + 900000 }},
+        commentableId: {{ $blog->id + 900000 }}
         });
-    </script>
+    });
+    </script> 
 
     {{--///////////////////////////////////////////////////////--}}
 

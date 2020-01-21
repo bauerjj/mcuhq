@@ -2,6 +2,19 @@
 
 return [
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    */
+
+    'name' => 'mcuhq',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -13,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'debug'),
 
     /*
     |--------------------------------------------------------------------------
@@ -147,6 +160,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
 
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Conner\Tagging\Providers\TaggingServiceProvider::class,
@@ -163,7 +177,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\ValidatorServiceProvider::class,
-        Hazzard\Comments\CommentsServiceProvider::class,
 
     ],
 

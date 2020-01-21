@@ -83,13 +83,7 @@ class UserController extends Controller
         else {
             $data['author'] = null;
         }
-
-//        if($data['user']->id == 1){
-//            return redirect("http://www.linkedin.com/in/justin-bauer-a7a9ba116");
-//        }
-
-
-
+        
         // @note For some reason, there is a diff between MYSQL database interpetations
         // of active input needing to be a string or number
         $data['comments_count'] = $data['user']->comments->count();
