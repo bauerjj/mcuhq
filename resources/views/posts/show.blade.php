@@ -71,7 +71,6 @@
                         {{--Also comment out the URL portion of the form in 'post-form.blade.php'--}}
 
                         <div class="clearfix"></div>
-                        $post->id
                         @include('help')
 
                                 <!-- Display comments. -->
@@ -218,7 +217,9 @@
         });
     </script>
 
+<!-- hack to force style that somehow works fine on blog articles, but not posts! This widens the iframe and comments -->
     <<style>
+    
     .comments__iframe {
  width:100%;
  border:none;

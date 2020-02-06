@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint": "eslint --ext .js,.vue resources/assets/js"
+  },
+  "dependencies": {
+    "autosize": "^3.0.20",
+    "axios": "^0.15.3",
+    "bootstrap": "4.0.0-alpha.6",
+    "iframe-resizer": "^3.5.8",
+    "laravel-echo": "^1.2.5",
+    "stringz": "^0.1.1",
+    "svg-sprite-loader": "^0.3.0",
+    "sweetalert2": "^6.4.3",
+    "vform": "^0.7.3",
+    "vue": "^2.4.2",
+    "vue-i18n": "^5.0.0",
+    "vue-timeago": "^3.3.0",
+    "vuex": "^2.2.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.5",
+    "eslint": "^3.19.0",
+    "eslint-plugin-vue-libs": "^1.2.1",
+    "laravel-mix": "^1.7.2"
+  }
+}

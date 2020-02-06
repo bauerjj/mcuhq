@@ -1,0 +1,44 @@
+{
+  "name": "hazzard/laravel-comments",
+  "description": "Comment system for Laravel.",
+  "homepage": "https://codecanyon.net/item/ajax-comment-system-for-laravel/12660889",
+  "authors": [
+    {
+      "name": "Cretu Eusebiu",
+      "email": "me@cretueusebiu.com",
+      "homepage": "https://hazzardweb.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "hazzardweb@gmail.com"
+  },
+  "require": {
+    "laravel/framework": "^5.1.9|^6.0",
+    "openclassrooms/akismet": "^2.0",
+    "google/recaptcha": "^1.2",
+    "s9e/text-formatter": "^0.9.1"
+  },
+  "require-dev": {
+    "mockery/mockery": "~0.9.4",
+    "phpunit/phpunit" : "~5.7",
+    "orchestra/testbench": "~3.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hazzard\\Comments\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Hazzard\\Comments\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Hazzard\\Comments\\CommentsServiceProvider"
+      ]
+    }
+  }
+}
